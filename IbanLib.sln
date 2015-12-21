@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IbanLib.Exceptions", "IbanL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IbanLib.Validators", "IbanLib.Validators\IbanLib.Validators.csproj", "{C3FCADDF-1362-4EBC-9B81-ED2AE55C704B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IbanLib.Utils", "IbanLib.Utils\IbanLib.Utils.csproj", "{FC9D82A3-8713-4C45-B72F-38DF639842CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IbanLib.Common", "IbanLib.Common\IbanLib.Common.csproj", "{4F66CD45-467C-46B7-A42C-76023A26E2D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IbanLib.Splitters", "IbanLib.Splitters\IbanLib.Splitters.csproj", "{BE82E131-464E-4139-BCB2-9BA05ABCCE52}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +39,18 @@ Global
 		{C3FCADDF-1362-4EBC-9B81-ED2AE55C704B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3FCADDF-1362-4EBC-9B81-ED2AE55C704B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3FCADDF-1362-4EBC-9B81-ED2AE55C704B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC9D82A3-8713-4C45-B72F-38DF639842CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC9D82A3-8713-4C45-B72F-38DF639842CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC9D82A3-8713-4C45-B72F-38DF639842CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC9D82A3-8713-4C45-B72F-38DF639842CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F66CD45-467C-46B7-A42C-76023A26E2D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F66CD45-467C-46B7-A42C-76023A26E2D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F66CD45-467C-46B7-A42C-76023A26E2D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F66CD45-467C-46B7-A42C-76023A26E2D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE82E131-464E-4139-BCB2-9BA05ABCCE52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE82E131-464E-4139-BCB2-9BA05ABCCE52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE82E131-464E-4139-BCB2-9BA05ABCCE52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE82E131-464E-4139-BCB2-9BA05ABCCE52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

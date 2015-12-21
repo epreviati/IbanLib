@@ -17,6 +17,7 @@ namespace IbanLib.Validators.Validators
         /// </summary>
         /// <param name="country"></param>
         /// <returns>true or false</returns>
+        /// <exception cref="InvalidCountryException"></exception>
         protected void CheckCountry(ICountry country)
         {
             if (country == null)

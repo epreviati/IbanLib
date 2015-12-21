@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using IbanLib.Countries;
+using IbanLib.Exceptions;
 
 namespace IbanLib.Validators.Validators
 {
@@ -28,6 +29,7 @@ namespace IbanLib.Validators.Validators
         /// <param name="country"></param>
         /// <param name="iban"></param>
         /// <returns>true or false</returns>
+        /// <exception cref="InvalidCountryException"></exception>
         public override bool IsValid(ICountry country, string iban)
         {
             CheckCountry(country);

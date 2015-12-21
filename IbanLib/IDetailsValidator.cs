@@ -4,9 +4,11 @@ namespace IbanLib
 {
     public interface IDetailsValidator
     {
-        ICountryCodeValidator GetCountryCodeValidator();
-
         IIbanValidator GetIbanValidator();
+
+        IBbanValidator GetBbanValidator();
+
+        ICountryCodeValidator GetCountryCodeValidator();
 
         IBankCodeValidator GetBankCodeValidator();
 

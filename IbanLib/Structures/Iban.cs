@@ -1,27 +1,25 @@
 ﻿using System.Numerics;
+using IbanLib.Countries;
 using IbanLib.Exceptions;
 
-namespace IbanLib
+namespace IbanLib.Structures
 {
-    public class Iban
+    public class Iban : IIban
     {
         # region Constructors
 
         /// <summary>
         /// </summary>
-        /// <param name="details"></param>
-        /// <exception cref="InvalidIbanDetailException"></exception>
-        /// <exception cref="InvalidCheckDigitsException"></exception>
-        public Iban(IbanDetails details)
+        /// <param name="country"></param>
+        /// <param name="bban"></param>
+        public Iban(ICountry country, IBban bban)
         {
-            IbanDetails = details;
+            Bban = bban;
             NationalCheckDigits = CalculateNationalCheckDigits(
                 string.Concat(
-                    details.Country.ISO3166,
-                    "00",
-                    details.BankCode,
-                    details.BranchCode,
-                    details.AccountNumber));
+                    country.ISO3166,
+                    NationalCheckDigits,
+                    bban.Value()));
         }
 
         /// <summary>
@@ -30,7 +28,7 @@ namespace IbanLib
         /// <exception cref="InvalidIbanException"></exception>
         /// <exception cref="IbanSplitterException"></exception>
         public Iban(string iban)
-            : this(iban, new DetailsValidator())
+            : this(iban, new DetailsValidator(), new Splitter())
         {
         }
 
@@ -38,13 +36,12 @@ namespace IbanLib
         /// </summary>
         /// <param name="iban"></param>
         /// <param name="validators"></param>
+        /// <param name="splitter"></param>
         /// <exception cref="InvalidIbanException"></exception>
-        /// <exception cref="IbanSplitterException"></exception>
-        public Iban(string iban, IDetailsValidator validators)
+        public Iban(string iban, IDetailsValidator validators, ISplitter splitter)
         {
             iban = Util.Normalize(iban);
-            var countryCode = iban.Substring(0, 2);
-
+            var countryCode = splitter.GetIbanSplitter().GetCountryCode(iban);
             if (!validators.GetCountryCodeValidator().IsValid(countryCode))
             {
                 throw new InvalidIbanException(
@@ -55,31 +52,30 @@ namespace IbanLib
             }
 
             var country = Countries.Util.GetCountry(countryCode);
+            if (country == null)
+            {
+                throw new InvalidIbanException(
+                    string.Format(
+                        "The IBAN parameter '{0}' does not permits to calculate the country with the country code '{1}'.",
+                        iban,
+                        countryCode));
+            }
 
-            var splitter = new IbanSplitter(country, validators.GetIbanValidator());
-            var bankCode = splitter.GetBankIdentifierFromIban(iban);
-            var branchCode = splitter.GetBranchIdentifierFromIban(iban);
-            var accountNumber = splitter.GetAccountNumberFromIban(iban);
-            NationalCheckDigits = splitter.GetNationalCheckDigitsFromIban(iban);
-
-            IbanDetails = new IbanDetails(country, bankCode, branchCode, accountNumber, validators);
-        }
-
-        /// <summary>
-        /// </summary>
-        public Iban()
-        {
+            NationalCheckDigits = splitter.GetIbanSplitter().GetNationalCheckDigits(country, iban);
+            Bban = new Bban(country, iban.Substring(4), validators, splitter.GetBbanSplitter());
         }
 
         #endregion
 
         # region Details
 
-        private string _nationalCheckDigits = "00";
+        /// <summary>
+        /// </summary>
+        public ICountry Country { get; set; }
 
         /// <summary>
         /// </summary>
-        public IbanDetails IbanDetails { get; set; }
+        public IBban Bban { get; set; }
 
         /// <summary>
         /// </summary>
@@ -88,6 +84,8 @@ namespace IbanLib
             get { return _nationalCheckDigits; }
             set { _nationalCheckDigits = value; }
         }
+
+        private string _nationalCheckDigits = "00";
 
         # endregion
 
@@ -144,12 +142,23 @@ namespace IbanLib
         public override string ToString()
         {
             return string.Format(
-                "{0}{1}{2}{3}{4}",
-                IbanDetails.Country.ISO3166,
+                "{0}: {1}\n" +
+                "{2}: {3}\n" +
+                "{4}: [\n{5}\n]",
+                "Country", Country.ISO3166,
+                "NationalCheckDigits", NationalCheckDigits,
+                "BBAN", Bban);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
+        public string Value()
+        {
+            return string.Concat(
+                Country.ISO3166,
                 NationalCheckDigits,
-                IbanDetails.BankCode,
-                IbanDetails.BranchCode,
-                IbanDetails.AccountNumber);
+                Bban.Value());
         }
 
         # endregion

@@ -44,8 +44,10 @@
     <Compile Include="IBankCodeValidator.cs" />
     <Compile Include="IBranchCodeValidator.cs" />
     <Compile Include="ICountryCodeValidator.cs" />
+    <Compile Include="IBbanValidator.cs" />
     <Compile Include="IIbanValidator.cs" />
     <Compile Include="Validators\CountryCodeValidator.cs" />
+    <Compile Include="Validators\BbanValidator.cs" />
     <Compile Include="Validators\IbanValidator.cs" />
     <Compile Include="Validators\ADetailValidator.cs" />
     <Compile Include="Validators\AccountNumberValidator.cs" />

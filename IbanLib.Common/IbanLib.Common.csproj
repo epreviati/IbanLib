@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{01338198-BF8D-4FB9-818D-B9547DE81597}</ProjectGuid>
+    <ProjectGuid>{4F66CD45-467C-46B7-A42C-76023A26E2D0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IbanLib.Exceptions</RootNamespace>
-    <AssemblyName>IbanLib.Exceptions</AssemblyName>
+    <RootNamespace>IbanLib.Common</RootNamespace>
+    <AssemblyName>IbanLib.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,15 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BbanSplitterException.cs" />
-    <Compile Include="Enums\DetailType.cs" />
-    <Compile Include="InvalidCountryException.cs" />
-    <Compile Include="InvalidBbanDetailException.cs" />
-    <Compile Include="InvalidIbanDetailException.cs" />
-    <Compile Include="IbanSplitterException.cs" />
-    <Compile Include="InvalidIbanException.cs" />
-    <Compile Include="InvalidCountryCodeException.cs" />
-    <Compile Include="InvalidCheckDigitsException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

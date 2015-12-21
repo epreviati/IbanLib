@@ -40,14 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IbanDetails.cs" />
-    <Compile Include="Iban.cs">
+    <Compile Include="ISplitter.cs" />
+    <Compile Include="Structures\Bban.cs" />
+    <Compile Include="Structures\Iban.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IIban.cs" />
+    <Compile Include="IBban.cs" />
     <Compile Include="IDetailsValidator.cs" />
-    <Compile Include="DetailsValidator.cs" />
-    <Compile Include="IbanSplitter.cs" />
+    <Compile Include="Structures\DetailsValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Structures\Splitter.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +61,10 @@
     <ProjectReference Include="..\IbanLib.Exceptions\IbanLib.Exceptions.csproj">
       <Project>{01338198-BF8D-4FB9-818D-B9547DE81597}</Project>
       <Name>IbanLib.Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib.Splitters\IbanLib.Splitters.csproj">
+      <Project>{BE82E131-464E-4139-BCB2-9BA05ABCCE52}</Project>
+      <Name>IbanLib.Splitters</Name>
     </ProjectReference>
     <ProjectReference Include="..\IbanLib.Validators\IbanLib.Validators.csproj">
       <Project>{C3FCADDF-1362-4EBC-9B81-ED2AE55C704B}</Project>
