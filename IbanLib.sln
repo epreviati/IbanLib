@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IbanLib", "IbanLib\IbanLib.csproj", "{F680B939-825D-4D75-B5D5-10ECBB668C40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IbanLib.Countries", "IbanLib.Countries\IbanLib.Countries.csproj", "{132D7F7C-6676-47BA-BC5B-99FDBD77CDF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IbanLib.Exceptions", "IbanLib.Exceptions\IbanLib.Exceptions.csproj", "{01338198-BF8D-4FB9-818D-B9547DE81597}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IbanLib.Validators", "IbanLib.Validators\IbanLib.Validators.csproj", "{C3FCADDF-1362-4EBC-9B81-ED2AE55C704B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F680B939-825D-4D75-B5D5-10ECBB668C40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F680B939-825D-4D75-B5D5-10ECBB668C40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F680B939-825D-4D75-B5D5-10ECBB668C40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F680B939-825D-4D75-B5D5-10ECBB668C40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{132D7F7C-6676-47BA-BC5B-99FDBD77CDF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{132D7F7C-6676-47BA-BC5B-99FDBD77CDF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{132D7F7C-6676-47BA-BC5B-99FDBD77CDF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{132D7F7C-6676-47BA-BC5B-99FDBD77CDF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01338198-BF8D-4FB9-818D-B9547DE81597}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01338198-BF8D-4FB9-818D-B9547DE81597}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01338198-BF8D-4FB9-818D-B9547DE81597}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01338198-BF8D-4FB9-818D-B9547DE81597}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3FCADDF-1362-4EBC-9B81-ED2AE55C704B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3FCADDF-1362-4EBC-9B81-ED2AE55C704B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3FCADDF-1362-4EBC-9B81-ED2AE55C704B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3FCADDF-1362-4EBC-9B81-ED2AE55C704B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
