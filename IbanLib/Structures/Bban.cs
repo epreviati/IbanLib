@@ -31,8 +31,7 @@ namespace IbanLib.Structures
         /// <param name="accountNumber"></param>
         /// <param name="validators"></param>
         /// <exception cref="InvalidBbanDetailException"></exception>
-        public Bban(ICountry country, string bankCode, string branchCode, string accountNumber,
-            IDetailsValidator validators)
+        public Bban(ICountry country, string bankCode, string branchCode, string accountNumber, IDetailsValidator validators)
         {
             CheckArgumentNull(
                 country == null,
@@ -75,11 +74,9 @@ namespace IbanLib.Structures
                 DetailType.AccountNumber,
                 typeof (string).Name);
 
-            // TODO: do here
-
-            CheckDigits1 = null;
-            CheckDigits2 = null;
-            CheckDigits3 = null;
+            CheckDigits1 = country.CalculateCheck1(BankCode, BranchCode, AccountNumber);
+            CheckDigits2 = country.CalculateCheck2(BankCode, BranchCode, AccountNumber);
+            CheckDigits3 = country.CalculateCheck3(BankCode, BranchCode, AccountNumber);
         }
 
         /// <summary>

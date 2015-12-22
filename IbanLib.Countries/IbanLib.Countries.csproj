@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +49,10 @@
     <Compile Include="Countries\ES.cs" />
     <Compile Include="Countries\FR.cs" />
     <Compile Include="Countries\GB.cs" />
+    <Compile Include="Countries\SM.cs" />
+    <Compile Include="Countries\MR.cs" />
+    <Compile Include="Countries\MC.cs" />
+    <Compile Include="Countries\TR.cs" />
     <Compile Include="ICountry.cs" />
     <Compile Include="Countries\IE.cs" />
     <Compile Include="Countries\IT.cs" />
@@ -55,12 +60,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Countries\RO.cs" />
     <Compile Include="Util.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IbanLib.Exceptions\IbanLib.Exceptions.csproj">
-      <Project>{01338198-BF8D-4FB9-818D-B9547DE81597}</Project>
-      <Name>IbanLib.Exceptions</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

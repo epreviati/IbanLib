@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 
 namespace IbanLib.Countries.Countries
 {
@@ -200,5 +201,89 @@ namespace IbanLib.Countries.Countries
                 "Check3Position", Check3Position,
                 "Check3Length", Check3Length);
         }
+
+        # region Calculate Check Digits
+
+        private static readonly string[] From =
+        {
+            "A", "B", "C", "D", "E", "F",
+            "G", "H", "I", "J", "K", "L",
+            "M", "N", "O", "P", "Q", "R",
+            "S", "T", "U", "V", "W", "X",
+            "Y", "Z"
+        };
+
+        private static readonly string[] To =
+        {
+            "10", "11", "12", "13", "14", "15",
+            "16", "17", "18", "19", "20", "21",
+            "22", "23", "24", "25", "26", "27",
+            "28", "29", "30", "31", "32", "33",
+            "34", "35"
+        };
+
+        public virtual string CalculateNationalCheckDigits(string iban)
+        {
+            if (string.IsNullOrWhiteSpace(iban)
+                || iban.Length != IBANLength
+                || !iban.Substring(2, 2).Equals("00"))
+            {
+                return null;
+            }
+
+            var truncated = iban.Substring(0, 4);
+            var tmp = string.Concat(iban.Substring(4), truncated);
+
+            for (var i = 0; i < From.Length; i++)
+            {
+                tmp = tmp.Replace(From[i], To[i]);
+            }
+
+            BigInteger n;
+            BigInteger.TryParse(tmp, out n);
+
+            return (98 - (n%97)).ToString("00");
+        }
+
+        public virtual string CalculateCheck1(string bankCode, string branchCode, string accountNumber)
+        {
+            if (Check1Length == 0 || !Check1Position.HasValue)
+                return null;
+
+            throw new NotImplementedException();
+        }
+
+        public virtual string CalculateCheck2(string bankCode, string branchCode, string accountNumber)
+        {
+            if (Check2Length == 0 || !Check2Position.HasValue)
+                return null;
+
+            throw new NotImplementedException();
+        }
+
+        public virtual string CalculateCheck3(string bankCode, string branchCode, string accountNumber)
+        {
+            if (Check3Length == 0 || !Check3Position.HasValue)
+                return null;
+
+            throw new NotImplementedException();
+        }
+
+        protected bool IsValidInputToCalculateChekDigits(string bankCode, string branchCode, string accountNumber)
+        {
+            if (string.IsNullOrWhiteSpace(bankCode)
+                || string.IsNullOrWhiteSpace(accountNumber)
+                || bankCode.Length != BankIdentifierLength
+                || accountNumber.Length != AccountNumberLength
+                || (string.IsNullOrWhiteSpace(branchCode) && BranchIdentifierLength != 0)
+                || (!string.IsNullOrWhiteSpace(branchCode) && branchCode.Length != BranchIdentifierLength))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        # endregion
     }
 }

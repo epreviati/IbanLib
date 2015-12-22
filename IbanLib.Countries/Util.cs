@@ -3,7 +3,6 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
-using IbanLib.Exceptions;
 
 namespace IbanLib.Countries
 {
@@ -35,9 +34,13 @@ namespace IbanLib.Countries
         /// <returns>
         ///     The implementation of ICountry that corrisponds with the requested country code.
         /// </returns>
-        /// <exception cref="InvalidCountryCodeException"></exception>
         public static ICountry GetCountry(string countryCode)
         {
+            if (string.IsNullOrWhiteSpace(countryCode))
+            {
+                return null;
+            }
+
             countryCode = countryCode.ToUpperInvariant();
 
             ICountry country;

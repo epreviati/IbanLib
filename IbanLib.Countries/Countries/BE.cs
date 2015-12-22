@@ -1,4 +1,6 @@
-﻿namespace IbanLib.Countries.Countries
+﻿using System.Numerics;
+
+namespace IbanLib.Countries.Countries
 {
     public class BE : ACountry
     {
@@ -57,6 +59,11 @@
             get { return 9; }
         }
 
+        public override int AccountNumberLength
+        {
+            get { return 7; }
+        }
+
         public override int? Check3Position
         {
             get { return AccountNumberPosition + AccountNumberLength; }
@@ -67,9 +74,31 @@
             get { return 2; }
         }
 
-        public override int AccountNumberLength
+        # region Calculate Check 3
+
+        public override string CalculateCheck3(string bankCode, string branchCode, string accountNumber)
         {
-            get { return 7; }
+            if (!IsValidInputToCalculateChekDigits(bankCode, branchCode, accountNumber))
+            {
+                return null;
+            }
+
+            var concat = string.Concat(bankCode, accountNumber);
+            BigInteger bi;
+            if (!BigInteger.TryParse(concat, out bi))
+                return null;
+
+            var check = (bi%97).ToString();
+            while (check.Length < 2)
+            {
+                check = string.Concat("0", check);
+            }
+
+            return check.Length != 2
+                ? null
+                : check;
         }
+
+        # endregion
     }
 }

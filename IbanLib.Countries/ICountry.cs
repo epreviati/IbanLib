@@ -53,5 +53,13 @@
         int? Check3Position { get; }
 
         int Check3Length { get; }
+
+        string CalculateNationalCheckDigits(string iban);
+        
+        string CalculateCheck1(string bankCode, string branchCode, string accountNumber);
+
+        string CalculateCheck2(string bankCode, string branchCode, string accountNumber);
+
+        string CalculateCheck3(string bankCode, string branchCode, string accountNumber);
     }
 }

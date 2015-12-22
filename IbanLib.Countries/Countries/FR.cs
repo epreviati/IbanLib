@@ -1,4 +1,7 @@
-﻿namespace IbanLib.Countries.Countries
+﻿using System;
+using System.Numerics;
+
+namespace IbanLib.Countries.Countries
 {
     public class FR : ACountry
     {
@@ -90,5 +93,58 @@
         {
             get { return AccountNumberPosition + AccountNumberLength; }
         }
+
+        # region Calculate Check 3
+
+        public override string CalculateCheck3(string bankCode, string branchCode, string accountNumber)
+        {
+            if (!IsValidInputToCalculateChekDigits(bankCode, branchCode, accountNumber))
+            {
+                return null;
+            }
+
+            var concat = string.Concat(bankCode, branchCode, accountNumber);
+            concat = concat
+                .Replace("J", "1")
+                .Replace("A", "1")
+                .Replace("B", "2")
+                .Replace("K", "2")
+                .Replace("S", "2")
+                .Replace("C", "3")
+                .Replace("L", "3")
+                .Replace("T", "3")
+                .Replace("D", "4")
+                .Replace("M", "4")
+                .Replace("U", "4")
+                .Replace("E", "5")
+                .Replace("N", "5")
+                .Replace("V", "5")
+                .Replace("F", "6")
+                .Replace("O", "6")
+                .Replace("W", "6")
+                .Replace("G", "7")
+                .Replace("P", "7")
+                .Replace("X", "7")
+                .Replace("H", "8")
+                .Replace("Q", "8")
+                .Replace("Y", "8")
+                .Replace("I", "9")
+                .Replace("R", "9")
+                .Replace("Z", "9");
+
+            BigInteger bi;
+            BigInteger.TryParse(concat, out bi);
+            var rib = 97 - ((bi * 100) % 97);
+            
+            var stringRib = rib.ToString();
+            if (Convert.ToInt32(stringRib) < 10)
+            {
+                stringRib = "0" + stringRib;
+            }
+
+            return stringRib;
+        }
+
+        # endregion
     }
 }

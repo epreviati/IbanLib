@@ -47,7 +47,6 @@
     <Compile Include="IbanSplitterException.cs" />
     <Compile Include="InvalidIbanException.cs" />
     <Compile Include="InvalidCountryCodeException.cs" />
-    <Compile Include="InvalidCheckDigitsException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,6 @@
-﻿namespace IbanLib.Countries.Countries
+﻿using System;
+
+namespace IbanLib.Countries.Countries
 {
     public class ES : ACountry
     {
@@ -81,6 +83,11 @@
             get { return 10; }
         }
 
+        public override int AccountNumberPosition
+        {
+            get { return SwiftAccountNumberPosition + Check2Length; }
+        }
+
         public override int Check2Length
         {
             get { return 2; }
@@ -91,9 +98,64 @@
             get { return SwiftAccountNumberPosition; }
         }
 
-        public override int AccountNumberPosition
+        # region Calculate Check 3
+
+        public override string CalculateCheck2(string bankCode, string branchCode, string accountNumber)
         {
-            get { return SwiftAccountNumberPosition + Check2Length; }
+            if (!IsValidInputToCalculateChekDigits(bankCode, branchCode, accountNumber))
+            {
+                return null;
+            }
+
+            var bankIdentifier = string.Concat(bankCode, branchCode);
+            var q = Convert.ToInt32(bankIdentifier[7])*6;
+            var w = Convert.ToInt32(bankIdentifier[6])*3;
+            var e = Convert.ToInt32(bankIdentifier[5])*7;
+            var r = Convert.ToInt32(bankIdentifier[4])*9;
+            var t = Convert.ToInt32(bankIdentifier[3])*10;
+            var y = Convert.ToInt32(bankIdentifier[2])*5;
+            var u = Convert.ToInt32(bankIdentifier[1])*8;
+            var i = Convert.ToInt32(bankIdentifier[0])*4;
+
+            var bankIdentifierSum = q + w + e + r + t + y + u + i;
+            var firstNumber = 11 - (bankIdentifierSum%11);
+            switch (firstNumber)
+            {
+                case 10:
+                    firstNumber = 1;
+                    break;
+                case 11:
+                    firstNumber = 0;
+                    break;
+            }
+
+            var acctNumber = accountNumber;
+            var a = Convert.ToInt32(acctNumber[9])*6;
+            var s = Convert.ToInt32(acctNumber[8])*3;
+            var d = Convert.ToInt32(acctNumber[7])*7;
+            var f = Convert.ToInt32(acctNumber[6])*9;
+            var g = Convert.ToInt32(acctNumber[5])*10;
+            var h = Convert.ToInt32(acctNumber[4])*5;
+            var j = Convert.ToInt32(acctNumber[3])*8;
+            var l = Convert.ToInt32(acctNumber[2])*4;
+            var z = Convert.ToInt32(acctNumber[1])*2;
+            var x = Convert.ToInt32(acctNumber[0])*1;
+
+            var accountSum = a + s + d + f + g + h + j + l + z + x;
+            var secondNumber = 11 - (accountSum%11);
+            switch (secondNumber)
+            {
+                case 10:
+                    secondNumber = 1;
+                    break;
+                case 11:
+                    secondNumber = 0;
+                    break;
+            }
+
+            return string.Concat(firstNumber, secondNumber);
         }
+
+# endregion
     }
 }

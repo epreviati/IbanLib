@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using IbanLib.Countries;
+﻿using IbanLib.Countries;
 using IbanLib.Exceptions;
 
 namespace IbanLib.Structures
@@ -15,7 +14,7 @@ namespace IbanLib.Structures
         public Iban(ICountry country, IBban bban)
         {
             Bban = bban;
-            NationalCheckDigits = CalculateNationalCheckDigits(
+            NationalCheckDigits = country.CalculateNationalCheckDigits(
                 string.Concat(
                     country.ISO3166,
                     NationalCheckDigits,
@@ -90,51 +89,6 @@ namespace IbanLib.Structures
         # endregion
 
         # region Methods
-
-        private static readonly string[] From =
-        {
-            "A", "B", "C", "D", "E", "F",
-            "G", "H", "I", "J", "K", "L",
-            "M", "N", "O", "P", "Q", "R",
-            "S", "T", "U", "V", "W", "X",
-            "Y", "Z"
-        };
-
-        private static readonly string[] To =
-        {
-            "10", "11", "12", "13", "14", "15",
-            "16", "17", "18", "19", "20", "21",
-            "22", "23", "24", "25", "26", "27",
-            "28", "29", "30", "31", "32", "33",
-            "34", "35"
-        };
-
-        /// <summary>
-        /// </summary>
-        /// <param name="iban"></param>
-        /// <returns></returns>
-        /// <exception cref="InvalidCheckDigitsException"></exception>
-        public static string CalculateNationalCheckDigits(string iban)
-        {
-            if (!iban.Substring(2, 2).Equals("00"))
-            {
-                throw new InvalidCheckDigitsException(
-                    "It is not possible to calculate the national check digits for the requested iban because it seems that it was already calculated.");
-            }
-
-            var truncated = iban.Substring(0, 4);
-            var tmp = string.Concat(iban.Substring(4), truncated);
-
-            for (var i = 0; i < From.Length; i++)
-            {
-                tmp = tmp.Replace(From[i], To[i]);
-            }
-
-            BigInteger n;
-            BigInteger.TryParse(tmp, out n);
-
-            return (98 - (n%97)).ToString("00");
-        }
 
         /// <summary>
         /// </summary>
