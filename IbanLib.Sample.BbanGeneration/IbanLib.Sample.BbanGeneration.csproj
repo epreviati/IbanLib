@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4F66CD45-467C-46B7-A42C-76023A26E2D0}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{83C5C363-E24C-4D46-BAAC-7AD3637591BD}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IbanLib.Common</RootNamespace>
-    <AssemblyName>IbanLib.Common</AssemblyName>
+    <RootNamespace>IbanLib.Sample.BbanGeneration</RootNamespace>
+    <AssemblyName>IbanLib.Sample.BbanGeneration</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -39,7 +42,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BankAccountDetails.cs" />
+    <Compile Include="Constructors\ABban.cs" />
+    <Compile Include="Constructors\Bban3.cs" />
+    <Compile Include="Constructors\Bban2.cs" />
+    <Compile Include="Constructors\Bban1.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IbanLib.Countries\IbanLib.Countries.csproj">
+      <Project>{132D7F7C-6676-47BA-BC5B-99FDBD77CDF6}</Project>
+      <Name>IbanLib.Countries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib.Splitters\IbanLib.Splitters.csproj">
+      <Project>{be82e131-464e-4139-bcb2-9ba05abcce52}</Project>
+      <Name>IbanLib.Splitters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib\IbanLib.csproj">
+      <Project>{F680B939-825D-4D75-B5D5-10ECBB668C40}</Project>
+      <Name>IbanLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,16 +9,48 @@ namespace IbanLib.Structures
 
         /// <summary>
         /// </summary>
+        public Iban()
+        {
+        }
+
+        /// <summary>
+        /// </summary>
         /// <param name="country"></param>
         /// <param name="bban"></param>
         public Iban(ICountry country, IBban bban)
         {
+            if (country == null)
+            {
+                throw new InvalidIbanException(
+                    string.Format(
+                        "The country parameters of type {0} can not be null.",
+                        typeof (ICountry)));
+            }
+
+            if (bban == null)
+            {
+                throw new InvalidIbanException(
+                    string.Format(
+                        "The bban parameters of type {0} can not be null.",
+                        typeof (IBban)));
+            }
+
+            Country = country;
             Bban = bban;
             NationalCheckDigits = country.CalculateNationalCheckDigits(
                 string.Concat(
                     country.ISO3166,
                     NationalCheckDigits,
                     bban.Value()));
+
+            if (NationalCheckDigits == null || NationalCheckDigits.Length != 2)
+            {
+                throw new InvalidIbanException(
+                    string.Format(
+                        "It is not possible to calculate the 'National Check Digits' with the requested Country '{0}' and BBAN '{1}'.",
+                        Country.ISO3166,
+                        Bban.Value()));
+            }
         }
 
         /// <summary>
@@ -50,8 +82,8 @@ namespace IbanLib.Structures
                         countryCode));
             }
 
-            var country = Countries.Util.GetCountry(countryCode);
-            if (country == null)
+            Country = Countries.Util.GetCountry(countryCode);
+            if (Country == null)
             {
                 throw new InvalidIbanException(
                     string.Format(
@@ -60,8 +92,8 @@ namespace IbanLib.Structures
                         countryCode));
             }
 
-            NationalCheckDigits = splitter.GetIbanSplitter().GetNationalCheckDigits(country, iban);
-            Bban = new Bban(country, iban.Substring(4), validators, splitter.GetBbanSplitter());
+            NationalCheckDigits = splitter.GetIbanSplitter().GetNationalCheckDigits(Country, iban);
+            Bban = new Bban(Country, iban.Substring(4), validators, splitter.GetBbanSplitter());
         }
 
         #endregion
@@ -99,9 +131,18 @@ namespace IbanLib.Structures
                 "{0}: {1}\n" +
                 "{2}: {3}\n" +
                 "{4}: [\n{5}\n]",
-                "Country", Country.ISO3166,
-                "NationalCheckDigits", NationalCheckDigits,
-                "BBAN", Bban);
+                "Country", ToStringField(Country.ISO3166),
+                "NationalCheckDigits", ToStringField(NationalCheckDigits),
+                "BBAN", ToStringField(Bban.ToString()));
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="field"></param>
+        /// <returns></returns>
+        private static string ToStringField(string field)
+        {
+            return string.IsNullOrWhiteSpace(field) ? "null" : field;
         }
 
         /// <summary>

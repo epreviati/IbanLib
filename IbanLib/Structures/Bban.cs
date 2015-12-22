@@ -13,6 +13,35 @@ namespace IbanLib.Structures
 
         /// <summary>
         /// </summary>
+        public Bban()
+        {
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="country"></param>
+        /// <param name="bankCode"></param>
+        /// <param name="accountNumber"></param>
+        /// <exception cref="InvalidBbanDetailException"></exception>
+        public Bban(ICountry country, string bankCode, string accountNumber)
+            : this(country, bankCode, null, accountNumber)
+        {
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="country"></param>
+        /// <param name="bankCode"></param>
+        /// <param name="branchCode"></param>
+        /// <param name="accountNumber"></param>
+        /// <exception cref="InvalidBbanDetailException"></exception>
+        public Bban(ICountry country, string bankCode, string branchCode, string accountNumber)
+            : this(country, bankCode, branchCode, accountNumber, new DetailsValidator())
+        {
+        }
+
+        /// <summary>
+        /// </summary>
         /// <param name="country"></param>
         /// <param name="bankCode"></param>
         /// <param name="accountNumber"></param>
@@ -140,7 +169,7 @@ namespace IbanLib.Structures
         /// </summary>
         public string CheckDigits1
         {
-            get { return _checkDigits1; }
+            get { return GetFieldValue(_checkDigits1); }
             set { _checkDigits1 = Util.Normalize(value); }
         }
 
@@ -150,7 +179,7 @@ namespace IbanLib.Structures
         /// </summary>
         public string BankCode
         {
-            get { return _bankCode; }
+            get { return GetFieldValue(_bankCode); }
             set { _bankCode = Util.Normalize(value); }
         }
 
@@ -160,7 +189,7 @@ namespace IbanLib.Structures
         /// </summary>
         public string BranchCode
         {
-            get { return _branchCode; }
+            get { return GetFieldValue(_branchCode); }
             set { _branchCode = Util.Normalize(value); }
         }
 
@@ -170,7 +199,7 @@ namespace IbanLib.Structures
         /// </summary>
         public string CheckDigits2
         {
-            get { return _checkDigits2; }
+            get { return GetFieldValue(_checkDigits2); }
             set { _checkDigits2 = Util.Normalize(value); }
         }
 
@@ -180,7 +209,7 @@ namespace IbanLib.Structures
         /// </summary>
         public string AccountNumber
         {
-            get { return _accountNumber; }
+            get { return GetFieldValue(_accountNumber); }
             set { _accountNumber = Util.Normalize(value); }
         }
 
@@ -190,7 +219,7 @@ namespace IbanLib.Structures
         /// </summary>
         public string CheckDigits3
         {
-            get { return _checkDigits3; }
+            get { return GetFieldValue(_checkDigits3); }
             set { _checkDigits3 = Util.Normalize(value); }
         }
 
@@ -211,13 +240,22 @@ namespace IbanLib.Structures
                 "{04}: {05}\n" +
                 "{06}: {07}\n" +
                 "{08}: {09}\n" +
-                "{10}: {11}\n",
-                "CheckDigits1", CheckDigits1,
-                "BankCode", BankCode,
-                "BranchCode", BranchCode,
-                "CheckDigits2", CheckDigits2,
-                "AccountNumber", AccountNumber,
-                "CheckDigits3", CheckDigits3);
+                "{10}: {11}",
+                "CheckDigits1", ToStringField(CheckDigits1),
+                "BankCode", ToStringField(BankCode),
+                "BranchCode", ToStringField(BranchCode),
+                "CheckDigits2", ToStringField(CheckDigits2),
+                "AccountNumber", ToStringField(AccountNumber),
+                "CheckDigits3", ToStringField(CheckDigits3));
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="field"></param>
+        /// <returns></returns>
+        private static string ToStringField(string field)
+        {
+            return string.IsNullOrWhiteSpace(field) ? "null" : field;
         }
 
         /// <summary>
@@ -271,6 +309,17 @@ namespace IbanLib.Structures
                         detailType,
                         parameterType));
             }
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="field"></param>
+        /// <returns></returns>
+        private static string GetFieldValue(string field)
+        {
+            return string.IsNullOrWhiteSpace(field)
+                ? null
+                : field;
         }
 
         # endregion

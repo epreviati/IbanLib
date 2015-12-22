@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using IbanLib.Countries.Countries;
 
 namespace IbanLib.Countries
 {
@@ -13,8 +14,8 @@ namespace IbanLib.Countries
                 Assembly.GetExecutingAssembly()
                     .GetTypes()
                     .Where(x => x.IsClass
-                                && x.Name != "Country"
-                                && x.Namespace == string.Concat(typeof (Util).Namespace, ".Countries"))
+                                && x.Name != typeof (ACountry).Name
+                                && x.Namespace == typeof (ACountry).Namespace)
                     .ToDictionary(
                         x => x.Name.ToUpperInvariant(),
                         x => x)),

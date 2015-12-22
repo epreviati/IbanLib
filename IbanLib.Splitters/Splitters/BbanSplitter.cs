@@ -35,7 +35,7 @@ namespace IbanLib.Splitters.Splitters
             try
             {
                 return country.Check1Position.HasValue
-                    ? bban.Substring(CharsRemovedFromIban + country.Check1Position.Value, country.Check1Length)
+                    ? bban.Substring(country.Check1Position.Value - CharsRemovedFromIban, country.Check1Length)
                     : string.Empty;
             }
             catch (Exception e)
@@ -57,7 +57,7 @@ namespace IbanLib.Splitters.Splitters
 
             try
             {
-                return bban.Substring(CharsRemovedFromIban + country.BankIdentifierPosition, country.BankIdentifierLength);
+                return bban.Substring(country.BankIdentifierPosition - CharsRemovedFromIban, country.BankIdentifierLength);
             }
             catch (Exception e)
             {
@@ -68,24 +68,23 @@ namespace IbanLib.Splitters.Splitters
         /// <summary>
         /// </summary>
         /// <param name="country"></param>
-        /// <param name="iban"></param>
+        /// <param name="bban"></param>
         /// <returns></returns>
         /// <exception cref="BbanSplitterException"></exception>
-        public string GetBranchCode(ICountry country, string iban)
+        public string GetBranchCode(ICountry country, string bban)
         {
             ValidateCountry(country);
-            ValidateBban(country, iban);
+            ValidateBban(country, bban);
 
             try
             {
                 return country.BranchIdentifierPosition.HasValue
-                    ? iban.Substring(CharsRemovedFromIban + country.BranchIdentifierPosition.Value,
-                        country.BranchIdentifierLength)
+                    ? bban.Substring(country.BranchIdentifierPosition.Value - CharsRemovedFromIban, country.BranchIdentifierLength)
                     : null;
             }
             catch (Exception e)
             {
-                throw new BbanSplitterException(GetErrorMessage(Bban, iban, "Branch Identifier"), e);
+                throw new BbanSplitterException(GetErrorMessage(Bban, bban, "Branch Identifier"), e);
             }
         }
 
@@ -102,7 +101,7 @@ namespace IbanLib.Splitters.Splitters
             try
             {
                 return country.Check2Position.HasValue
-                    ? bban.Substring(CharsRemovedFromIban + country.Check2Position.Value, country.Check2Length)
+                    ? bban.Substring(country.Check2Position.Value - CharsRemovedFromIban, country.Check2Length)
                     : string.Empty;
             }
             catch (Exception e)
@@ -114,21 +113,21 @@ namespace IbanLib.Splitters.Splitters
         /// <summary>
         /// </summary>
         /// <param name="country"></param>
-        /// <param name="iban"></param>
+        /// <param name="bban"></param>
         /// <returns></returns>
         /// <exception cref="BbanSplitterException"></exception>
-        public string GetAccountNumber(ICountry country, string iban)
+        public string GetAccountNumber(ICountry country, string bban)
         {
             ValidateCountry(country);
-            ValidateBban(country, iban);
+            ValidateBban(country, bban);
 
             try
             {
-                return iban.Substring(CharsRemovedFromIban + country.AccountNumberPosition, country.AccountNumberLength);
+                return bban.Substring(country.AccountNumberPosition - CharsRemovedFromIban, country.AccountNumberLength);
             }
             catch (Exception e)
             {
-                throw new BbanSplitterException(GetErrorMessage(Bban, iban, "Account Number"), e);
+                throw new BbanSplitterException(GetErrorMessage(Bban, bban, "Account Number"), e);
             }
         }
 
@@ -145,7 +144,7 @@ namespace IbanLib.Splitters.Splitters
             try
             {
                 return country.Check3Position.HasValue
-                    ? bban.Substring(CharsRemovedFromIban + country.Check3Position.Value, country.Check3Length)
+                    ? bban.Substring(country.Check3Position.Value - CharsRemovedFromIban, country.Check3Length)
                     : string.Empty;
             }
             catch (Exception e)
