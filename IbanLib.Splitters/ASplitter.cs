@@ -1,7 +1,7 @@
 ﻿using IbanLib.Countries;
 using IbanLib.Exceptions;
 
-namespace IbanLib.Splitters.Splitters
+namespace IbanLib.Splitters
 {
     public abstract class ASplitter
     {

@@ -1,7 +1,8 @@
 ﻿using IbanLib.Countries;
+using IbanLib.Domain.Validators;
 using IbanLib.Exceptions;
 
-namespace IbanLib.Validators.Validators
+namespace IbanLib.Validators
 {
     public class BbanValidator : ADetailValidator, IBbanValidator
     {

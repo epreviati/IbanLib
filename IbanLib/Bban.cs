@@ -1,11 +1,12 @@
 ﻿using System.Diagnostics;
 using IbanLib.Countries;
+using IbanLib.Domain;
+using IbanLib.Domain.Splitters;
 using IbanLib.Exceptions;
 using IbanLib.Exceptions.Enums;
 using IbanLib.Splitters;
-using IbanLib.Splitters.Splitters;
 
-namespace IbanLib.Structures
+namespace IbanLib
 {
     public class Bban : IBban
     {
@@ -36,7 +37,7 @@ namespace IbanLib.Structures
         /// <param name="accountNumber"></param>
         /// <exception cref="InvalidBbanDetailException"></exception>
         public Bban(ICountry country, string bankCode, string branchCode, string accountNumber)
-            : this(country, bankCode, branchCode, accountNumber, new DetailsValidator())
+            : this(country, bankCode, branchCode, accountNumber, new DefaultValidators())
         {
         }
 
@@ -47,7 +48,7 @@ namespace IbanLib.Structures
         /// <param name="accountNumber"></param>
         /// <param name="validators"></param>
         /// <exception cref="InvalidBbanDetailException"></exception>
-        public Bban(ICountry country, string bankCode, string accountNumber, IDetailsValidator validators)
+        public Bban(ICountry country, string bankCode, string accountNumber, IValidators validators)
             : this(country, bankCode, null, accountNumber, validators)
         {
         }
@@ -60,7 +61,7 @@ namespace IbanLib.Structures
         /// <param name="accountNumber"></param>
         /// <param name="validators"></param>
         /// <exception cref="InvalidBbanDetailException"></exception>
-        public Bban(ICountry country, string bankCode, string branchCode, string accountNumber, IDetailsValidator validators)
+        public Bban(ICountry country, string bankCode, string branchCode, string accountNumber, IValidators validators)
         {
             CheckArgumentNull(
                 country == null,
@@ -114,7 +115,7 @@ namespace IbanLib.Structures
         /// <param name="bban"></param>
         /// <exception cref="InvalidBbanDetailException"></exception>
         public Bban(ICountry country, string bban)
-            : this(country, bban, new DetailsValidator(), new BbanSplitter())
+            : this(country, bban, new DefaultValidators(), new BbanSplitter())
         {
         }
 
@@ -125,7 +126,7 @@ namespace IbanLib.Structures
         /// <param name="validators"></param>
         /// <param name="splitter"></param>
         /// <exception cref="InvalidBbanDetailException"></exception>
-        public Bban(ICountry country, string bban, IDetailsValidator validators, IBbanSplitter splitter)
+        public Bban(ICountry country, string bban, IValidators validators, IBbanSplitter splitter)
         {
             CheckArgumentNull(
                 country == null,

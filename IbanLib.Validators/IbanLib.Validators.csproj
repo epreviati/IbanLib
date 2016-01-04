@@ -40,26 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAccountNumberValidator.cs" />
-    <Compile Include="IBankCodeValidator.cs" />
-    <Compile Include="IBranchCodeValidator.cs" />
-    <Compile Include="ICountryCodeValidator.cs" />
-    <Compile Include="IBbanValidator.cs" />
-    <Compile Include="IIbanValidator.cs" />
-    <Compile Include="Validators\CountryCodeValidator.cs" />
-    <Compile Include="Validators\BbanValidator.cs" />
-    <Compile Include="Validators\IbanValidator.cs" />
-    <Compile Include="Validators\ADetailValidator.cs" />
-    <Compile Include="Validators\AccountNumberValidator.cs" />
-    <Compile Include="Validators\BranchCodeValidator.cs" />
-    <Compile Include="Validators\BankCodeValidator.cs" />
-    <Compile Include="IDetailValidator.cs" />
+    <Compile Include="CountryCodeValidator.cs" />
+    <Compile Include="BbanValidator.cs" />
+    <Compile Include="IbanValidator.cs" />
+    <Compile Include="ADetailValidator.cs" />
+    <Compile Include="AccountNumberValidator.cs" />
+    <Compile Include="BranchCodeValidator.cs" />
+    <Compile Include="BankCodeValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IbanLib.Countries\IbanLib.Countries.csproj">
       <Project>{132D7F7C-6676-47BA-BC5B-99FDBD77CDF6}</Project>
       <Name>IbanLib.Countries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib.Domain\IbanLib.Domain.csproj">
+      <Project>{98FEE388-E801-4F94-A44E-31E40ABC0E78}</Project>
+      <Name>IbanLib.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\IbanLib.Exceptions\IbanLib.Exceptions.csproj">
       <Project>{01338198-BF8D-4FB9-818D-B9547DE81597}</Project>

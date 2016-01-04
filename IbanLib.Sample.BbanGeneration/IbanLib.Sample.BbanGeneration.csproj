@@ -58,6 +58,10 @@
       <Project>{132D7F7C-6676-47BA-BC5B-99FDBD77CDF6}</Project>
       <Name>IbanLib.Countries</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IbanLib.Domain\IbanLib.Domain.csproj">
+      <Project>{98fee388-e801-4f94-a44e-31e40abc0e78}</Project>
+      <Name>IbanLib.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IbanLib.Splitters\IbanLib.Splitters.csproj">
       <Project>{be82e131-464e-4139-bcb2-9ba05abcce52}</Project>
       <Name>IbanLib.Splitters</Name>

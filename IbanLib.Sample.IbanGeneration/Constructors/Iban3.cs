@@ -1,6 +1,4 @@
-﻿using IbanLib.Structures;
-
-namespace IbanLib.Sample.IbanGeneration.Constructors
+﻿namespace IbanLib.Sample.IbanGeneration.Constructors
 {
     public class Iban3 : AIban
     {

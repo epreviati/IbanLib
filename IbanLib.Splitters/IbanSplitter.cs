@@ -1,10 +1,11 @@
 ﻿using System;
 using IbanLib.Countries;
+using IbanLib.Domain.Splitters;
+using IbanLib.Domain.Validators;
 using IbanLib.Exceptions;
 using IbanLib.Validators;
-using IbanLib.Validators.Validators;
 
-namespace IbanLib.Splitters.Splitters
+namespace IbanLib.Splitters
 {
     public class IbanSplitter : ASplitter, IIbanSplitter
     {

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
+using IbanLib.Domain.Validators;
 
-namespace IbanLib.Validators.Validators
+namespace IbanLib.Validators
 {
     public class CountryCodeValidator : ICountryCodeValidator
     {

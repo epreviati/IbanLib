@@ -39,17 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Splitters\ASplitter.cs" />
-    <Compile Include="Splitters\BbanSplitter.cs" />
-    <Compile Include="Splitters\IbanSplitter.cs" />
-    <Compile Include="IBbanSplitter.cs" />
-    <Compile Include="IIbanSplitter.cs" />
+    <Compile Include="ASplitter.cs" />
+    <Compile Include="BbanSplitter.cs" />
+    <Compile Include="IbanSplitter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IbanLib.Countries\IbanLib.Countries.csproj">
       <Project>{132D7F7C-6676-47BA-BC5B-99FDBD77CDF6}</Project>
       <Name>IbanLib.Countries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib.Domain\IbanLib.Domain.csproj">
+      <Project>{98FEE388-E801-4F94-A44E-31E40ABC0E78}</Project>
+      <Name>IbanLib.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\IbanLib.Exceptions\IbanLib.Exceptions.csproj">
       <Project>{01338198-BF8D-4FB9-818D-B9547DE81597}</Project>

@@ -1,8 +1,9 @@
 ﻿using System.Text.RegularExpressions;
 using IbanLib.Countries;
+using IbanLib.Domain.Validators;
 using IbanLib.Exceptions;
 
-namespace IbanLib.Validators.Validators
+namespace IbanLib.Validators
 {
     public abstract class ADetailValidator : IDetailValidator
     {

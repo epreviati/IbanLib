@@ -1,5 +1,4 @@
 ﻿using IbanLib.Countries.Countries;
-using IbanLib.Structures;
 
 namespace IbanLib.Sample.IbanGeneration.Constructors
 {

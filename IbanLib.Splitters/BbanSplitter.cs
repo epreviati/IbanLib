@@ -1,10 +1,11 @@
 ﻿using System;
 using IbanLib.Countries;
+using IbanLib.Domain.Splitters;
+using IbanLib.Domain.Validators;
 using IbanLib.Exceptions;
 using IbanLib.Validators;
-using IbanLib.Validators.Validators;
 
-namespace IbanLib.Splitters.Splitters
+namespace IbanLib.Splitters
 {
     public class BbanSplitter : ASplitter, IBbanSplitter
     {
@@ -57,7 +58,8 @@ namespace IbanLib.Splitters.Splitters
 
             try
             {
-                return bban.Substring(country.BankIdentifierPosition - CharsRemovedFromIban, country.BankIdentifierLength);
+                return bban.Substring(country.BankIdentifierPosition - CharsRemovedFromIban,
+                    country.BankIdentifierLength);
             }
             catch (Exception e)
             {
@@ -79,7 +81,8 @@ namespace IbanLib.Splitters.Splitters
             try
             {
                 return country.BranchIdentifierPosition.HasValue
-                    ? bban.Substring(country.BranchIdentifierPosition.Value - CharsRemovedFromIban, country.BranchIdentifierLength)
+                    ? bban.Substring(country.BranchIdentifierPosition.Value - CharsRemovedFromIban,
+                        country.BranchIdentifierLength)
                     : null;
             }
             catch (Exception e)

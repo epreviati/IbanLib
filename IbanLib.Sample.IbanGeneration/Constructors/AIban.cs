@@ -1,4 +1,5 @@
 ﻿using System;
+using IbanLib.Domain;
 
 namespace IbanLib.Sample.IbanGeneration.Constructors
 {

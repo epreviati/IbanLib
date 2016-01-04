@@ -1,7 +1,8 @@
 ﻿using IbanLib.Countries;
+using IbanLib.Domain;
 using IbanLib.Exceptions;
 
-namespace IbanLib.Structures
+namespace IbanLib
 {
     public class Iban : IIban
     {
@@ -59,7 +60,7 @@ namespace IbanLib.Structures
         /// <exception cref="InvalidIbanException"></exception>
         /// <exception cref="IbanSplitterException"></exception>
         public Iban(string iban)
-            : this(iban, new DetailsValidator(), new Splitter())
+            : this(iban, new DefaultValidators(), new DefaultSplitters())
         {
         }
 
@@ -69,7 +70,7 @@ namespace IbanLib.Structures
         /// <param name="validators"></param>
         /// <param name="splitter"></param>
         /// <exception cref="InvalidIbanException"></exception>
-        public Iban(string iban, IDetailsValidator validators, ISplitter splitter)
+        public Iban(string iban, IValidators validators, ISplitters splitter)
         {
             iban = Util.Normalize(iban);
             var countryCode = splitter.GetIbanSplitter().GetCountryCode(iban);
