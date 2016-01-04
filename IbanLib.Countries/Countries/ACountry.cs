@@ -224,9 +224,7 @@ namespace IbanLib.Countries.Countries
 
         public virtual string CalculateNationalCheckDigits(string iban)
         {
-            if (string.IsNullOrWhiteSpace(iban)
-                || iban.Length != IBANLength
-                || !iban.Substring(2, 2).Equals("00"))
+            if (!IsValidInputToCalculateNationalCheckDigits(iban))
             {
                 return null;
             }
@@ -243,6 +241,14 @@ namespace IbanLib.Countries.Countries
             BigInteger.TryParse(tmp, out n);
 
             return (98 - (n%97)).ToString("00");
+        }
+
+        protected bool IsValidInputToCalculateNationalCheckDigits(string iban)
+        {
+            return !string.IsNullOrWhiteSpace(iban) 
+                && iban.Length == IBANLength 
+                && iban.Substring(0, 2).Equals(ISO3166) 
+                && iban.Substring(2, 2).Equals("00");
         }
 
         public virtual string CalculateCheck1(string bankCode, string branchCode, string accountNumber)

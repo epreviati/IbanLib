@@ -11,5 +11,10 @@
         {
             get { return "MR"; }
         }
+
+        public override string CalculateNationalCheckDigits(string iban)
+        {
+            return !IsValidInputToCalculateNationalCheckDigits(iban) ? null : "13";
+        }
     }
 }
