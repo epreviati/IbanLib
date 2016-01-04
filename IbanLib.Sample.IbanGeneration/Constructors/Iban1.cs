@@ -1,12 +1,12 @@
-﻿using IbanLib.Countries.Countries;
+﻿using Castle.Windsor;
+using IbanLib.Countries.Countries;
 
 namespace IbanLib.Sample.IbanGeneration.Constructors
 {
     public class Iban1 : AIban
     {
-        public Iban1(string title)
+        public Iban1(string title) : base(title)
         {
-            WriteLine(title, 0, 1);
             Iban1Gb();
         }
 

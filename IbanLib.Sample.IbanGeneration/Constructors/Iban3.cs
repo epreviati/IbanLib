@@ -1,10 +1,11 @@
-﻿namespace IbanLib.Sample.IbanGeneration.Constructors
+﻿using IbanLib.Domain;
+
+namespace IbanLib.Sample.IbanGeneration.Constructors
 {
     public class Iban3 : AIban
     {
-        public Iban3(string title)
+        public Iban3(string title) : base(title)
         {
-            WriteLine(title, 0, 1);
             Iban3Gb();
         }
 
@@ -21,7 +22,10 @@
                 AccountNumber = "20504063"
             };
 
-            var iban = new Iban("GB80NWBK50000020504063");
+            var iban = new Iban(
+                "GB80NWBK50000020504063",
+                Container.Resolve<IValidators>(),
+                Container.Resolve<ISplitters>());
 
             PrintComparison(iban, bankAccount);
         }

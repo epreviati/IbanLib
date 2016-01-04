@@ -1,4 +1,5 @@
-﻿using IbanLib.Sample.IbanGeneration.Constructors;
+﻿using IbanLib.DependenciesResolver;
+using IbanLib.Sample.IbanGeneration.Constructors;
 
 namespace IbanLib.Sample.IbanGeneration
 {

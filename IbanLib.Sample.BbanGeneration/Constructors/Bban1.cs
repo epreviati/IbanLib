@@ -1,10 +1,9 @@
 ﻿namespace IbanLib.Sample.BbanGeneration.Constructors
 {
-    public class Bban1 : AIban
+    public class Bban1 : ABban
     {
-        public Bban1(string title)
+        public Bban1(string title) : base(title)
         {
-            WriteLine(title, 0, 1);
             Bban1Gb();
         }
 

@@ -1,10 +1,19 @@
 ﻿using System;
+using Castle.Windsor;
+using IbanLib.DependenciesResolver;
 using IbanLib.Domain;
 
 namespace IbanLib.Sample.BbanGeneration.Constructors
 {
-    public abstract class AIban
+    public abstract class ABban
     {
+        protected static IWindsorContainer Container = Bootstrapper.Boot();
+
+        protected ABban(string title)
+        {
+            WriteLine(title, 0, 1);
+        }
+
         protected static void PrintComparison(IBban bban, BankAccountDetails bankAccountDetails)
         {
             const string format = "{0} == {1} -> {2}";

@@ -1,22 +1,27 @@
 ﻿using IbanLib.Domain;
 using IbanLib.Domain.Splitters;
-using IbanLib.Splitters;
 
 namespace IbanLib
 {
     public class DefaultSplitters : ISplitters
     {
-        private static readonly IIbanSplitter IbanSplitter = new IbanSplitter();
-        private static readonly IBbanSplitter BbanSplitter = new BbanSplitter();
+        private readonly IBbanSplitter _bbanSplitter;
+        private readonly IIbanSplitter _ibanSplitter;
+
+        public DefaultSplitters(IIbanSplitter ibanSplitter, IBbanSplitter bbanSplitter)
+        {
+            _ibanSplitter = ibanSplitter;
+            _bbanSplitter = bbanSplitter;
+        }
 
         public IIbanSplitter GetIbanSplitter()
         {
-            return IbanSplitter;
+            return _ibanSplitter;
         }
 
         public IBbanSplitter GetBbanSplitter()
         {
-            return BbanSplitter;
+            return _bbanSplitter;
         }
     }
 }

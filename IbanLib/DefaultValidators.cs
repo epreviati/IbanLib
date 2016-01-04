@@ -1,46 +1,61 @@
 ﻿using IbanLib.Domain;
 using IbanLib.Domain.Validators;
-using IbanLib.Validators;
 
 namespace IbanLib
 {
     public class DefaultValidators : IValidators
     {
-        private static readonly IAccountNumberValidator AccountNumberValidator = new AccountNumberValidator();
-        private static readonly IBankCodeValidator BankCodeValidator = new BankCodeValidator();
-        private static readonly IBbanValidator BbanValidator = new BbanValidator();
-        private static readonly IBranchCodeValidator BranchCodeValidator = new BranchCodeValidator();
-        private static readonly ICountryCodeValidator CountryCodeValidator = new CountryCodeValidator();
-        private static readonly IIbanValidator IbanValidator = new IbanValidator();
+        private readonly IAccountNumberValidator _accountNumberValidator;
+        private readonly IBankCodeValidator _bankCodeValidator;
+        private readonly IBbanValidator _bbanValidator;
+        private readonly IBranchCodeValidator _branchCodeValidator;
+        private readonly ICountryCodeValidator _countryCodeValidator;
+        private readonly IIbanValidator _ibanValidator;
+
+        public DefaultValidators(
+            IAccountNumberValidator accountNumberValidator,
+            IBankCodeValidator bankCodeValidator,
+            IBbanValidator bbanValidator,
+            IBranchCodeValidator branchCodeValidator,
+            ICountryCodeValidator countryCodeValidator,
+            IIbanValidator ibanValidator)
+        {
+            _accountNumberValidator = accountNumberValidator;
+            _bankCodeValidator = bankCodeValidator;
+            _bbanValidator = bbanValidator;
+            _branchCodeValidator = branchCodeValidator;
+            _countryCodeValidator = countryCodeValidator;
+            _ibanValidator = ibanValidator;
+        }
 
         public IIbanValidator GetIbanValidator()
         {
-            return IbanValidator;
+            return _ibanValidator;
         }
 
         public IBbanValidator GetBbanValidator()
         {
-            return BbanValidator;
+            return _bbanValidator;
         }
 
         public ICountryCodeValidator GetCountryCodeValidator()
         {
-            return CountryCodeValidator;
+            return _countryCodeValidator;
         }
 
         public IBankCodeValidator GetBankCodeValidator()
         {
-            return BankCodeValidator;
+            return _bankCodeValidator;
         }
 
         public IBranchCodeValidator GetBranchCodeValidator()
         {
-            return BranchCodeValidator;
+            return _branchCodeValidator;
         }
 
         public IAccountNumberValidator GetAccountNumberValidator()
         {
-            return AccountNumberValidator;
+            return _accountNumberValidator;
         }
     }
 }

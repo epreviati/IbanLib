@@ -1,12 +1,12 @@
 ﻿using IbanLib.Countries.Countries;
+using IbanLib.Domain;
 
 namespace IbanLib.Sample.BbanGeneration.Constructors
 {
-    public class Bban2 : AIban
+    public class Bban2 : ABban
     {
-        public Bban2(string title)
+        public Bban2(string title) : base(title)
         {
-            WriteLine(title, 0, 1);
             Bban2Gb();
         }
 
@@ -21,7 +21,7 @@ namespace IbanLib.Sample.BbanGeneration.Constructors
                 AccountNumber = "20504063"
             };
 
-            var bban = new Bban(new GB(), "NWBK", "50-00-00", "20504063");
+            var bban = new Bban(new GB(), "NWBK", "50-00-00", "20504063", Container.Resolve<IValidators>());
 
             PrintComparison(bban, bankAccountDetails);
         }

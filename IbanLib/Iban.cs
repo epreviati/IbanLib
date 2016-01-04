@@ -57,16 +57,6 @@ namespace IbanLib
         /// <summary>
         /// </summary>
         /// <param name="iban"></param>
-        /// <exception cref="InvalidIbanException"></exception>
-        /// <exception cref="IbanSplitterException"></exception>
-        public Iban(string iban)
-            : this(iban, new DefaultValidators(), new DefaultSplitters())
-        {
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="iban"></param>
         /// <param name="validators"></param>
         /// <param name="splitter"></param>
         /// <exception cref="InvalidIbanException"></exception>

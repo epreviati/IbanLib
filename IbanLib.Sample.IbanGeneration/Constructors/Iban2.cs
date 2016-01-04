@@ -4,9 +4,8 @@ namespace IbanLib.Sample.IbanGeneration.Constructors
 {
     public class Iban2 : AIban
     {
-        public Iban2(string title)
+        public Iban2(string title) : base(title)
         {
-            WriteLine(title, 0, 1);
             Iban2Gb();
         }
 
