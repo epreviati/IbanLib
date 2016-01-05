@@ -245,10 +245,10 @@ namespace IbanLib.Countries.Countries
 
         protected bool IsValidInputToCalculateNationalCheckDigits(string iban)
         {
-            return !string.IsNullOrWhiteSpace(iban) 
-                && iban.Length == IBANLength 
-                && iban.Substring(0, 2).Equals(ISO3166) 
-                && iban.Substring(2, 2).Equals("00");
+            return !string.IsNullOrWhiteSpace(iban)
+                   && iban.Length == IBANLength
+                   && iban.Substring(0, 2).Equals(ISO3166)
+                   && iban.Substring(2, 2).Equals("00");
         }
 
         public virtual string CalculateCheck1(string bankCode, string branchCode, string accountNumber)

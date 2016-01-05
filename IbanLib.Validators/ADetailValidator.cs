@@ -5,20 +5,34 @@ using IbanLib.Exceptions;
 
 namespace IbanLib.Validators
 {
+    /// <summary>
+    ///     ADetailValidator base class that defines the basically funcionalities for all the validators classes.
+    /// </summary>
     public abstract class ADetailValidator : IDetailValidator
     {
         /// <summary>
+        ///     The method returns true or false if the FIELD is valid or not for the specified Country.
         /// </summary>
-        /// <param name="country"></param>
-        /// <param name="field"></param>
-        /// <returns>true or false</returns>
+        /// <param name="country">
+        ///     Country that contains the information to validate the FIELD.
+        /// </param>
+        /// <param name="field">
+        ///     FIELD to validate.
+        /// </param>
+        /// <returns>
+        ///     True/False
+        /// </returns>
         public abstract bool IsValid(ICountry country, string field);
 
         /// <summary>
+        ///     The method throws an <see cref="InvalidCountryException" /> if the country is null.
         /// </summary>
-        /// <param name="country"></param>
-        /// <returns>true or false</returns>
-        /// <exception cref="InvalidCountryException"></exception>
+        /// <param name="country">
+        ///     Country to check.
+        /// </param>
+        /// <exception cref="InvalidCountryException">
+        ///     If Country is null the exception will be throwed.
+        /// </exception>
         protected void CheckCountry(ICountry country)
         {
             if (country == null)
@@ -32,10 +46,17 @@ namespace IbanLib.Validators
         }
 
         /// <summary>
+        ///     The method returns true or false if the lenght of the Field corrispond or not with the requested Lenght.
         /// </summary>
-        /// <param name="field"></param>
-        /// <param name="lenght"></param>
-        /// <returns>true or false</returns>
+        /// <param name="field">
+        ///     Field to check the lenght.
+        /// </param>
+        /// <param name="lenght">
+        ///     Lenght that has to be the field.
+        /// </param>
+        /// <returns>
+        ///     True/False
+        /// </returns>
         protected bool IsValidDetailLenght(string field, long lenght)
         {
             return !string.IsNullOrWhiteSpace(field)
@@ -44,10 +65,17 @@ namespace IbanLib.Validators
         }
 
         /// <summary>
+        ///     The method returns true or false if the structure of the Field match or not with the requested Regular Expression.
         /// </summary>
-        /// <param name="field"></param>
-        /// <param name="regExpression"></param>
-        /// <returns>true or false</returns>
+        /// <param name="field">
+        ///     Field to check the structure.
+        /// </param>
+        /// <param name="regExpression">
+        ///     Regular Expression tha determine wich structure has to have the field.
+        /// </param>
+        /// <returns>
+        ///     True/False
+        /// </returns>
         protected bool IsValidDetailStructure(string field, string regExpression)
         {
             var fieldToCheck = string.IsNullOrWhiteSpace(field)

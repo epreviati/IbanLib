@@ -39,7 +39,7 @@ namespace IbanLib.Splitters.Test.IBanSplitterTest
         {
             Action action1 = () => IbanSplitterValidValidation.GetCountryCode(iban);
             ExpectedException<IbanSplitterException>(action1);
-            
+
             Action action2 = () => IbanSplitterInValidValidation.GetCountryCode(iban);
             ExpectedException<IbanSplitterException>(action2);
         }

@@ -134,8 +134,8 @@ namespace IbanLib.Countries.Countries
 
             BigInteger bi;
             BigInteger.TryParse(concat, out bi);
-            var rib = 97 - ((bi * 100) % 97);
-            
+            var rib = 97 - ((bi*100)%97);
+
             var stringRib = rib.ToString();
             if (Convert.ToInt32(stringRib) < 10)
             {

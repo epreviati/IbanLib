@@ -6,7 +6,8 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
 {
     public class BbanSplitterGetAccountNumber : ABbanSplitterTest
     {
-        private void GetaccountNumber_Valid_Input_Return_Correct_Value(ICountry country, string bban, string accountNumber)
+        private void GetaccountNumber_Valid_Input_Return_Correct_Value(ICountry country, string bban,
+            string accountNumber)
         {
             var valueGot = BbanSplitterValidValidation.GetAccountNumber(country, bban);
             Assert.AreEqual(accountNumber, valueGot);

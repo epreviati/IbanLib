@@ -4,14 +4,26 @@ using IbanLib.Exceptions;
 
 namespace IbanLib.Validators
 {
+    /// <summary>
+    ///     BranchCodeValidator class that permits to validate a Branch Code.
+    /// </summary>
     public class BranchCodeValidator : ADetailValidator, IBranchCodeValidator
     {
         /// <summary>
+        ///     The method returns true or false if the Branch Code is valid or not for the specified Country.
         /// </summary>
-        /// <param name="country"></param>
-        /// <param name="branchCode"></param>
-        /// <returns></returns>
-        /// <exception cref="InvalidCountryException"></exception>
+        /// <param name="country">
+        ///     Country that contains the information to validate the Branch Code.
+        /// </param>
+        /// <param name="branchCode">
+        ///     Branch Code to validate.
+        /// </param>
+        /// <returns>
+        ///     True/False
+        /// </returns>
+        /// <exception cref="InvalidCountryException">
+        ///     If Country is null the <see cref="InvalidCountryException" /> will be throwed.
+        /// </exception>
         public override bool IsValid(ICountry country, string branchCode)
         {
             CheckCountry(country);

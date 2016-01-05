@@ -36,9 +36,9 @@ namespace IbanLib.Countries.Countries
             get
             {
                 return string.Format(
-                    "{0}{1}{2}{3}", 
-                    "[A-Z]{1}", 
-                    BankIdentifierStructure, 
+                    "{0}{1}{2}{3}",
+                    "[A-Z]{1}",
+                    BankIdentifierStructure,
                     BranchIdentifierStructure,
                     AccountNumberStructure);
             }

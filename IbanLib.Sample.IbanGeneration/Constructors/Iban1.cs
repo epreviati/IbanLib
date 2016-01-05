@@ -1,5 +1,4 @@
-﻿using Castle.Windsor;
-using IbanLib.Countries.Countries;
+﻿using IbanLib.Countries.Countries;
 
 namespace IbanLib.Sample.IbanGeneration.Constructors
 {

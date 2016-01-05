@@ -5,6 +5,9 @@ using IbanLib.Exceptions;
 
 namespace IbanLib.Validators
 {
+    /// <summary>
+    ///     IbanValidator class that permits to validate an IBAN.
+    /// </summary>
     public class IbanValidator : ADetailValidator, IIbanValidator
     {
         private static readonly string[] From =
@@ -26,11 +29,20 @@ namespace IbanLib.Validators
         };
 
         /// <summary>
+        ///     The method returns true or false if the IBAN is valid or not.
         /// </summary>
-        /// <param name="country"></param>
-        /// <param name="iban"></param>
-        /// <returns>true or false</returns>
-        /// <exception cref="InvalidCountryException"></exception>
+        /// <param name="country">
+        ///     Country that contains the information to validate the IBAN.
+        /// </param>
+        /// <param name="iban">
+        ///     IBAN to validate.
+        /// </param>
+        /// <returns>
+        ///     True/False
+        /// </returns>
+        /// <exception cref="InvalidCountryException">
+        ///     If Country is null the <see cref="InvalidCountryException" /> will be throwed.
+        /// </exception>
         public override bool IsValid(ICountry country, string iban)
         {
             CheckCountry(country);
@@ -41,9 +53,19 @@ namespace IbanLib.Validators
         }
 
         /// <summary>
+        ///     The method returns true or false if the structure of the IBAN is valid or not following those four steps:
+        ///     1. Move the four initial characters to the end of the string;
+        ///     2. Replace each letter in the string with two digits, thereby expanding the string, where A = 10, B = 11, ..., Z =
+        ///     35;
+        ///     3. Interpret the string as a decimal integer and compute the remainder of that number on division by 97;
+        ///     4. If the remainder is 1, the check digit test is passed and the IBAN might be valid.
         /// </summary>
-        /// <param name="iban"></param>
-        /// <returns>true or false</returns>
+        /// <param name="iban">
+        ///     Iban to validate.
+        /// </param>
+        /// <returns>
+        ///     True/False
+        /// </returns>
         public static bool IsValidStructure(string iban)
         {
             var truncated = iban.Substring(0, 4);
