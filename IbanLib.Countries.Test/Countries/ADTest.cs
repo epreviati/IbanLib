@@ -1,21 +1,20 @@
 ﻿using IbanLib.Countries.Countries;
 using NUnit.Framework;
 
-namespace IbanLib.Countries.Test
+namespace IbanLib.Countries.Test.Countries
 {
     [TestFixture]
-    public class IETest : ACountryTest
+    public class ADTest : ACountryTest
     {
-        public IETest() : base(new IE())
+        public ADTest() : base(new AD())
         {
         }
 
         [Test]
-        [TestCase("IE29AIBK93115212345678")]
-        [TestCase("IE01AIBK93115212345678")]
-        [TestCase("IE99AIBK93115212345678")]
-        [TestCase("IE00AIBK9311521234567")]
-        [TestCase("XX00AIBK93115212345678")]
+        [TestCase("AD0100012030200359100100")]
+        [TestCase("AD9900012030200359100100")]
+        [TestCase("AD000001203020035910010")]
+        [TestCase("XX0000012030200359100100")]
         public new void CalculateNationalCheckDigits_Invalid_Iban_Return_Null(string iban)
         {
             var result = base.CalculateNationalCheckDigits_Invalid_Iban_Return_Null(iban);
@@ -23,7 +22,7 @@ namespace IbanLib.Countries.Test
         }
 
         [Test]
-        [TestCase("IE29AIBK93115212345678")]
+        [TestCase("AD1200012030200359100100")]
         public new void CalculateNationalCheckDigits_Valid_Iban_Test_Success(string iban)
         {
             var result = base.CalculateNationalCheckDigits_Valid_Iban_Test_Success(iban);

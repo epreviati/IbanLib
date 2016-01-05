@@ -1,16 +1,30 @@
-﻿using IbanLib.Domain.Validators;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace IbanLib.Validators.Test
+namespace IbanLib.Countries.Test
 {
     [TestFixture]
-    public class CountryCodeValidatorTest
+    public class GetterTest
     {
-        private readonly ICountryCodeValidator _contryCodeValidator;
-
-        public CountryCodeValidatorTest()
+        [Test]
+        [TestCase("AD")]
+        [TestCase("AL")]
+        [TestCase("AT")]
+        [TestCase("BE")]
+        [TestCase("DE")]
+        [TestCase("ES")]
+        [TestCase("FR")]
+        [TestCase("GB")]
+        [TestCase("IE")]
+        [TestCase("IT")]
+        [TestCase("MC")]
+        [TestCase("MD")]
+        [TestCase("MR")]
+        [TestCase("RO")]
+        [TestCase("SM")]
+        [TestCase("TR")]
+        public void Getter_Found_Country(string countryCode)
         {
-            _contryCodeValidator = new CountryCodeValidator();
+            Assert.AreNotEqual(Getter.GetCountry(countryCode), null);
         }
 
         [Test]
@@ -34,32 +48,22 @@ namespace IbanLib.Validators.Test
         [TestCase("0GB")]
         [TestCase("0GB0")]
         [TestCase("GBGB")]
-        public void Invalid_CountryCode(string countryCode)
-        {
-            Assert.IsFalse(_contryCodeValidator.IsValid(countryCode));
-        }
-
-        [Test]
-        [TestCase("AD")]
         [TestCase("AE")]
         [TestCase("AF")]
         [TestCase("AG")]
         [TestCase("AI")]
-        [TestCase("AL")]
         [TestCase("AM")]
         [TestCase("AN")]
         [TestCase("AO")]
         [TestCase("AQ")]
         [TestCase("AR")]
         [TestCase("AS")]
-        [TestCase("AT")]
         [TestCase("AU")]
         [TestCase("AW")]
         [TestCase("AZ")]
         [TestCase("BA")]
         [TestCase("BB")]
         [TestCase("BD")]
-        [TestCase("BE")]
         [TestCase("BF")]
         [TestCase("BG")]
         [TestCase("BH")]
@@ -94,26 +98,22 @@ namespace IbanLib.Validators.Test
         [TestCase("CZ")]
         [TestCase("CS")]
         [TestCase("CH")]
-        [TestCase("DE")]
         [TestCase("DZ")]
         [TestCase("DK")]
         [TestCase("DJ")]
         [TestCase("DM")]
         [TestCase("DO")]
-        [TestCase("ES")]
         [TestCase("EC")]
         [TestCase("EG")]
         [TestCase("ER")]
         [TestCase("EE")]
         [TestCase("ET")]
         [TestCase("EH")]
-        [TestCase("FR")]
         [TestCase("FK")]
         [TestCase("FO")]
         [TestCase("FJ")]
         [TestCase("FI")]
         [TestCase("FM")]
-        [TestCase("GB")]
         [TestCase("GQ")]
         [TestCase("GF")]
         [TestCase("GA")]
@@ -137,9 +137,7 @@ namespace IbanLib.Validators.Test
         [TestCase("HN")]
         [TestCase("HK")]
         [TestCase("HU")]
-        [TestCase("IE")]
         [TestCase("IO")]
-        [TestCase("IT")]
         [TestCase("IS")]
         [TestCase("IN")]
         [TestCase("ID")]
@@ -171,7 +169,6 @@ namespace IbanLib.Validators.Test
         [TestCase("LU")]
         [TestCase("LC")]
         [TestCase("LK")]
-        [TestCase("MD")]
         [TestCase("MO")]
         [TestCase("MK")]
         [TestCase("MG")]
@@ -182,10 +179,8 @@ namespace IbanLib.Validators.Test
         [TestCase("MT")]
         [TestCase("MH")]
         [TestCase("MQ")]
-        [TestCase("MR")]
         [TestCase("MU")]
         [TestCase("MX")]
-        [TestCase("MC")]
         [TestCase("MN")]
         [TestCase("MS")]
         [TestCase("MA")]
@@ -220,13 +215,11 @@ namespace IbanLib.Validators.Test
         [TestCase("PR")]
         [TestCase("PM")]
         [TestCase("QA")]
-        [TestCase("RO")]
         [TestCase("RE")]
         [TestCase("RU")]
         [TestCase("RW")]
         [TestCase("SV")]
         [TestCase("SH")]
-        [TestCase("SM")]
         [TestCase("ST")]
         [TestCase("SA")]
         [TestCase("SN")]
@@ -255,7 +248,6 @@ namespace IbanLib.Validators.Test
         [TestCase("TO")]
         [TestCase("TT")]
         [TestCase("TN")]
-        [TestCase("TR")]
         [TestCase("TM")]
         [TestCase("TC")]
         [TestCase("TV")]
@@ -279,9 +271,9 @@ namespace IbanLib.Validators.Test
         [TestCase("ZA")]
         [TestCase("ZM")]
         [TestCase("ZW")]
-        public void Valid_CountryCode_But_Country_Not_Found(string countryCode)
+        public void Getter_Not_Found_Country(string countryCode)
         {
-            Assert.IsTrue(_contryCodeValidator.IsValid(countryCode));
+            Assert.AreEqual(Getter.GetCountry(countryCode), null);
         }
     }
 }

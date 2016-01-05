@@ -8,7 +8,7 @@ using IbanLib.Countries.Countries;
 namespace IbanLib.Countries
 {
     /// <summary>
-    ///     Util class for Countries.
+    ///     Getter class for Countries.
     /// </summary>
     public class Getter
     {

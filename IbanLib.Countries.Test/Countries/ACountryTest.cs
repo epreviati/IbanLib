@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace IbanLib.Countries.Test
+namespace IbanLib.Countries.Test.Countries
 {
     public abstract class ACountryTest
     {

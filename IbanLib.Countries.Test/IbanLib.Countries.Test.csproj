@@ -54,23 +54,24 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="TRTest.cs" />
-    <Compile Include="SMTest.cs" />
-    <Compile Include="ROTest.cs" />
-    <Compile Include="MRTest.cs" />
-    <Compile Include="MDTest.cs" />
-    <Compile Include="MCTest.cs" />
-    <Compile Include="ITTest.cs" />
-    <Compile Include="IETest.cs" />
-    <Compile Include="GBTest.cs" />
-    <Compile Include="FRTest.cs" />
-    <Compile Include="ESTest.cs" />
-    <Compile Include="DETest.cs" />
-    <Compile Include="BETest.cs" />
-    <Compile Include="ATTest.cs" />
-    <Compile Include="ALTest.cs" />
-    <Compile Include="ADTest.cs" />
-    <Compile Include="ACountryTest.cs" />
+    <Compile Include="GetterTest.cs" />
+    <Compile Include="Countries\TRTest.cs" />
+    <Compile Include="Countries\SMTest.cs" />
+    <Compile Include="Countries\ROTest.cs" />
+    <Compile Include="Countries\MRTest.cs" />
+    <Compile Include="Countries\MDTest.cs" />
+    <Compile Include="Countries\MCTest.cs" />
+    <Compile Include="Countries\ITTest.cs" />
+    <Compile Include="Countries\IETest.cs" />
+    <Compile Include="Countries\GBTest.cs" />
+    <Compile Include="Countries\FRTest.cs" />
+    <Compile Include="Countries\ESTest.cs" />
+    <Compile Include="Countries\DETest.cs" />
+    <Compile Include="Countries\BETest.cs" />
+    <Compile Include="Countries\ATTest.cs" />
+    <Compile Include="Countries\ALTest.cs" />
+    <Compile Include="Countries\ADTest.cs" />
+    <Compile Include="Countries\ACountryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
