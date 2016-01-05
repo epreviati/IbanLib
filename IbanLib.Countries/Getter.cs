@@ -7,7 +7,10 @@ using IbanLib.Countries.Countries;
 
 namespace IbanLib.Countries
 {
-    public class Util
+    /// <summary>
+    ///     Util class for Countries.
+    /// </summary>
+    public class Getter
     {
         private static readonly Lazy<ConcurrentDictionary<string, Type>> AllCountriesType =
             new Lazy<ConcurrentDictionary<string, Type>>(() => new ConcurrentDictionary<string, Type>(
@@ -27,10 +30,10 @@ namespace IbanLib.Countries
                 LazyThreadSafetyMode.ExecutionAndPublication);
 
         /// <summary>
-        ///     The method returns the corrispondent implementation of the interface ICountry or null.
+        ///     The method returns the corrispondent implementation of the interface ICountry or null searched bt the Country Code.
         /// </summary>
         /// <param name="countryCode">
-        ///     The country code requested.
+        ///     The Country Code requested.
         /// </param>
         /// <returns>
         ///     The implementation of ICountry that corrisponds with the requested country code.

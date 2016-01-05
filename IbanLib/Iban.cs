@@ -73,7 +73,7 @@ namespace IbanLib
                         countryCode));
             }
 
-            Country = Countries.Util.GetCountry(countryCode);
+            Country = Getter.GetCountry(countryCode);
             if (Country == null)
             {
                 throw new InvalidIbanException(
