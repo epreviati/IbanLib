@@ -2,6 +2,8 @@
 
 namespace IbanLib.Domain
 {
+    /// <summary>
+    /// </summary>
     public interface IIban
     {
         ICountry Country { get; set; }
@@ -10,6 +12,9 @@ namespace IbanLib.Domain
 
         IBban Bban { get; set; }
 
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         string Value();
     }
 }

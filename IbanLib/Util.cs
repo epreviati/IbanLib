@@ -2,6 +2,8 @@
 
 namespace IbanLib
 {
+    /// <summary>
+    /// </summary>
     internal class Util
     {
         /// <summary>

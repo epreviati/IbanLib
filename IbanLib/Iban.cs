@@ -4,6 +4,8 @@ using IbanLib.Exceptions;
 
 namespace IbanLib
 {
+    /// <summary>
+    /// </summary>
     public class Iban : IIban
     {
         # region Constructors

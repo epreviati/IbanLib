@@ -1,5 +1,7 @@
 ﻿namespace IbanLib.Domain
 {
+    /// <summary>
+    /// </summary>
     public interface IBban
     {
         string CheckDigits1 { get; set; }
@@ -14,6 +16,9 @@
 
         string CheckDigits3 { get; set; }
 
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         string Value();
     }
 }
