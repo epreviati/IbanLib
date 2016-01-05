@@ -23,11 +23,6 @@ namespace IbanLib.Splitters
         /// <exception cref="IbanSplitterException"></exception>
         public string GetCountryCode(string iban)
         {
-            if (string.IsNullOrWhiteSpace(iban))
-            {
-                throw new IbanSplitterException(GetErrorMessage(Iban, iban, "Country Code"));
-            }
-
             try
             {
                 return iban.Substring(0, 2);
@@ -85,6 +80,8 @@ namespace IbanLib.Splitters
         /// <exception cref="IbanSplitterException"></exception>
         private void ValidateIban(ICountry country, string iban)
         {
+            ValidateCountry(country);
+
             if (!_ibanValidator.IsValid(country, iban))
             {
                 throw new IbanSplitterException(

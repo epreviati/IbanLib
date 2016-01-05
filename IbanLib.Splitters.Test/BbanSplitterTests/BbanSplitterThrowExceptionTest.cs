@@ -11,6 +11,22 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        public void GetAccountNumber_Expected_InvalidCountryException(string iban)
+        {
+            var bban = GetBbanFromIBan(iban);
+
+            Action action1 = () => BbanSplitterValidValidation.GetAccountNumber(null, bban);
+            ExpectedException<InvalidCountryException>(action1);
+
+            Action action2 = () => BbanSplitterInValidValidation.GetAccountNumber(null, bban);
+            ExpectedException<InvalidCountryException>(action2);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        [TestCase("AD1200012030200359100100")]
         public void GetAccountNumber_Throw_BbanSplitterException(string iban)
         {
             Action action = () =>
@@ -26,6 +42,22 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        public void GetBankCode_Expected_InvalidCountryException(string iban)
+        {
+            var bban = GetBbanFromIBan(iban);
+
+            Action action1 = () => BbanSplitterValidValidation.GetBankCode(null, bban);
+            ExpectedException<InvalidCountryException>(action1);
+
+            Action action2 = () => BbanSplitterInValidValidation.GetBankCode(null, bban);
+            ExpectedException<InvalidCountryException>(action2);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        [TestCase("AD1200012030200359100100")]
         public void GetBankCode_Throw_BbanSplitterException(string iban)
         {
             Action action = () =>
@@ -34,6 +66,22 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
                 BbanSplitterInValidValidation.GetBankCode(MockNotNullCountry, bban);
             };
             ExpectedException<BbanSplitterException>(action);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        [TestCase("AD1200012030200359100100")]
+        public void GetBranchCode_Expected_InvalidCountryException(string iban)
+        {
+            var bban = GetBbanFromIBan(iban);
+
+            Action action1 = () => BbanSplitterValidValidation.GetBranchCode(null, bban);
+            ExpectedException<InvalidCountryException>(action1);
+
+            Action action2 = () => BbanSplitterInValidValidation.GetBranchCode(null, bban);
+            ExpectedException<InvalidCountryException>(action2);
         }
 
         [Test]
@@ -87,6 +135,22 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        public void GetCheck2_Expected_InvalidCountryException(string iban)
+        {
+            var bban = GetBbanFromIBan(iban);
+
+            Action action1 = () => BbanSplitterValidValidation.GetCheck2(null, bban);
+            ExpectedException<InvalidCountryException>(action1);
+
+            Action action2 = () => BbanSplitterInValidValidation.GetCheck2(null, bban);
+            ExpectedException<InvalidCountryException>(action2);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        [TestCase("AD1200012030200359100100")]
         public void GetCheck2_Throw_BbanSplitterException(string iban)
         {
             Action action = () =>
@@ -95,6 +159,22 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
                 BbanSplitterInValidValidation.GetCheck2(MockNotNullCountry, bban);
             };
             ExpectedException<BbanSplitterException>(action);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        [TestCase("AD1200012030200359100100")]
+        public void GetCheck3_Expected_InvalidCountryException(string iban)
+        {
+            var bban = GetBbanFromIBan(iban);
+
+            Action action1 = () => BbanSplitterValidValidation.GetCheck3(null, bban);
+            ExpectedException<InvalidCountryException>(action1);
+
+            Action action2 = () => BbanSplitterInValidValidation.GetCheck3(null, bban);
+            ExpectedException<InvalidCountryException>(action2);
         }
 
         [Test]

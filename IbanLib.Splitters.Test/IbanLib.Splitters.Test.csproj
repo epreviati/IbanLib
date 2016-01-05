@@ -67,6 +67,11 @@
     <Compile Include="BbanSplitterTests\BbanSplitterGetChek3Test.cs" />
     <Compile Include="BbanSplitterTests\BbanSplitterGetChek2Test.cs" />
     <Compile Include="BbanSplitterTests\BbanSplitterGetChek1Test.cs" />
+    <Compile Include="IBanSplitterTest\AIbanSplitterTest.cs" />
+    <Compile Include="IBanSplitterTest\IbanSplitterGetCountryCodeTest.cs" />
+    <Compile Include="IBanSplitterTest\IbanSplitterGetNationalCheckDigitsTest.cs" />
+    <Compile Include="IBanSplitterTest\IbanSplitterGetBbanTest.cs" />
+    <Compile Include="IBanSplitterTest\IbanSplitterThrowExceptionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

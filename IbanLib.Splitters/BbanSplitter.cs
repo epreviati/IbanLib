@@ -24,7 +24,6 @@ namespace IbanLib.Splitters
         /// <returns></returns>
         public string GetCheck1(ICountry country, string bban)
         {
-            ValidateCountry(country);
             ValidateBban(country, bban);
 
             try
@@ -49,7 +48,6 @@ namespace IbanLib.Splitters
         /// <exception cref="BbanSplitterException"></exception>
         public string GetBankCode(ICountry country, string bban)
         {
-            ValidateCountry(country);
             ValidateBban(country, bban);
 
             try
@@ -72,7 +70,6 @@ namespace IbanLib.Splitters
         /// <exception cref="BbanSplitterException"></exception>
         public string GetBranchCode(ICountry country, string bban)
         {
-            ValidateCountry(country);
             ValidateBban(country, bban);
 
             try
@@ -96,7 +93,6 @@ namespace IbanLib.Splitters
         /// <returns></returns>
         public string GetCheck2(ICountry country, string bban)
         {
-            ValidateCountry(country);
             ValidateBban(country, bban);
 
             try
@@ -121,7 +117,6 @@ namespace IbanLib.Splitters
         /// <exception cref="BbanSplitterException"></exception>
         public string GetAccountNumber(ICountry country, string bban)
         {
-            ValidateCountry(country);
             ValidateBban(country, bban);
 
             try
@@ -143,7 +138,6 @@ namespace IbanLib.Splitters
         /// <returns></returns>
         public string GetCheck3(ICountry country, string bban)
         {
-            ValidateCountry(country);
             ValidateBban(country, bban);
 
             try
@@ -167,6 +161,8 @@ namespace IbanLib.Splitters
         /// <exception cref="IbanSplitterException"></exception>
         private void ValidateBban(ICountry country, string bban)
         {
+            ValidateCountry(country);
+
             if (!_bbanValidator.IsValid(country, bban))
             {
                 throw new BbanSplitterException(

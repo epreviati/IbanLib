@@ -8,16 +8,16 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
     {
         private void GetCheck3_Valid_Input_Return_Correct_Value(ICountry country, string bban, string check3)
         {
-            var check = BbanSplitterValidValidation.GetCheck3(country, bban);
-            Assert.AreEqual(check3, check);
+            var valueGot = BbanSplitterValidValidation.GetCheck3(country, bban);
+            Assert.AreEqual(check3, valueGot);
 
             if (country.Check3Position.HasValue)
             {
-                Assert.AreNotEqual(check, null);
+                Assert.AreNotEqual(valueGot, null);
             }
             else
             {
-                Assert.AreEqual(check, null);
+                Assert.AreEqual(valueGot, null);
             }
         }
 

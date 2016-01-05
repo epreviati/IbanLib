@@ -21,15 +21,6 @@ namespace IbanLib.Splitters.Test
             {
                 action.Invoke();
             }
-            catch (AggregateException e)
-            {
-                e.Handle(x =>
-                {
-                    Assert.IsTrue(x is TException);
-                    Assert.AreEqual(typeof (TException), x.GetType());
-                    return true;
-                });
-            }
             catch (Exception e)
             {
                 Assert.AreEqual(typeof (TException), e.GetType());
