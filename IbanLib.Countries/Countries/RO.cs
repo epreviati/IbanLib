@@ -7,12 +7,12 @@
             get { return "Romania"; }
         }
 
-        public override string ISO3166
+        public override string Iso3166
         {
             get { return "RO"; }
         }
 
-        public override string BankIdentifierStructure
+        public override string BankCodeStructure
         {
             get { return "[A-Z]{4}"; }
         }
@@ -22,22 +22,22 @@
             get { return "[0-9A-Z]{16}"; }
         }
 
-        public override int BBANLength
+        public override int BbanLength
         {
             get { return 20; }
         }
 
-        public override int IBANLength
+        public override int IbanLength
         {
             get { return 24; }
         }
 
-        public override bool IsSEPA
+        public override bool IsSepa
         {
             get { return true; }
         }
 
-        public override int BankIdentifierLength
+        public override int BankCodeLength
         {
             get { return 4; }
         }

@@ -7,7 +7,7 @@
             get { return "San Marino"; }
         }
 
-        public override string ISO3166
+        public override string Iso3166
         {
             get { return "SM"; }
         }

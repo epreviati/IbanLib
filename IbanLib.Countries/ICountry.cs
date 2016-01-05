@@ -4,43 +4,43 @@
     {
         string Name { get; }
 
-        string ISO3166 { get; }
+        string Iso3166 { get; }
 
-        string BankIdentifierStructure { get; }
+        string BankCodeStructure { get; }
 
-        string BranchIdentifierStructure { get; }
+        int BankCodePosition { get; }
+
+        int BankCodeLength { get; }
+
+        int? BankCodeSecondaryLengthForPayment { get; }
+
+        string BranchCodeStructure { get; }
+
+        int? BranchCodePosition { get; }
+
+        int BranchCodeLength { get; }
 
         string AccountNumberStructure { get; }
 
-        string BBANStructure { get; }
+        int AccountNumberPosition { get; }
 
-        int BBANLength { get; }
+        int AccountNumberLength { get; }
 
-        string IBANStructure { get; }
+        string BbanStructure { get; }
 
-        int IBANLength { get; }
+        int BbanLength { get; }
 
-        bool IsSEPA { get; }
+        string IbanStructure { get; }
 
-        int BankIdentifierPosition { get; }
+        int IbanLength { get; }
 
-        int BankIdentifierLength { get; }
-
-        int? DifferentBankIdentifierLengthForPayment { get; }
-
-        int? BranchIdentifierPosition { get; }
-
-        int BranchIdentifierLength { get; }
+        bool IsSepa { get; }
 
         int IbanNationalIdLength { get; }
 
         int SwiftAccountNumberPosition { get; }
 
         int SwiftAccountNumberLength { get; }
-
-        int AccountNumberPosition { get; }
-
-        int AccountNumberLength { get; }
 
         int? Check1Position { get; }
 

@@ -51,7 +51,7 @@ namespace IbanLib
 
             Debug.Assert(country != null, "country != null");
             CheckArgumentNull(
-                country.BranchIdentifierLength > 0 && string.IsNullOrWhiteSpace(branchCode),
+                country.BranchCodeLength > 0 && string.IsNullOrWhiteSpace(branchCode),
                 DetailType.BranchCode,
                 typeof (string).Name);
 

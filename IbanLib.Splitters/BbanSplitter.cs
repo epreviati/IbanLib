@@ -91,8 +91,8 @@ namespace IbanLib.Splitters
             try
             {
                 return bban.Substring(
-                    country.BankIdentifierPosition - CharsRemovedFromIban,
-                    country.BankIdentifierLength);
+                    country.BankCodePosition - CharsRemovedFromIban,
+                    country.BankCodeLength);
             }
             catch (Exception e)
             {
@@ -126,10 +126,10 @@ namespace IbanLib.Splitters
 
             try
             {
-                return country.BranchIdentifierPosition.HasValue
+                return country.BranchCodePosition.HasValue
                     ? bban.Substring(
-                        country.BranchIdentifierPosition.Value - CharsRemovedFromIban,
-                        country.BranchIdentifierLength)
+                        country.BranchCodePosition.Value - CharsRemovedFromIban,
+                        country.BranchCodeLength)
                     : null;
             }
             catch (Exception e)
@@ -270,7 +270,7 @@ namespace IbanLib.Splitters
                     string.Format(
                         "Parameter BBAN '{0}' for country '{1}' is not valid.",
                         bban,
-                        country.ISO3166));
+                        country.Iso3166));
             }
         }
     }

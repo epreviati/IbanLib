@@ -9,12 +9,12 @@ namespace IbanLib.Countries.Countries
             get { return "Belgium"; }
         }
 
-        public override string ISO3166
+        public override string Iso3166
         {
             get { return "BE"; }
         }
 
-        public override string BankIdentifierStructure
+        public override string BankCodeStructure
         {
             get { return "[0-9]{3}"; }
         }
@@ -24,27 +24,27 @@ namespace IbanLib.Countries.Countries
             get { return "[0-9]{7}"; }
         }
 
-        public override string BBANStructure
+        public override string BbanStructure
         {
-            get { return string.Format("{0}{1}{2}", BankIdentifierStructure, AccountNumberStructure, "[0-9]{2}"); }
+            get { return string.Format("{0}{1}{2}", BankCodeStructure, AccountNumberStructure, "[0-9]{2}"); }
         }
 
-        public override int BBANLength
+        public override int BbanLength
         {
             get { return 12; }
         }
 
-        public override int IBANLength
+        public override int IbanLength
         {
             get { return 16; }
         }
 
-        public override bool IsSEPA
+        public override bool IsSepa
         {
             get { return true; }
         }
 
-        public override int BankIdentifierLength
+        public override int BankCodeLength
         {
             get { return 3; }
         }

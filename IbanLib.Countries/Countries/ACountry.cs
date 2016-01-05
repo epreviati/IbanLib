@@ -10,17 +10,17 @@ namespace IbanLib.Countries.Countries
             get { throw new NotImplementedException(); }
         }
 
-        public virtual string ISO3166
+        public virtual string Iso3166
         {
             get { throw new NotImplementedException(); }
         }
 
-        public virtual string BankIdentifierStructure
+        public virtual string BankCodeStructure
         {
             get { return null; }
         }
 
-        public virtual string BranchIdentifierStructure
+        public virtual string BranchCodeStructure
         {
             get { return null; }
         }
@@ -30,73 +30,73 @@ namespace IbanLib.Countries.Countries
             get { return null; }
         }
 
-        public virtual string BBANStructure
+        public virtual string BbanStructure
         {
             get
             {
                 return string.Format(
                     "{0}{1}{2}",
-                    BankIdentifierStructure,
-                    BranchIdentifierStructure,
+                    BankCodeStructure,
+                    BranchCodeStructure,
                     AccountNumberStructure);
             }
         }
 
-        public virtual int BBANLength
+        public virtual int BbanLength
         {
             get { throw new NotImplementedException(); }
         }
 
-        public virtual string IBANStructure
+        public virtual string IbanStructure
         {
             get
             {
                 return string.Format(
                     "{0}{1}{2}",
-                    ISO3166,
+                    Iso3166,
                     "[0-9]{2}",
-                    BBANStructure);
+                    BbanStructure);
             }
         }
 
-        public virtual int IBANLength
+        public virtual int IbanLength
         {
             get { throw new NotImplementedException(); }
         }
 
-        public virtual bool IsSEPA
+        public virtual bool IsSepa
         {
             get { return false; }
         }
 
-        public virtual int BankIdentifierPosition
+        public virtual int BankCodePosition
         {
             get { return 4; }
         }
 
-        public virtual int BankIdentifierLength
+        public virtual int BankCodeLength
         {
             get { throw new NotImplementedException(); }
         }
 
-        public virtual int? DifferentBankIdentifierLengthForPayment
+        public virtual int? BankCodeSecondaryLengthForPayment
         {
             get { return null; }
         }
 
-        public virtual int? BranchIdentifierPosition
+        public virtual int? BranchCodePosition
         {
             get { return null; }
         }
 
-        public virtual int BranchIdentifierLength
+        public virtual int BranchCodeLength
         {
             get { return 0; }
         }
 
         public virtual int IbanNationalIdLength
         {
-            get { return BankIdentifierLength + BranchIdentifierLength; }
+            get { return BankCodeLength + BranchCodeLength; }
         }
 
         public virtual int SwiftAccountNumberPosition
@@ -177,20 +177,20 @@ namespace IbanLib.Countries.Countries
                 "{44}: {45}\n" +
                 "{46}: {47}",
                 "Name", Name,
-                "ISO3166", ISO3166,
-                "BankIdentifierStructure", BankIdentifierStructure,
-                "BranchIdentifierStructure", BranchIdentifierStructure,
+                "ISO3166", Iso3166,
+                "BankCodeStructure", BankCodeStructure,
+                "BranchCodeStructure", BranchCodeStructure,
                 "AccountNumberStructure", AccountNumberStructure,
-                "BBANStructure", BBANStructure,
-                "BBANLength", BBANLength,
-                "IBANStructure", IBANStructure,
-                "IBANLength", IBANLength,
-                "IsSEPA", IsSEPA,
-                "BankIdentifierPosition", BankIdentifierPosition,
-                "BankIdentifierLength", BankIdentifierLength,
-                "DifferentBankIdentifierLengthForPayment", DifferentBankIdentifierLengthForPayment,
-                "BranchIdentifierPosition", BranchIdentifierPosition,
-                "BranchIdentifierLength", BranchIdentifierLength,
+                "BBANStructure", BbanStructure,
+                "BBANLength", BbanLength,
+                "IBANStructure", IbanStructure,
+                "IBANLength", IbanLength,
+                "IsSEPA", IsSepa,
+                "BankCodePosition", BankCodePosition,
+                "BankCodeLength", BankCodeLength,
+                "BankCodeSecondaryLengthForPayment", BankCodeSecondaryLengthForPayment,
+                "BranchCodePosition", BranchCodePosition,
+                "BranchCodeLength", BranchCodeLength,
                 "IbanNationalIdLength", IbanNationalIdLength,
                 "SwiftAccountNumberPosition", SwiftAccountNumberPosition,
                 "AccountNumberLength", AccountNumberLength,
@@ -246,8 +246,8 @@ namespace IbanLib.Countries.Countries
         protected bool IsValidInputToCalculateNationalCheckDigits(string iban)
         {
             return !string.IsNullOrWhiteSpace(iban)
-                   && iban.Length == IBANLength
-                   && iban.Substring(0, 2).Equals(ISO3166)
+                   && iban.Length == IbanLength
+                   && iban.Substring(0, 2).Equals(Iso3166)
                    && iban.Substring(2, 2).Equals("00");
         }
 
@@ -279,10 +279,10 @@ namespace IbanLib.Countries.Countries
         {
             if (string.IsNullOrWhiteSpace(bankCode)
                 || string.IsNullOrWhiteSpace(accountNumber)
-                || bankCode.Length != BankIdentifierLength
+                || bankCode.Length != BankCodeLength
                 || accountNumber.Length != AccountNumberLength
-                || (string.IsNullOrWhiteSpace(branchCode) && BranchIdentifierLength != 0)
-                || (!string.IsNullOrWhiteSpace(branchCode) && branchCode.Length != BranchIdentifierLength))
+                || (string.IsNullOrWhiteSpace(branchCode) && BranchCodeLength != 0)
+                || (!string.IsNullOrWhiteSpace(branchCode) && branchCode.Length != BranchCodeLength))
             {
                 return false;
             }

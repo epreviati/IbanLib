@@ -11,7 +11,7 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
             var valueGot = BbanSplitterValidValidation.GetBranchCode(country, bban);
             Assert.AreEqual(branchCode, valueGot);
 
-            if (country.BranchIdentifierPosition.HasValue)
+            if (country.BranchCodePosition.HasValue)
             {
                 Assert.AreNotEqual(valueGot, null);
             }

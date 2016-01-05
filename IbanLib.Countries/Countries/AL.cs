@@ -7,17 +7,17 @@
             get { return "Albania"; }
         }
 
-        public override string ISO3166
+        public override string Iso3166
         {
             get { return "AL"; }
         }
 
-        public override string BankIdentifierStructure
+        public override string BankCodeStructure
         {
             get { return "[0-9]{3}"; }
         }
 
-        public override string BranchIdentifierStructure
+        public override string BranchCodeStructure
         {
             get { return "[0-9]{4}"; }
         }
@@ -27,40 +27,40 @@
             get { return "[0-9A-Z]{16}"; }
         }
 
-        public override string BBANStructure
+        public override string BbanStructure
         {
             get
             {
                 return string.Format(
                     "{0}{1}{2}{3}",
-                    BankIdentifierStructure,
-                    BranchIdentifierStructure,
+                    BankCodeStructure,
+                    BranchCodeStructure,
                     "[0-9]{1}",
                     AccountNumberStructure);
             }
         }
 
-        public override int BBANLength
+        public override int BbanLength
         {
             get { return 24; }
         }
 
-        public override int IBANLength
+        public override int IbanLength
         {
             get { return 28; }
         }
 
-        public override int BankIdentifierLength
+        public override int BankCodeLength
         {
             get { return 3; }
         }
 
-        public override int? BranchIdentifierPosition
+        public override int? BranchCodePosition
         {
             get { return 7; }
         }
 
-        public override int BranchIdentifierLength
+        public override int BranchCodeLength
         {
             get { return 5; }
         }

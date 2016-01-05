@@ -9,17 +9,17 @@ namespace IbanLib.Countries.Countries
             get { return "Spain"; }
         }
 
-        public override string ISO3166
+        public override string Iso3166
         {
             get { return "ES"; }
         }
 
-        public override string BankIdentifierStructure
+        public override string BankCodeStructure
         {
             get { return "[0-9]{4}"; }
         }
 
-        public override string BranchIdentifierStructure
+        public override string BranchCodeStructure
         {
             get { return "[0-9]{4}"; }
         }
@@ -29,41 +29,41 @@ namespace IbanLib.Countries.Countries
             get { return "[0-9]{10}"; }
         }
 
-        public override string BBANStructure
+        public override string BbanStructure
         {
             get
             {
-                return string.Format("{0}{1}{2}{3}", BankIdentifierStructure, BranchIdentifierStructure,
+                return string.Format("{0}{1}{2}{3}", BankCodeStructure, BranchCodeStructure,
                     "[0-9]{1}[0-9]{1}", AccountNumberStructure);
             }
         }
 
-        public override int BBANLength
+        public override int BbanLength
         {
             get { return 20; }
         }
 
-        public override int IBANLength
+        public override int IbanLength
         {
             get { return 24; }
         }
 
-        public override bool IsSEPA
+        public override bool IsSepa
         {
             get { return true; }
         }
 
-        public override int BankIdentifierLength
+        public override int BankCodeLength
         {
             get { return 4; }
         }
 
-        public override int? BranchIdentifierPosition
+        public override int? BranchCodePosition
         {
             get { return 8; }
         }
 
-        public override int BranchIdentifierLength
+        public override int BranchCodeLength
         {
             get { return 4; }
         }

@@ -139,7 +139,7 @@ namespace IbanLib.Splitters
                     string.Format(
                         "Parameter IBAN '{0}' for country '{1}' is not valid.",
                         iban,
-                        country.ISO3166));
+                        country.Iso3166));
             }
         }
     }

@@ -37,9 +37,9 @@ namespace IbanLib.Sample.IbanGeneration.Constructors
             WriteLine("Country Code");
             WriteLine(string.Format(
                 format,
-                GetFieldValue(iban.Country.ISO3166),
+                GetFieldValue(iban.Country.Iso3166),
                 GetFieldValue(bankAccount.CountryCode),
-                iban.Country.ISO3166 == bankAccount.CountryCode));
+                iban.Country.Iso3166 == bankAccount.CountryCode));
 
             WriteLine("National Check Digits");
             WriteLine(string.Format(

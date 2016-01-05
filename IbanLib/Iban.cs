@@ -40,7 +40,7 @@ namespace IbanLib
             Bban = bban;
             NationalCheckDigits = country.CalculateNationalCheckDigits(
                 string.Concat(
-                    country.ISO3166,
+                    country.Iso3166,
                     NationalCheckDigits,
                     bban.Value()));
 
@@ -49,7 +49,7 @@ namespace IbanLib
                 throw new InvalidIbanException(
                     string.Format(
                         "It is not possible to calculate the 'National Check Digits' with the requested Country '{0}' and BBAN '{1}'.",
-                        Country.ISO3166,
+                        Country.Iso3166,
                         Bban.Value()));
             }
         }
@@ -122,7 +122,7 @@ namespace IbanLib
                 "{0}: {1}\n" +
                 "{2}: {3}\n" +
                 "{4}: [\n{5}\n]",
-                "Country", ToStringField(Country.ISO3166),
+                "Country", ToStringField(Country.Iso3166),
                 "NationalCheckDigits", ToStringField(NationalCheckDigits),
                 "BBAN", ToStringField(Bban.ToString()));
         }
@@ -142,7 +142,7 @@ namespace IbanLib
         public string Value()
         {
             return string.Concat(
-                Country.ISO3166,
+                Country.Iso3166,
                 NationalCheckDigits,
                 Bban.Value());
         }

@@ -7,7 +7,7 @@
             get { return "Mauritania"; }
         }
 
-        public override string ISO3166
+        public override string Iso3166
         {
             get { return "MR"; }
         }

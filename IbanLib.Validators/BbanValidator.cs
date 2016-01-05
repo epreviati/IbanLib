@@ -28,8 +28,8 @@ namespace IbanLib.Validators
         {
             CheckCountry(country);
 
-            return IsValidDetailLenght(bban, country.BBANLength)
-                   && IsValidDetailStructure(bban, country.BBANStructure);
+            return IsValidDetailLenght(bban, country.BbanLength)
+                   && IsValidDetailStructure(bban, country.BbanStructure);
         }
     }
 }

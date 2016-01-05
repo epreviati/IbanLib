@@ -47,8 +47,8 @@ namespace IbanLib.Validators
         {
             CheckCountry(country);
 
-            return IsValidDetailLenght(iban, country.IBANLength)
-                   && IsValidDetailStructure(iban, country.IBANStructure)
+            return IsValidDetailLenght(iban, country.IbanLength)
+                   && IsValidDetailStructure(iban, country.IbanStructure)
                    && IsValidStructure(iban);
         }
 

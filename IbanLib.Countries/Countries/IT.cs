@@ -11,17 +11,17 @@ namespace IbanLib.Countries.Countries
             get { return "Italy"; }
         }
 
-        public override string ISO3166
+        public override string Iso3166
         {
             get { return "IT"; }
         }
 
-        public override string BankIdentifierStructure
+        public override string BankCodeStructure
         {
             get { return "[0-9]{5}"; }
         }
 
-        public override string BranchIdentifierStructure
+        public override string BranchCodeStructure
         {
             get { return "[0-9]{5}"; }
         }
@@ -31,50 +31,50 @@ namespace IbanLib.Countries.Countries
             get { return "[0-9A-Z]{12}"; }
         }
 
-        public override string BBANStructure
+        public override string BbanStructure
         {
             get
             {
                 return string.Format(
                     "{0}{1}{2}{3}",
                     "[A-Z]{1}",
-                    BankIdentifierStructure,
-                    BranchIdentifierStructure,
+                    BankCodeStructure,
+                    BranchCodeStructure,
                     AccountNumberStructure);
             }
         }
 
-        public override int BBANLength
+        public override int BbanLength
         {
             get { return 23; }
         }
 
-        public override int IBANLength
+        public override int IbanLength
         {
             get { return 27; }
         }
 
-        public override bool IsSEPA
+        public override bool IsSepa
         {
             get { return true; }
         }
 
-        public override int BankIdentifierPosition
+        public override int BankCodePosition
         {
             get { return 5; }
         }
 
-        public override int BankIdentifierLength
+        public override int BankCodeLength
         {
             get { return 5; }
         }
 
-        public override int? BranchIdentifierPosition
+        public override int? BranchCodePosition
         {
             get { return 10; }
         }
 
-        public override int BranchIdentifierLength
+        public override int BranchCodeLength
         {
             get { return 5; }
         }

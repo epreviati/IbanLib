@@ -28,10 +28,10 @@ namespace IbanLib.Validators
         {
             CheckCountry(country);
 
-            if (country.BranchIdentifierLength > 0)
+            if (country.BranchCodeLength > 0)
             {
-                return IsValidDetailLenght(branchCode, country.BranchIdentifierLength)
-                       && IsValidDetailStructure(branchCode, country.BranchIdentifierStructure);
+                return IsValidDetailLenght(branchCode, country.BranchCodeLength)
+                       && IsValidDetailStructure(branchCode, country.BranchCodeStructure);
             }
 
             return string.IsNullOrWhiteSpace(branchCode);
