@@ -3,7 +3,7 @@
 namespace IbanLib.Domain.Validators
 {
     /// <summary>
-    ///     Generic interface for all the validators that need to validate a detail performing a check into a specific country.
+    ///     Generic interface for all the validators that needs to validate a detail performing a check into a specific country.
     /// </summary>
     public interface IDetailValidator
     {

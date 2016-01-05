@@ -3,6 +3,9 @@ using IbanLib.Exceptions.Enums;
 
 namespace IbanLib.Exceptions
 {
+    /// <summary>
+    ///     InvalidBbanDetailException class.
+    /// </summary>
     public class InvalidBbanDetailException : Exception
     {
         /// <summary>

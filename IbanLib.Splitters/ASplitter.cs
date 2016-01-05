@@ -3,13 +3,21 @@ using IbanLib.Exceptions;
 
 namespace IbanLib.Splitters
 {
+    /// <summary>
+    ///     ASplitter base class that defines the basically funcionalities for all the splitter classes.
+    /// </summary>
     public abstract class ASplitter
     {
         /// <summary>
+        ///     The method throws an <see cref="InvalidCountryException" /> if the country is null.
         /// </summary>
-        /// <param name="country"></param>
-        /// <exception cref="IbanSplitterException"></exception>
-        protected static void ValidateCountry(ICountry country)
+        /// <param name="country">
+        ///     Country to check.
+        /// </param>
+        /// <exception cref="InvalidCountryException">
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be throwed.
+        /// </exception>
+        protected static void CheckCountry(ICountry country)
         {
             if (country == null)
             {
@@ -22,11 +30,20 @@ namespace IbanLib.Splitters
         }
 
         /// <summary>
+        ///     Method that returns a generic error message personalized with the three fields.
         /// </summary>
-        /// <param name="fieldName"></param>
-        /// <param name="fieldToSplit"></param>
-        /// <param name="fieldToExtract"></param>
-        /// <returns></returns>
+        /// <param name="fieldName">
+        ///     Parameter Field Name.
+        /// </param>
+        /// <param name="fieldToSplit">
+        ///     Parameter Field To split.
+        /// </param>
+        /// <param name="fieldToExtract">
+        ///     Parameter Field To Extract.
+        /// </param>
+        /// <returns>
+        ///     The error message created using the passed parameters.
+        /// </returns>
         protected static string GetErrorMessage(string fieldName, string fieldToSplit, string fieldToExtract)
         {
             return string.Format(

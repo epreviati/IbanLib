@@ -41,7 +41,7 @@ namespace IbanLib.Validators
         ///     True/False
         /// </returns>
         /// <exception cref="InvalidCountryException">
-        ///     If Country is null the <see cref="InvalidCountryException" /> will be throwed.
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be throwed.
         /// </exception>
         public override bool IsValid(ICountry country, string iban)
         {
@@ -55,8 +55,7 @@ namespace IbanLib.Validators
         /// <summary>
         ///     The method returns true or false if the structure of the IBAN is valid or not following those four steps:
         ///     1. Move the four initial characters to the end of the string;
-        ///     2. Replace each letter in the string with two digits, thereby expanding the string, where A = 10, B = 11, ..., Z =
-        ///     35;
+        ///     2. Replace each letter in the string with two digits, thereby expanding the string, where A = 10, ..., Z = 35;
         ///     3. Interpret the string as a decimal integer and compute the remainder of that number on division by 97;
         ///     4. If the remainder is 1, the check digit test is passed and the IBAN might be valid.
         /// </summary>

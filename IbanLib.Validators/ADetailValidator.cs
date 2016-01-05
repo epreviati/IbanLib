@@ -11,13 +11,13 @@ namespace IbanLib.Validators
     public abstract class ADetailValidator : IDetailValidator
     {
         /// <summary>
-        ///     The method returns true or false if the FIELD is valid or not for the specified Country.
+        ///     The method returns true or false if the Field is valid or not for the specified Country.
         /// </summary>
         /// <param name="country">
-        ///     Country that contains the information to validate the FIELD.
+        ///     Country that contains the information to validate the Field.
         /// </param>
         /// <param name="field">
-        ///     FIELD to validate.
+        ///     Field to validate.
         /// </param>
         /// <returns>
         ///     True/False
@@ -25,7 +25,7 @@ namespace IbanLib.Validators
         public abstract bool IsValid(ICountry country, string field);
 
         /// <summary>
-        ///     The method throws an <see cref="InvalidCountryException" /> if the country is null.
+        ///     The method throws an <see cref="InvalidCountryException" /> if the Country is null.
         /// </summary>
         /// <param name="country">
         ///     Country to check.

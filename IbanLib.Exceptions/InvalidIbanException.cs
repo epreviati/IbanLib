@@ -2,6 +2,9 @@
 
 namespace IbanLib.Exceptions
 {
+    /// <summary>
+    ///     InvalidIbanException class.
+    /// </summary>
     public class InvalidIbanException : Exception
     {
         /// <summary>

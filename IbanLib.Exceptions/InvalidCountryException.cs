@@ -2,6 +2,9 @@
 
 namespace IbanLib.Exceptions
 {
+    /// <summary>
+    ///     InvalidCountryException class.
+    /// </summary>
     public class InvalidCountryException : Exception
     {
         /// <summary>

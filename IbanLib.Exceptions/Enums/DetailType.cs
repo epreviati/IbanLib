@@ -1,5 +1,8 @@
 ﻿namespace IbanLib.Exceptions.Enums
 {
+    /// <summary>
+    ///     DetailType enum class.
+    /// </summary>
     public enum DetailType
     {
         Iban,

@@ -2,6 +2,9 @@
 
 namespace IbanLib.Exceptions
 {
+    /// <summary>
+    ///     BbanSplitterException class.
+    /// </summary>
     public class BbanSplitterException : Exception
     {
         /// <summary>

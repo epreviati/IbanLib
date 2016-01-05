@@ -22,7 +22,7 @@ namespace IbanLib.Validators
         ///     True/False
         /// </returns>
         /// <exception cref="InvalidCountryException">
-        ///     If Country is null the <see cref="InvalidCountryException" /> will be throwed.
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be throwed.
         /// </exception>
         public override bool IsValid(ICountry country, string bban)
         {

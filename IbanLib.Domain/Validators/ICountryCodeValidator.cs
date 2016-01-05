@@ -1,7 +1,7 @@
 ﻿namespace IbanLib.Domain.Validators
 {
     /// <summary>
-    ///     ICountryCodeValidator interface that define the actions to validate a Country Code.
+    ///     ICountryCodeValidator interface that defines the actions to validate a Country Code.
     /// </summary>
     public interface ICountryCodeValidator
     {
