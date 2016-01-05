@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("IbanLib.DependenciesResolver")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Edgardo Previati")]
 [assembly: AssemblyProduct("IbanLib.DependenciesResolver")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCopyright("Copyright © Edgardo Previati 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
