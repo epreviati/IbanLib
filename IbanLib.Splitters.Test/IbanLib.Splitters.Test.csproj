@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -54,10 +58,37 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BbanSplitterTests\ABbanSplitterTest.cs" />
+    <Compile Include="ASplitterTest.cs" />
+    <Compile Include="BbanSplitterTests\BbanSplitterThrowExceptionTest.cs" />
+    <Compile Include="BbanSplitterTests\BbanSplitterGetAccountNumber.cs" />
+    <Compile Include="BbanSplitterTests\BbanSplitterGetBranchCode.cs" />
+    <Compile Include="BbanSplitterTests\BbanSplitterGetBankCode.cs" />
+    <Compile Include="BbanSplitterTests\BbanSplitterGetChek3Test.cs" />
+    <Compile Include="BbanSplitterTests\BbanSplitterGetChek2Test.cs" />
+    <Compile Include="BbanSplitterTests\BbanSplitterGetChek1Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IbanLib.Countries\IbanLib.Countries.csproj">
+      <Project>{132D7F7C-6676-47BA-BC5B-99FDBD77CDF6}</Project>
+      <Name>IbanLib.Countries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib.Domain\IbanLib.Domain.csproj">
+      <Project>{98FEE388-E801-4F94-A44E-31E40ABC0E78}</Project>
+      <Name>IbanLib.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib.Exceptions\IbanLib.Exceptions.csproj">
+      <Project>{01338198-BF8D-4FB9-818D-B9547DE81597}</Project>
+      <Name>IbanLib.Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib.Splitters\IbanLib.Splitters.csproj">
+      <Project>{BE82E131-464E-4139-BCB2-9BA05ABCCE52}</Project>
+      <Name>IbanLib.Splitters</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

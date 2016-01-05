@@ -3,7 +3,6 @@ using IbanLib.Countries;
 using IbanLib.Domain.Splitters;
 using IbanLib.Domain.Validators;
 using IbanLib.Exceptions;
-using IbanLib.Validators;
 
 namespace IbanLib.Splitters
 {
@@ -11,11 +10,6 @@ namespace IbanLib.Splitters
     {
         private const string Iban = "IBAN";
         private readonly IIbanValidator _ibanValidator;
-
-        public IbanSplitter()
-            : this(new IbanValidator())
-        {
-        }
 
         public IbanSplitter(IIbanValidator ibanValidator)
         {

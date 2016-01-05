@@ -79,6 +79,7 @@
                 return null;
             }
 
+            // Reserved for future use.
             return "0";
         }
     }

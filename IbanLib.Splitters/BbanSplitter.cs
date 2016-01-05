@@ -3,7 +3,6 @@ using IbanLib.Countries;
 using IbanLib.Domain.Splitters;
 using IbanLib.Domain.Validators;
 using IbanLib.Exceptions;
-using IbanLib.Validators;
 
 namespace IbanLib.Splitters
 {
@@ -12,11 +11,6 @@ namespace IbanLib.Splitters
         private const string Bban = "BBAN";
         private const int CharsRemovedFromIban = 4;
         private readonly IBbanValidator _bbanValidator;
-
-        public BbanSplitter()
-            : this(new BbanValidator())
-        {
-        }
 
         public BbanSplitter(IBbanValidator bbanValidator)
         {
@@ -36,8 +30,10 @@ namespace IbanLib.Splitters
             try
             {
                 return country.Check1Position.HasValue
-                    ? bban.Substring(country.Check1Position.Value - CharsRemovedFromIban, country.Check1Length)
-                    : string.Empty;
+                    ? bban.Substring(
+                        country.Check1Position.Value - CharsRemovedFromIban,
+                        country.Check1Length)
+                    : null;
             }
             catch (Exception e)
             {
@@ -58,7 +54,8 @@ namespace IbanLib.Splitters
 
             try
             {
-                return bban.Substring(country.BankIdentifierPosition - CharsRemovedFromIban,
+                return bban.Substring(
+                    country.BankIdentifierPosition - CharsRemovedFromIban,
                     country.BankIdentifierLength);
             }
             catch (Exception e)
@@ -81,7 +78,8 @@ namespace IbanLib.Splitters
             try
             {
                 return country.BranchIdentifierPosition.HasValue
-                    ? bban.Substring(country.BranchIdentifierPosition.Value - CharsRemovedFromIban,
+                    ? bban.Substring(
+                        country.BranchIdentifierPosition.Value - CharsRemovedFromIban,
                         country.BranchIdentifierLength)
                     : null;
             }
@@ -104,8 +102,10 @@ namespace IbanLib.Splitters
             try
             {
                 return country.Check2Position.HasValue
-                    ? bban.Substring(country.Check2Position.Value - CharsRemovedFromIban, country.Check2Length)
-                    : string.Empty;
+                    ? bban.Substring(
+                        country.Check2Position.Value - CharsRemovedFromIban,
+                        country.Check2Length)
+                    : null;
             }
             catch (Exception e)
             {
@@ -126,7 +126,9 @@ namespace IbanLib.Splitters
 
             try
             {
-                return bban.Substring(country.AccountNumberPosition - CharsRemovedFromIban, country.AccountNumberLength);
+                return bban.Substring(
+                    country.AccountNumberPosition - CharsRemovedFromIban,
+                    country.AccountNumberLength);
             }
             catch (Exception e)
             {
@@ -147,8 +149,10 @@ namespace IbanLib.Splitters
             try
             {
                 return country.Check3Position.HasValue
-                    ? bban.Substring(country.Check3Position.Value - CharsRemovedFromIban, country.Check3Length)
-                    : string.Empty;
+                    ? bban.Substring(
+                        country.Check3Position.Value - CharsRemovedFromIban,
+                        country.Check3Length)
+                    : null;
             }
             catch (Exception e)
             {
@@ -165,7 +169,7 @@ namespace IbanLib.Splitters
         {
             if (!_bbanValidator.IsValid(country, bban))
             {
-                throw new IbanSplitterException(
+                throw new BbanSplitterException(
                     string.Format(
                         "Parameter BBAN '{0}' for country '{1}' is not valid.",
                         bban,

@@ -57,10 +57,6 @@
       <Project>{01338198-BF8D-4FB9-818D-B9547DE81597}</Project>
       <Name>IbanLib.Exceptions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IbanLib.Validators\IbanLib.Validators.csproj">
-      <Project>{C3FCADDF-1362-4EBC-9B81-ED2AE55C704B}</Project>
-      <Name>IbanLib.Validators</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
