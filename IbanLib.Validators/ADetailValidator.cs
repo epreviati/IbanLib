@@ -1,14 +1,14 @@
 ﻿using System.Text.RegularExpressions;
+using IbanLib.Common;
 using IbanLib.Countries;
 using IbanLib.Domain.Validators;
-using IbanLib.Exceptions;
 
 namespace IbanLib.Validators
 {
     /// <summary>
     ///     ADetailValidator base class that defines the basically funcionalities for all the validators classes.
     /// </summary>
-    public abstract class ADetailValidator : IDetailValidator
+    public abstract class ADetailValidator : AClass, IDetailValidator
     {
         /// <summary>
         ///     The method returns true or false if the Field is valid or not for the specified Country.
@@ -23,27 +23,6 @@ namespace IbanLib.Validators
         ///     True/False
         /// </returns>
         public abstract bool IsValid(ICountry country, string field);
-
-        /// <summary>
-        ///     The method throws an <see cref="InvalidCountryException" /> if the Country is null.
-        /// </summary>
-        /// <param name="country">
-        ///     Country to check.
-        /// </param>
-        /// <exception cref="InvalidCountryException">
-        ///     If Country is null the exception will be thrown.
-        /// </exception>
-        protected void CheckCountry(ICountry country)
-        {
-            if (country == null)
-            {
-                throw new InvalidCountryException(
-                    string.Format(
-                        "The parameter {0} of type {1} can not be null.",
-                        "country",
-                        typeof (ICountry).Name));
-            }
-        }
 
         /// <summary>
         ///     The method returns true or false if the lenght of the Field corrispond or not with the requested Lenght.
