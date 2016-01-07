@@ -56,6 +56,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IbanLib.Common\IbanLib.Common.csproj">
+      <Project>{82ceced9-c46b-4173-9979-be8ff26575ee}</Project>
+      <Name>IbanLib.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IbanLib.Domain\IbanLib.Domain.csproj">
       <Project>{98FEE388-E801-4F94-A44E-31E40ABC0E78}</Project>
       <Name>IbanLib.Domain</Name>

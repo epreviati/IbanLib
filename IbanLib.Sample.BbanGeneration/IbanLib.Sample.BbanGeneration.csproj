@@ -63,6 +63,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IbanLib.Common\IbanLib.Common.csproj">
+      <Project>{82ceced9-c46b-4173-9979-be8ff26575ee}</Project>
+      <Name>IbanLib.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IbanLib.Countries\IbanLib.Countries.csproj">
       <Project>{132D7F7C-6676-47BA-BC5B-99FDBD77CDF6}</Project>
       <Name>IbanLib.Countries</Name>
@@ -83,6 +87,9 @@
       <Project>{F680B939-825D-4D75-B5D5-10ECBB668C40}</Project>
       <Name>IbanLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
