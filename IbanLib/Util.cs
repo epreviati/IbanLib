@@ -10,7 +10,7 @@ namespace IbanLib
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static string Normalize(string str)
+        internal static string Normalize(string str)
         {
             if (string.IsNullOrWhiteSpace(str))
             {
@@ -20,6 +20,7 @@ namespace IbanLib
             var strUpperInvariant = str.ToUpperInvariant();
             var strWithoutDashes = Regex.Replace(strUpperInvariant, @"-+", string.Empty);
             var strWithoutSpaces = Regex.Replace(strWithoutDashes, @"\s+", string.Empty);
+
             return strWithoutSpaces;
         }
     }

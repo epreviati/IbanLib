@@ -1,4 +1,5 @@
-﻿using IbanLib.Domain;
+﻿using System.Diagnostics;
+using IbanLib.Domain;
 using IbanLib.Domain.Splitters;
 using IbanLib.Exceptions;
 
@@ -19,7 +20,9 @@ namespace IbanLib
         public DefaultSplitters(IIbanSplitter ibanSplitter, IBbanSplitter bbanSplitter)
         {
             CheckArgument<IIbanSplitter>(ibanSplitter, "ibanSplitter");
+            Debug.Assert(ibanSplitter != null, "ibanSplitter != null");
             CheckArgument<IBbanSplitter>(bbanSplitter, "bbanSplitter");
+            Debug.Assert(bbanSplitter != null, "bbanSplitter != null");
 
             _ibanSplitter = ibanSplitter;
             _bbanSplitter = bbanSplitter;
@@ -53,7 +56,7 @@ namespace IbanLib
             {
                 throw new SplitterException(
                     string.Format(
-                        "Argument '{0}' of type '{1}' can not be null.",
+                        "Parameter '{0}' of type '{1}' can not be null.",
                         argumentName,
                         typeof (T)));
             }

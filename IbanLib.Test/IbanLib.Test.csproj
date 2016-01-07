@@ -58,6 +58,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DefaultSplittersTest - Copy.cs" />
     <Compile Include="DefaultValidatorsTest.cs" />
     <Compile Include="DefaultSplittersTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

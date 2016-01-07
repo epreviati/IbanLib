@@ -1,34 +1,10 @@
-﻿using IbanLib.Countries;
-using IbanLib.Exceptions;
-
-namespace IbanLib.Splitters
+﻿namespace IbanLib.Splitters
 {
     /// <summary>
     ///     ASplitter base class that defines the basically funcionalities for all the splitter classes.
     /// </summary>
-    public abstract class ASplitter
+    public abstract class ASplitter : AClass
     {
-        /// <summary>
-        ///     The method throws an <see cref="InvalidCountryException" /> if the country is null.
-        /// </summary>
-        /// <param name="country">
-        ///     Country to check.
-        /// </param>
-        /// <exception cref="InvalidCountryException">
-        ///     If Country is null an <see cref="InvalidCountryException" /> will be throwed.
-        /// </exception>
-        protected static void CheckCountry(ICountry country)
-        {
-            if (country == null)
-            {
-                throw new InvalidCountryException(
-                    string.Format(
-                        "Parameter '{0}' of type '{1}' can not be null.",
-                        "country",
-                        "ICountry"));
-            }
-        }
-
         /// <summary>
         ///     Method that returns a generic error message personalized with the three fields.
         /// </summary>

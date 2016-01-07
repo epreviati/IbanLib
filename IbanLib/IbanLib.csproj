@@ -54,6 +54,10 @@
     <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IbanLib.Common\IbanLib.Common.csproj">
+      <Project>{82CECED9-C46B-4173-9979-BE8FF26575EE}</Project>
+      <Name>IbanLib.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IbanLib.Countries\IbanLib.Countries.csproj">
       <Project>{132D7F7C-6676-47BA-BC5B-99FDBD77CDF6}</Project>
       <Name>IbanLib.Countries</Name>

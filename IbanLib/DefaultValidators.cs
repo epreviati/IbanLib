@@ -1,4 +1,5 @@
-﻿using IbanLib.Domain;
+﻿using System.Diagnostics;
+using IbanLib.Domain;
 using IbanLib.Domain.Validators;
 using IbanLib.Exceptions;
 
@@ -33,11 +34,17 @@ namespace IbanLib
             IBbanValidator bbanValidator)
         {
             CheckArgument<IBankCodeValidator>(bankCodeValidator, "bankCodeValidator");
+            Debug.Assert(bankCodeValidator != null, "bankCodeValidator != null");
             CheckArgument<IBranchCodeValidator>(branchCodeValidator, "branchCodeValidator");
+            Debug.Assert(branchCodeValidator != null, "branchCodeValidator != null");
             CheckArgument<IAccountNumberValidator>(accountNumberValidator, "accountNumberValidator");
+            Debug.Assert(accountNumberValidator != null, "accountNumberValidator != null");
             CheckArgument<ICountryCodeValidator>(countryCodeValidator, "countryCodeValidator");
+            Debug.Assert(countryCodeValidator != null, "countryCodeValidator != null");
             CheckArgument<IIbanValidator>(ibanValidator, "ibanValidator");
+            Debug.Assert(ibanValidator != null, "ibanValidator != null");
             CheckArgument<IBbanValidator>(bbanValidator, "bbanValidator");
+            Debug.Assert(bbanValidator != null, "bbanValidator != null");
 
             _bankCodeValidator = bankCodeValidator;
             _branchCodeValidator = branchCodeValidator;
@@ -89,7 +96,7 @@ namespace IbanLib
             {
                 throw new ValidatorException(
                     string.Format(
-                        "Argument '{0}' of type '{1}' can not be null.",
+                        "Parameter '{0}' of type '{1}' can not be null.",
                         argumentName,
                         typeof (T)));
             }

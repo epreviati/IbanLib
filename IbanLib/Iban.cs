@@ -1,4 +1,5 @@
-﻿using IbanLib.Countries;
+﻿using System.Diagnostics;
+using IbanLib.Countries;
 using IbanLib.Domain;
 using IbanLib.Exceptions;
 
@@ -6,7 +7,7 @@ namespace IbanLib
 {
     /// <summary>
     /// </summary>
-    public class Iban : IIban
+    public class Iban : AClass, IIban
     {
         # region Constructors
 
@@ -20,23 +21,14 @@ namespace IbanLib
         /// </summary>
         /// <param name="country"></param>
         /// <param name="bban"></param>
+        /// <exception cref="InvalidCountryException"></exception>
+        /// <exception cref="InvalidIbanDetailException"></exception>
         public Iban(ICountry country, IBban bban)
         {
-            if (country == null)
-            {
-                throw new InvalidIbanException(
-                    string.Format(
-                        "The country parameters of type {0} can not be null.",
-                        typeof (ICountry)));
-            }
-
-            if (bban == null)
-            {
-                throw new InvalidIbanException(
-                    string.Format(
-                        "The bban parameters of type {0} can not be null.",
-                        typeof (IBban)));
-            }
+            CheckCountry(country);
+            Debug.Assert(country != null, "country != null");
+            CheckArgumentNull<IBban>(bban, "bban");
+            Debug.Assert(bban != null, "bban != null");
 
             Country = country;
             Bban = bban;
@@ -64,6 +56,11 @@ namespace IbanLib
         /// <exception cref="InvalidIbanException"></exception>
         public Iban(string iban, IValidators validators, ISplitters splitter)
         {
+            CheckArgumentNull<IValidators>(validators, "validators");
+            Debug.Assert(validators != null, "validators != null");
+            CheckArgumentNull<ISplitters>(splitter, "splitter");
+            Debug.Assert(splitter != null, "splitter != null");
+
             iban = Util.Normalize(iban);
             var countryCode = splitter.GetIbanSplitter().GetCountryCode(iban);
             if (!validators.GetCountryCodeValidator().IsValid(countryCode))
@@ -147,6 +144,24 @@ namespace IbanLib
                 Country.Iso3166,
                 NationalCheckDigits,
                 Bban.Value());
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="argument"></param>
+        /// <param name="argumentName"></param>
+        /// <exception cref="InvalidIbanDetailException"></exception>
+        private static void CheckArgumentNull<T>(object argument, string argumentName)
+        {
+            if (argument == null)
+            {
+                throw new InvalidIbanException(
+                    string.Format(
+                        "Parameter '{0}' of type '{1}' can not be null.",
+                        argumentName,
+                        typeof (T)));
+            }
         }
 
         # endregion
