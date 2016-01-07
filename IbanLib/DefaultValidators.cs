@@ -1,5 +1,6 @@
 ﻿using IbanLib.Domain;
 using IbanLib.Domain.Validators;
+using IbanLib.Exceptions;
 
 namespace IbanLib
 {
@@ -14,20 +15,36 @@ namespace IbanLib
         private readonly ICountryCodeValidator _countryCodeValidator;
         private readonly IIbanValidator _ibanValidator;
 
+        /// <summary>
+        /// </summary>
+        /// <param name="accountNumberValidator"></param>
+        /// <param name="bankCodeValidator"></param>
+        /// <param name="bbanValidator"></param>
+        /// <param name="branchCodeValidator"></param>
+        /// <param name="countryCodeValidator"></param>
+        /// <param name="ibanValidator"></param>
+        /// <exception cref="ValidatorException"></exception>
         public DefaultValidators(
-            IAccountNumberValidator accountNumberValidator,
             IBankCodeValidator bankCodeValidator,
-            IBbanValidator bbanValidator,
             IBranchCodeValidator branchCodeValidator,
+            IAccountNumberValidator accountNumberValidator,
             ICountryCodeValidator countryCodeValidator,
-            IIbanValidator ibanValidator)
+            IIbanValidator ibanValidator,
+            IBbanValidator bbanValidator)
         {
-            _accountNumberValidator = accountNumberValidator;
+            CheckArgument<IBankCodeValidator>(bankCodeValidator, "bankCodeValidator");
+            CheckArgument<IBranchCodeValidator>(branchCodeValidator, "branchCodeValidator");
+            CheckArgument<IAccountNumberValidator>(accountNumberValidator, "accountNumberValidator");
+            CheckArgument<ICountryCodeValidator>(countryCodeValidator, "countryCodeValidator");
+            CheckArgument<IIbanValidator>(ibanValidator, "ibanValidator");
+            CheckArgument<IBbanValidator>(bbanValidator, "bbanValidator");
+
             _bankCodeValidator = bankCodeValidator;
-            _bbanValidator = bbanValidator;
             _branchCodeValidator = branchCodeValidator;
+            _accountNumberValidator = accountNumberValidator;
             _countryCodeValidator = countryCodeValidator;
             _ibanValidator = ibanValidator;
+            _bbanValidator = bbanValidator;
         }
 
         public IIbanValidator GetIbanValidator()
@@ -58,6 +75,24 @@ namespace IbanLib
         public IAccountNumberValidator GetAccountNumberValidator()
         {
             return _accountNumberValidator;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="argument"></param>
+        /// <param name="argumentName"></param>
+        /// <exception cref="ValidatorException"></exception>
+        private static void CheckArgument<T>(object argument, string argumentName)
+        {
+            if (argument == null)
+            {
+                throw new ValidatorException(
+                    string.Format(
+                        "Argument '{0}' of type '{1}' can not be null.",
+                        argumentName,
+                        typeof (T)));
+            }
         }
     }
 }

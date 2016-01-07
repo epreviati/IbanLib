@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IbanLib.DependenciesResolve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IbanLib.Countries.Test", "IbanLib.Countries.Test\IbanLib.Countries.Test.csproj", "{D6EFF98A-9FCA-4F01-AC15-04AA464A6C02}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IbanLib.Test.Common", "IbanLib.Test.Common\IbanLib.Test.Common.csproj", "{CFE574A9-1FA0-4FB7-9668-9FB6C6C23C78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{D6EFF98A-9FCA-4F01-AC15-04AA464A6C02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6EFF98A-9FCA-4F01-AC15-04AA464A6C02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6EFF98A-9FCA-4F01-AC15-04AA464A6C02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFE574A9-1FA0-4FB7-9668-9FB6C6C23C78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFE574A9-1FA0-4FB7-9668-9FB6C6C23C78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFE574A9-1FA0-4FB7-9668-9FB6C6C23C78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFE574A9-1FA0-4FB7-9668-9FB6C6C23C78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,5 +108,6 @@ Global
 		{468230E5-DB30-492F-A54D-95D3CEA6191D} = {35B33F8E-0C7C-4647-B2B0-3A6FE46A6022}
 		{41075D17-375E-4FB1-9D69-D1A4E89FD141} = {35B33F8E-0C7C-4647-B2B0-3A6FE46A6022}
 		{D6EFF98A-9FCA-4F01-AC15-04AA464A6C02} = {35B33F8E-0C7C-4647-B2B0-3A6FE46A6022}
+		{CFE574A9-1FA0-4FB7-9668-9FB6C6C23C78} = {35B33F8E-0C7C-4647-B2B0-3A6FE46A6022}
 	EndGlobalSection
 EndGlobal

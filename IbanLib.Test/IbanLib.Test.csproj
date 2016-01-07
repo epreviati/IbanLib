@@ -35,8 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -54,10 +58,30 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DefaultValidatorsTest.cs" />
+    <Compile Include="DefaultSplittersTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IbanLib.Domain\IbanLib.Domain.csproj">
+      <Project>{98FEE388-E801-4F94-A44E-31E40ABC0E78}</Project>
+      <Name>IbanLib.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib.Exceptions\IbanLib.Exceptions.csproj">
+      <Project>{01338198-BF8D-4FB9-818D-B9547DE81597}</Project>
+      <Name>IbanLib.Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib.Test.Common\IbanLib.Test.Common.csproj">
+      <Project>{CFE574A9-1FA0-4FB7-9668-9FB6C6C23C78}</Project>
+      <Name>IbanLib.Test.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib\IbanLib.csproj">
+      <Project>{F680B939-825D-4D75-B5D5-10ECBB668C40}</Project>
+      <Name>IbanLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

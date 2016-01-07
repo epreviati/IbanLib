@@ -2,6 +2,7 @@
 
 namespace IbanLib.Countries.Test.Countries
 {
+    [TestFixture]
     public abstract class ACountryTest
     {
         protected ICountry Country;

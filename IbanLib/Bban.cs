@@ -272,7 +272,7 @@ namespace IbanLib
                 throw new InvalidBbanDetailException(
                     detailType,
                     string.Format(
-                        "The parameter '{0}' of type '{1}' has an invalid format.",
+                        "Parameter '{0}' of type '{1}' has an invalid format.",
                         detailType,
                         parameterType));
             }

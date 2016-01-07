@@ -3,7 +3,6 @@ using NUnit.Framework;
 
 namespace IbanLib.Countries.Test.Countries
 {
-    [TestFixture]
     public class ADTest : ACountryTest
     {
         public ADTest() : base(new AD())
