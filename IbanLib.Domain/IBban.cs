@@ -1,6 +1,7 @@
 ﻿namespace IbanLib.Domain
 {
     /// <summary>
+    ///     IBban interface that determines the structrue of the BBAN.
     /// </summary>
     public interface IBban
     {
@@ -17,8 +18,11 @@
         string CheckDigits3 { get; set; }
 
         /// <summary>
+        ///     Return the rappresentation of the BBAN in a string.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     The BBAN.
+        /// </returns>
         string Value();
     }
 }

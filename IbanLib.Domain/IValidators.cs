@@ -3,37 +3,56 @@
 namespace IbanLib.Domain
 {
     /// <summary>
+    ///     IValidators interface that defines all the validators.
     /// </summary>
     public interface IValidators
     {
         /// <summary>
+        ///     The method returns the implementation of the IIBanValidator.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     The IIBanValidator.
+        /// </returns>
         IIbanValidator GetIbanValidator();
 
         /// <summary>
+        ///     The method returns the implementation of the IIBanValidator.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     The IIBanValidator object.
+        /// </returns>
         IBbanValidator GetBbanValidator();
 
         /// <summary>
+        ///     The method returns the implementation of the ICountryCodeValidator.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     The ICountryCodeValidator object.
+        /// </returns>
         ICountryCodeValidator GetCountryCodeValidator();
 
         /// <summary>
+        ///     The method returns the implementation of the IBankCodeValidator.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     The IBankCodeValidator object.
+        /// </returns>
         IBankCodeValidator GetBankCodeValidator();
 
         /// <summary>
+        ///     The method returns the implementation of the IBranchCodeValidator.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     The IBranchCodeValidator object.
+        /// </returns>
         IBranchCodeValidator GetBranchCodeValidator();
 
         /// <summary>
+        ///     The method returns the implementation of the IAccountNumberValidator.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     The IAccountNumberValidator object.
+        /// </returns>
         IAccountNumberValidator GetAccountNumberValidator();
     }
 }

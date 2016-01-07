@@ -3,6 +3,7 @@
 namespace IbanLib.Domain
 {
     /// <summary>
+    ///     IIban interface that determines the structrue of the IBAN.
     /// </summary>
     public interface IIban
     {
@@ -13,8 +14,11 @@ namespace IbanLib.Domain
         IBban Bban { get; set; }
 
         /// <summary>
+        ///     Return the rappresentation of the IBAN in a string.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     The IBAN.
+        /// </returns>
         string Value();
     }
 }
