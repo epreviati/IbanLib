@@ -1,22 +1,51 @@
 ﻿using IbanLib.Countries;
 using IbanLib.Domain;
-using IbanLib.Domain.Validators;
 using Moq;
 using NUnit.Framework;
 
 namespace IbanLib.Test.BbanTests
 {
-    [TestFixture]
-    public abstract class ABbanTest
+    public abstract class ABbanTest : ATest
     {
-        protected readonly IValidators ValidValidators;
+        protected static void AssertBban(IBban bbanObj, string branchCode = BranchCode)
+        {
+            Assert.IsNotNullOrEmpty(bbanObj.BankCode);
+            Assert.AreEqual(bbanObj.BankCode, BankCode);
+
+            Assert.AreEqual(bbanObj.BranchCode, branchCode);
+
+            Assert.IsNotNullOrEmpty(bbanObj.AccountNumber);
+            Assert.AreEqual(bbanObj.AccountNumber, AccountNumber);
+
+            Assert.AreEqual(bbanObj.CheckDigits1, Check1);
+            Assert.AreEqual(bbanObj.CheckDigits2, Check2);
+            Assert.AreEqual(bbanObj.CheckDigits3, Check3);
+
+            Assert.IsNotNullOrEmpty(bbanObj.Value());
+            Assert.AreEqual(
+                GetBban(branchCode),
+                bbanObj.Value());
+
+            Assert.IsNotNullOrEmpty(bbanObj.ToString());
+        }
 
         protected ABbanTest()
         {
-            ValidValidators = GetValidators(true);
+            var mockCountry = new Mock<ICountry>();
+            mockCountry
+                .Setup(x => x.CalculateCheck1(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(Check1);
+            mockCountry
+                .Setup(x => x.CalculateCheck2(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(Check2);
+            mockCountry
+                .Setup(x => x.CalculateCheck3(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(Check3);
+
+            Country = mockCountry.Object;
         }
 
-        protected static IValidators GetValidators(bool returnValue)
+        protected override IValidators GetValidators(bool returnValue)
         {
             var mockValidators = new Mock<IValidators>();
             mockValidators
@@ -29,76 +58,10 @@ namespace IbanLib.Test.BbanTests
                 .Setup(x => x.GetAccountNumberValidator())
                 .Returns(GetAccountNumberValidator(returnValue));
             mockValidators
-                .Setup(x => x.GetCountryCodeValidator())
-                .Returns(GetCountryCodeValidator(returnValue));
-            mockValidators
-                .Setup(x => x.GetIbanValidator())
-                .Returns(GetIbanValidator(returnValue));
-            mockValidators
                 .Setup(x => x.GetBbanValidator())
                 .Returns(GetBbanValidator(returnValue));
 
             return mockValidators.Object;
-        }
-
-        protected static IBankCodeValidator GetBankCodeValidator(bool returnValue)
-        {
-            var mockBankCodeValidator = new Mock<IBankCodeValidator>();
-            mockBankCodeValidator
-                .Setup(x => x.IsValid(It.IsAny<ICountry>(), It.IsAny<string>()))
-                .Returns(returnValue);
-
-            return mockBankCodeValidator.Object;
-        }
-
-        protected static IBranchCodeValidator GetBranchCodeValidator(bool returnValue)
-        {
-            var mockBankCodeValidator = new Mock<IBranchCodeValidator>();
-            mockBankCodeValidator
-                .Setup(x => x.IsValid(It.IsAny<ICountry>(), It.IsAny<string>()))
-                .Returns(returnValue);
-
-            return mockBankCodeValidator.Object;
-        }
-
-        protected static IAccountNumberValidator GetAccountNumberValidator(bool returnValue)
-        {
-            var mockBankCodeValidator = new Mock<IAccountNumberValidator>();
-            mockBankCodeValidator
-                .Setup(x => x.IsValid(It.IsAny<ICountry>(), It.IsAny<string>()))
-                .Returns(returnValue);
-
-            return mockBankCodeValidator.Object;
-        }
-
-        protected static IIbanValidator GetIbanValidator(bool returnValue)
-        {
-            var mockBankCodeValidator = new Mock<IIbanValidator>();
-            mockBankCodeValidator
-                .Setup(x => x.IsValid(It.IsAny<ICountry>(), It.IsAny<string>()))
-                .Returns(returnValue);
-
-            return mockBankCodeValidator.Object;
-        }
-
-        protected static IBbanValidator GetBbanValidator(bool returnValue)
-        {
-            var mockBankCodeValidator = new Mock<IBbanValidator>();
-            mockBankCodeValidator
-                .Setup(x => x.IsValid(It.IsAny<ICountry>(), It.IsAny<string>()))
-                .Returns(returnValue);
-
-            return mockBankCodeValidator.Object;
-        }
-
-        protected static ICountryCodeValidator GetCountryCodeValidator(bool returnValue)
-        {
-            var mockBankCodeValidator = new Mock<ICountryCodeValidator>();
-            mockBankCodeValidator
-                .Setup(x => x.IsValid(It.IsAny<string>()))
-                .Returns(returnValue);
-
-            return mockBankCodeValidator.Object;
         }
     }
 }

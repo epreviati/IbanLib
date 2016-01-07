@@ -58,13 +58,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ATest.cs" />
     <Compile Include="BbanTests\ABbanTest.cs" />
     <Compile Include="BbanTests\BbanTest.cs" />
-    <Compile Include="BbanTests\ParametersTests\BbanTest.cs" />
-    <Compile Include="BbanTests\ParametersTests\BbanThrowExceptionTest.cs" />
-    <Compile Include="BbanTests\SplitterTests\BbanTest.cs" />
+    <Compile Include="BbanTests\BbanThrowExceptionTest.cs" />
+    <Compile Include="DefaultBbanGeneratorTest.cs" />
     <Compile Include="DefaultValidatorsTest.cs" />
-    <Compile Include="DefaultSplittersTest.cs" />
+    <Compile Include="IbanTests\AIbanTest.cs" />
+    <Compile Include="IbanTests\IbanThrowExceptionTest.cs" />
+    <Compile Include="IbanTests\IbanTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,10 +98,7 @@
       <Name>IbanLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IbanTests\ParametersTests\" />
-    <Folder Include="IbanTests\SplitterTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

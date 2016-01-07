@@ -99,10 +99,10 @@ namespace IbanLib
         /// <param name="bban"></param>
         /// <param name="validators"></param>
         /// <param name="splitter"></param>
-        /// <exception cref="InvalidBbanDetailException"></exception>
         /// <exception cref="InvalidCountryException">
         ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
         /// </exception>
+        /// <exception cref="InvalidBbanDetailException"></exception>
         public Bban(ICountry country, string bban, IValidators validators, IBbanSplitter splitter)
             : this(country)
         {

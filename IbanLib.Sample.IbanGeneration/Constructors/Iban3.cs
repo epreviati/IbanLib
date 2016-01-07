@@ -1,4 +1,5 @@
 ﻿using IbanLib.Domain;
+using IbanLib.Domain.Splitters;
 
 namespace IbanLib.Sample.IbanGeneration.Constructors
 {
@@ -22,12 +23,19 @@ namespace IbanLib.Sample.IbanGeneration.Constructors
                 AccountNumber = "20504063"
             };
 
-            var iban = new Iban(
-                "GB80NWBK50000020504063",
-                Container.Resolve<IValidators>(),
-                Container.Resolve<ISplitters>());
+            var iban = GenerateIban("GB80NWBK50000020504063");
 
             PrintComparison(iban, bankAccount);
+        }
+
+        private static IIban GenerateIban(string iban)
+        {
+            return new Iban(iban,
+                Container.Resolve<ICountryResolver>(),
+                Container.Resolve<IBbanGenerator>(),
+                Container.Resolve<IValidators>(),
+                Container.Resolve<IIbanSplitter>(),
+                Container.Resolve<IBbanSplitter>());
         }
     }
 }

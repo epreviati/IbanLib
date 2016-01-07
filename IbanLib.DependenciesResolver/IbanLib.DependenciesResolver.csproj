@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Installers\BbanGeneratorInstaller.cs" />
+    <Compile Include="Installers\CountryResolverInstaller.cs" />
     <Compile Include="Installers\ValidatorsInstaller.cs" />
     <Compile Include="Installers\SplittersInstaller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

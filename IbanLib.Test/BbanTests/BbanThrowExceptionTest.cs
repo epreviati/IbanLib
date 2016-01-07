@@ -5,7 +5,7 @@ using IbanLib.Test.Common;
 using Moq;
 using NUnit.Framework;
 
-namespace IbanLib.Test.BbanTests.ParametersTests
+namespace IbanLib.Test.BbanTests
 {
     public class BbanThrowExceptionTest : ABbanTest
     {

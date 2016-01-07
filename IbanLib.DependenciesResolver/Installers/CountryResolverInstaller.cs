@@ -1,15 +1,14 @@
 ﻿using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using IbanLib.Domain.Splitters;
-using IbanLib.Splitters;
+using IbanLib.Domain;
 
 namespace IbanLib.DependenciesResolver.Installers
 {
     /// <summary>
     ///     Setup the installers.
     /// </summary>
-    public class SplittersInstaller : IWindsorInstaller
+    public class CountryResolverInstaller : IWindsorInstaller
     {
         /// <summary>
         ///     Register components into Castle.
@@ -23,14 +22,9 @@ namespace IbanLib.DependenciesResolver.Installers
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component.For<IBbanSplitter>()
-                    .ImplementedBy<BbanSplitter>()
+                Component.For<ICountryResolver>()
+                    .ImplementedBy<DefaultCountryResolver>()
                     .Named(Bootstrapper.RegisteredBbanSplitter));
-
-            container.Register(
-                Component.For<IIbanSplitter>()
-                    .ImplementedBy<IbanSplitter>()
-                    .Named(Bootstrapper.RegisteredIbanSplitter));
         }
     }
 }

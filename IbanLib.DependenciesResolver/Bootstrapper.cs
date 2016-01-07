@@ -11,9 +11,10 @@ namespace IbanLib.DependenciesResolver
     {
         # region Naming for installers
 
+        public const string RegisteredDefaultCountryResolver = "IbanLib.DefaultCountryResolver";
+
         public const string RegisteredBbanSplitter = "IbanLib.Splitters.BbanSplitter";
         public const string RegisteredIbanSplitter = "IbanLib.Splitters.IbanSplitter";
-        public const string RegisteredDefaultSplitters = "IbanLib.DefaultSplitters";
 
         public const string RegisteredAccountNumberValidator = "IbanLib.Validators.AccountNumberValidator";
         public const string RegisteredBankCodeValidator = "IbanLib.Validators.BankCodeValidator";
