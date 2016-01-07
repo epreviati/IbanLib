@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace IbanLib.Test
 {
-    public class DefaultValidatorsTest : ATest
+    public class DefaultValidatorsTest
     {
         [Test]
         public void Constructor_Not_Valid_IAccountNumberValidator_Parameter_Expected_Exception_ValidatorException()
@@ -20,7 +20,7 @@ namespace IbanLib.Test
                 new Mock<IIbanValidator>().Object,
                 new Mock<IBbanValidator>().Object);
 
-            ExpectedException<ValidatorException>(action);
+            TestUtil.ExpectedException<ValidatorException>(action);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace IbanLib.Test
                 new Mock<IIbanValidator>().Object,
                 new Mock<IBbanValidator>().Object);
 
-            ExpectedException<ValidatorException>(action);
+            TestUtil.ExpectedException<ValidatorException>(action);
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace IbanLib.Test
                 new Mock<IIbanValidator>().Object,
                 null);
 
-            ExpectedException<ValidatorException>(action);
+            TestUtil.ExpectedException<ValidatorException>(action);
         }
 
         [Test]
@@ -62,7 +62,7 @@ namespace IbanLib.Test
                 new Mock<IIbanValidator>().Object,
                 new Mock<IBbanValidator>().Object);
 
-            ExpectedException<ValidatorException>(action);
+            TestUtil.ExpectedException<ValidatorException>(action);
         }
 
         [Test]
@@ -76,7 +76,7 @@ namespace IbanLib.Test
                 new Mock<IIbanValidator>().Object,
                 new Mock<IBbanValidator>().Object);
 
-            ExpectedException<ValidatorException>(action);
+            TestUtil.ExpectedException<ValidatorException>(action);
         }
 
         [Test]
@@ -90,7 +90,7 @@ namespace IbanLib.Test
                 null,
                 new Mock<IBbanValidator>().Object);
 
-            ExpectedException<ValidatorException>(action);
+            TestUtil.ExpectedException<ValidatorException>(action);
         }
 
         [Test]

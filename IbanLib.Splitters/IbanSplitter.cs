@@ -36,7 +36,7 @@ namespace IbanLib.Splitters
         /// </returns>
         /// <exception cref="IbanSplitterException">
         ///     If the iban it is no possible to extract the Country Code from the IBAN, an <see cref="IbanSplitterException" />
-        ///     will be throwed.
+        ///     will be thrown.
         /// </exception>
         public string GetCountryCode(string iban)
         {
@@ -63,12 +63,12 @@ namespace IbanLib.Splitters
         ///     The extracted National Check Digits.
         /// </returns>
         /// <exception cref="InvalidCountryException">
-        ///     If Country is null an <see cref="InvalidCountryException" /> will be throwed.
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
         /// </exception>
         /// <exception cref="IbanSplitterException">
         ///     If the IBAN is not valid for the Country or if it is no possible to extract the National Check Digits from the
         ///     IBAN,
-        ///     an <see cref="IbanSplitterException" /> will be throwed.
+        ///     an <see cref="IbanSplitterException" /> will be thrown.
         /// </exception>
         public string GetNationalCheckDigits(ICountry country, string iban)
         {
@@ -98,11 +98,11 @@ namespace IbanLib.Splitters
         ///     The extracted BBAN.
         /// </returns>
         /// <exception cref="InvalidCountryException">
-        ///     If Country is null an <see cref="InvalidCountryException" /> will be throwed.
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
         /// </exception>
         /// <exception cref="IbanSplitterException">
         ///     If the IBAN is not valid for the Country or if it is no possible to extract the BBAN from the IBAN, an
-        ///     <see cref="IbanSplitterException" /> will be throwed.
+        ///     <see cref="IbanSplitterException" /> will be thrown.
         /// </exception>
         public string GetBban(ICountry country, string iban)
         {
@@ -129,7 +129,7 @@ namespace IbanLib.Splitters
         ///     IBAN to check.
         /// </param>
         /// <exception cref="IbanSplitterException">
-        ///     If the IBAN is not valid for the Country, an <see cref="IbanSplitterException" /> will be throwed.
+        ///     If the IBAN is not valid for the Country, an <see cref="IbanSplitterException" /> will be thrown.
         /// </exception>
         private void CheckIban(ICountry country, string iban)
         {

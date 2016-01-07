@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace IbanLib.Test
 {
-    public class DefaultSplittersTest : ATest
+    public class DefaultSplittersTest
     {
         [Test]
         public void Constructor_Not_Valid_IBbanSplitter_Parameter()
@@ -16,7 +16,7 @@ namespace IbanLib.Test
                 new Mock<IIbanSplitter>().Object,
                 null);
 
-            ExpectedException<SplitterException>(action);
+            TestUtil.ExpectedException<SplitterException>(action);
         }
 
         [Test]
@@ -26,7 +26,7 @@ namespace IbanLib.Test
                 null,
                 new Mock<IBbanSplitter>().Object);
 
-            ExpectedException<SplitterException>(action);
+            TestUtil.ExpectedException<SplitterException>(action);
         }
 
         [Test]

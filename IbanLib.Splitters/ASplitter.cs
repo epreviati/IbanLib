@@ -1,4 +1,6 @@
-﻿namespace IbanLib.Splitters
+﻿using IbanLib.Common;
+
+namespace IbanLib.Splitters
 {
     /// <summary>
     ///     ASplitter base class that defines the basically funcionalities for all the splitter classes.

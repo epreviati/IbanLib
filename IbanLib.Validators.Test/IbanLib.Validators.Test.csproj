@@ -76,6 +76,10 @@
       <Project>{01338198-BF8D-4FB9-818D-B9547DE81597}</Project>
       <Name>IbanLib.Exceptions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IbanLib.Test.Common\IbanLib.Test.Common.csproj">
+      <Project>{CFE574A9-1FA0-4FB7-9668-9FB6C6C23C78}</Project>
+      <Name>IbanLib.Test.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IbanLib.Validators\IbanLib.Validators.csproj">
       <Project>{C3FCADDF-1362-4EBC-9B81-ED2AE55C704B}</Project>
       <Name>IbanLib.Validators</Name>

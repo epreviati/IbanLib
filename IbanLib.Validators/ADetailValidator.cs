@@ -31,7 +31,7 @@ namespace IbanLib.Validators
         ///     Country to check.
         /// </param>
         /// <exception cref="InvalidCountryException">
-        ///     If Country is null the exception will be throwed.
+        ///     If Country is null the exception will be thrown.
         /// </exception>
         protected void CheckCountry(ICountry country)
         {

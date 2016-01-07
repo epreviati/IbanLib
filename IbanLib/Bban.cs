@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using IbanLib.Common;
 using IbanLib.Countries;
 using IbanLib.Domain;
 using IbanLib.Domain.Splitters;
@@ -7,6 +8,8 @@ using IbanLib.Exceptions.Enums;
 
 namespace IbanLib
 {
+    /// <summary>
+    /// </summary>
     public class Bban : AClass, IBban
     {
         # region Constructors
@@ -19,6 +22,10 @@ namespace IbanLib
 
         /// <summary>
         /// </summary>
+        /// <param name="country"></param>
+        /// <exception cref="InvalidCountryException">
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
+        /// </exception>
         private Bban(ICountry country)
         {
             CheckCountry(country);
@@ -31,6 +38,9 @@ namespace IbanLib
         /// <param name="bankCode"></param>
         /// <param name="accountNumber"></param>
         /// <param name="validators"></param>
+        /// <exception cref="InvalidCountryException">
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
+        /// </exception>
         /// <exception cref="InvalidBbanDetailException"></exception>
         public Bban(ICountry country, string bankCode, string accountNumber, IValidators validators)
             : this(country, bankCode, null, accountNumber, validators)
@@ -44,62 +54,40 @@ namespace IbanLib
         /// <param name="branchCode"></param>
         /// <param name="accountNumber"></param>
         /// <param name="validators"></param>
+        /// <exception cref="InvalidCountryException">
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
+        /// </exception>
         /// <exception cref="InvalidBbanDetailException"></exception>
         public Bban(ICountry country, string bankCode, string branchCode, string accountNumber, IValidators validators)
             : this(country)
         {
-            CheckArgumentNull(
-                string.IsNullOrWhiteSpace(bankCode),
+            CheckArgumentInvalid(
+                !validators.GetBankCodeValidator().IsValid(country, bankCode),
                 DetailType.BankCode,
                 typeof (string).Name);
             Debug.Assert(
-                !string.IsNullOrWhiteSpace(bankCode),
-                "!string.IsNullOrWhiteSpace(bankCode)");
+                validators.GetBankCodeValidator().IsValid(country, bankCode),
+                "validators.GetBankCodeValidator().IsValid(country, bankCode)");
 
-            CheckArgumentNull(
-                country.BranchCodeLength > 0 && string.IsNullOrWhiteSpace(branchCode),
+            CheckArgumentInvalid(
+                !validators.GetBranchCodeValidator().IsValid(country, branchCode),
                 DetailType.BranchCode,
                 typeof (string).Name);
             Debug.Assert(
-                country.BranchCodeLength > 0 && !string.IsNullOrWhiteSpace(branchCode),
-                "country.BranchCodeLength > 0 && !string.IsNullOrWhiteSpace(branchCode)");
+                validators.GetBranchCodeValidator().IsValid(country, branchCode),
+                "validators.GetBranchCodeValidator().IsValid(country, branchCode)");
 
-            CheckArgumentNull(
-                string.IsNullOrWhiteSpace(accountNumber),
+            CheckArgumentInvalid(
+                !validators.GetAccountNumberValidator().IsValid(country, accountNumber),
                 DetailType.AccountNumber,
                 typeof (string).Name);
             Debug.Assert(
-                !string.IsNullOrWhiteSpace(accountNumber),
-                "!string.IsNullOrWhiteSpace(accountNumber)");
+                validators.GetAccountNumberValidator().IsValid(country, accountNumber),
+                "validators.GetAccountNumberValidator().IsValid(country, accountNumber)");
 
             BankCode = bankCode;
             BranchCode = branchCode;
             AccountNumber = accountNumber;
-
-            CheckArgumentInvalid(
-                !validators.GetBankCodeValidator().IsValid(country, BankCode),
-                DetailType.BankCode,
-                typeof (string).Name);
-            Debug.Assert(
-                validators.GetBankCodeValidator().IsValid(country, BankCode),
-                "validators.GetBankCodeValidator().IsValid(country, BankCode)");
-
-            CheckArgumentInvalid(
-                !validators.GetBranchCodeValidator().IsValid(country, BranchCode),
-                DetailType.BranchCode,
-                typeof (string).Name);
-            Debug.Assert(
-                validators.GetBranchCodeValidator().IsValid(country, BranchCode),
-                "validators.GetBranchCodeValidator().IsValid(country, BranchCode)");
-
-            CheckArgumentInvalid(
-                !validators.GetAccountNumberValidator().IsValid(country, AccountNumber),
-                DetailType.AccountNumber,
-                typeof (string).Name);
-            Debug.Assert(
-                validators.GetAccountNumberValidator().IsValid(country, AccountNumber),
-                "validators.GetAccountNumberValidator().IsValid(country, AccountNumber)");
-
             CheckDigits1 = country.CalculateCheck1(BankCode, BranchCode, AccountNumber);
             CheckDigits2 = country.CalculateCheck2(BankCode, BranchCode, AccountNumber);
             CheckDigits3 = country.CalculateCheck3(BankCode, BranchCode, AccountNumber);
@@ -112,16 +100,19 @@ namespace IbanLib
         /// <param name="validators"></param>
         /// <param name="splitter"></param>
         /// <exception cref="InvalidBbanDetailException"></exception>
+        /// <exception cref="InvalidCountryException">
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
+        /// </exception>
         public Bban(ICountry country, string bban, IValidators validators, IBbanSplitter splitter)
             : this(country)
         {
-            CheckArgumentNull(
-                string.IsNullOrWhiteSpace(bban),
+            CheckArgumentInvalid(
+                !validators.GetBbanValidator().IsValid(country, bban),
                 DetailType.Bban,
                 typeof (string).Name);
             Debug.Assert(
-                !string.IsNullOrWhiteSpace(bban),
-                "!string.IsNullOrWhiteSpace(bban)");
+                validators.GetBankCodeValidator().IsValid(country, bban),
+                "validators.GetBankCodeValidator().IsValid(country, bban)");
 
             CheckDigits1 = splitter.GetCheck1(country, bban);
             BankCode = splitter.GetBankCode(country, bban);
@@ -264,26 +255,6 @@ namespace IbanLib
                 CheckDigits2,
                 AccountNumber,
                 CheckDigits3);
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="throwException"></param>
-        /// <param name="detailType"></param>
-        /// <param name="parameterType"></param>
-        /// <exception cref="InvalidBbanDetailException"></exception>
-        private static void CheckArgumentNull(bool throwException, DetailType detailType, string parameterType)
-        {
-            if (throwException)
-            {
-                throw new InvalidBbanDetailException(
-                    detailType,
-                    string.Format(
-                        "Parameter '{0}' of type '{1}' can not be null{2}.",
-                        detailType,
-                        parameterType,
-                        parameterType.Equals(typeof (string).Name) ? " or white space" : string.Empty));
-            }
         }
 
         /// <summary>

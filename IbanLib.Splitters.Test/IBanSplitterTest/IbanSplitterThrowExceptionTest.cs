@@ -1,5 +1,6 @@
 ﻿using System;
 using IbanLib.Exceptions;
+using IbanLib.Test.Common;
 using NUnit.Framework;
 
 namespace IbanLib.Splitters.Test.IBanSplitterTest
@@ -14,10 +15,10 @@ namespace IbanLib.Splitters.Test.IBanSplitterTest
         public void GetBban_Expected_InvalidCountryException(string iban)
         {
             Action action1 = () => IbanSplitterValidValidation.GetBban(null, iban);
-            ExpectedException<InvalidCountryException>(action1);
+            TestUtil.ExpectedException<InvalidCountryException>(action1);
 
             Action action2 = () => IbanSplitterInValidValidation.GetBban(null, iban);
-            ExpectedException<InvalidCountryException>(action2);
+            TestUtil.ExpectedException<InvalidCountryException>(action2);
         }
 
         [Test]
@@ -27,8 +28,8 @@ namespace IbanLib.Splitters.Test.IBanSplitterTest
         [TestCase("AD1200012030200359100100")]
         public void GetBban_Throw_IbanSplitterException(string iban)
         {
-            Action action = () => IbanSplitterInValidValidation.GetBban(MockNotNullCountry, iban);
-            ExpectedException<IbanSplitterException>(action);
+            Action action = () => IbanSplitterInValidValidation.GetBban(TestUtil.MockNotNullCountry, iban);
+            TestUtil.ExpectedException<IbanSplitterException>(action);
         }
 
         [Test]
@@ -38,10 +39,10 @@ namespace IbanLib.Splitters.Test.IBanSplitterTest
         public void GetCountryCode_Throw_IbanSplitterException(string iban)
         {
             Action action1 = () => IbanSplitterValidValidation.GetCountryCode(iban);
-            ExpectedException<IbanSplitterException>(action1);
+            TestUtil.ExpectedException<IbanSplitterException>(action1);
 
             Action action2 = () => IbanSplitterInValidValidation.GetCountryCode(iban);
-            ExpectedException<IbanSplitterException>(action2);
+            TestUtil.ExpectedException<IbanSplitterException>(action2);
         }
 
         [Test]
@@ -51,8 +52,10 @@ namespace IbanLib.Splitters.Test.IBanSplitterTest
         [TestCase("AD1200012030200359100100")]
         public void GetNationalCheckDigits_Throw_IbanSplitterException(string iban)
         {
-            Action action = () => IbanSplitterInValidValidation.GetNationalCheckDigits(MockNotNullCountry, iban);
-            ExpectedException<IbanSplitterException>(action);
+            Action action = () => IbanSplitterInValidValidation.GetNationalCheckDigits(
+                TestUtil.MockNotNullCountry,
+                iban);
+            TestUtil.ExpectedException<IbanSplitterException>(action);
         }
     }
 }

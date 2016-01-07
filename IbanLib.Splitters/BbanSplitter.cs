@@ -39,11 +39,11 @@ namespace IbanLib.Splitters
         ///     The Check1 or null.
         /// </returns>
         /// <exception cref="InvalidCountryException">
-        ///     If Country is null an <see cref="InvalidCountryException" /> will be throwed.
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
         /// </exception>
         /// <exception cref="BbanSplitterException">
         ///     If the BBAN is not valid for the Country or if it is no possible to extract the Check1 from the BBAN, a
-        ///     <see cref="BbanSplitterException" /> will be throwed.
+        ///     <see cref="BbanSplitterException" /> will be thrown.
         /// </exception>
         public string GetCheck1(ICountry country, string bban)
         {
@@ -77,11 +77,11 @@ namespace IbanLib.Splitters
         ///     The Bank Code.
         /// </returns>
         /// <exception cref="InvalidCountryException">
-        ///     If Country is null an <see cref="InvalidCountryException" /> will be throwed.
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
         /// </exception>
         /// <exception cref="BbanSplitterException">
         ///     If the BBAN is not valid for the Country or if it is no possible to extract the Bank Code from the BBAN, a
-        ///     <see cref="BbanSplitterException" /> will be throwed.
+        ///     <see cref="BbanSplitterException" /> will be thrown.
         /// </exception>
         public string GetBankCode(ICountry country, string bban)
         {
@@ -113,11 +113,11 @@ namespace IbanLib.Splitters
         ///     The Branch Code or null.
         /// </returns>
         /// <exception cref="InvalidCountryException">
-        ///     If Country is null an <see cref="InvalidCountryException" /> will be throwed.
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
         /// </exception>
         /// <exception cref="BbanSplitterException">
         ///     If the BBAN is not valid for the Country or if it is no possible to extract the Branch Code from the BBAN, a
-        ///     <see cref="BbanSplitterException" /> will be throwed.
+        ///     <see cref="BbanSplitterException" /> will be thrown.
         /// </exception>
         public string GetBranchCode(ICountry country, string bban)
         {
@@ -151,11 +151,11 @@ namespace IbanLib.Splitters
         ///     The Check2 or null.
         /// </returns>
         /// <exception cref="InvalidCountryException">
-        ///     If Country is null an <see cref="InvalidCountryException" /> will be throwed.
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
         /// </exception>
         /// <exception cref="BbanSplitterException">
         ///     If the BBAN is not valid for the Country or if it is no possible to extract the Check2 from the BBAN, a
-        ///     <see cref="BbanSplitterException" /> will be throwed.
+        ///     <see cref="BbanSplitterException" /> will be thrown.
         /// </exception>
         public string GetCheck2(ICountry country, string bban)
         {
@@ -189,11 +189,11 @@ namespace IbanLib.Splitters
         ///     The Account Number.
         /// </returns>
         /// <exception cref="InvalidCountryException">
-        ///     If Country is null an <see cref="InvalidCountryException" /> will be throwed.
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
         /// </exception>
         /// <exception cref="BbanSplitterException">
         ///     If the BBAN is not valid for the Country or if it is no possible to extract the Account Number from the BBAN, a
-        ///     <see cref="BbanSplitterException" /> will be throwed.
+        ///     <see cref="BbanSplitterException" /> will be thrown.
         /// </exception>
         public string GetAccountNumber(ICountry country, string bban)
         {
@@ -225,11 +225,11 @@ namespace IbanLib.Splitters
         ///     The Check3 or null.
         /// </returns>
         /// <exception cref="InvalidCountryException">
-        ///     If Country is null an <see cref="InvalidCountryException" /> will be throwed.
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
         /// </exception>
         /// <exception cref="BbanSplitterException">
         ///     If the BBAN is not valid for the Country or if it is no possible to extract the Check3 from the BBAN, a
-        ///     <see cref="BbanSplitterException" /> will be throwed.
+        ///     <see cref="BbanSplitterException" /> will be thrown.
         /// </exception>
         public string GetCheck3(ICountry country, string bban)
         {
@@ -260,7 +260,7 @@ namespace IbanLib.Splitters
         ///     BBAN to check.
         /// </param>
         /// <exception cref="BbanSplitterException">
-        ///     If the BBAN is not valid for the Country, a <see cref="BbanSplitterException" /> will be throwed.
+        ///     If the BBAN is not valid for the Country, a <see cref="BbanSplitterException" /> will be thrown.
         /// </exception>
         private void CheckBban(ICountry country, string bban)
         {

@@ -1,7 +1,7 @@
 ﻿using IbanLib.Countries;
 using IbanLib.Exceptions;
 
-namespace IbanLib
+namespace IbanLib.Common
 {
     public abstract class AClass
     {
@@ -12,7 +12,7 @@ namespace IbanLib
         ///     Country to check.
         /// </param>
         /// <exception cref="InvalidCountryException">
-        ///     If Country is null an <see cref="InvalidCountryException" /> will be throwed.
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
         /// </exception>
         protected static void CheckCountry(ICountry country)
         {

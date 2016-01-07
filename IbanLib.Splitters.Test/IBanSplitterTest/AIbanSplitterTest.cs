@@ -2,13 +2,15 @@
 using IbanLib.Domain.Splitters;
 using IbanLib.Domain.Validators;
 using Moq;
+using NUnit.Framework;
 
 namespace IbanLib.Splitters.Test.IBanSplitterTest
 {
-    public abstract class AIbanSplitterTest : ASplitterTest
+    [TestFixture]
+    public abstract class AIbanSplitterTest
     {
-        protected IIbanSplitter IbanSplitterValidValidation;
         protected IIbanSplitter IbanSplitterInValidValidation;
+        protected IIbanSplitter IbanSplitterValidValidation;
 
         protected AIbanSplitterTest()
         {

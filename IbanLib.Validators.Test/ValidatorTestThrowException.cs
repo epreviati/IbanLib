@@ -1,6 +1,7 @@
 ﻿using System;
 using IbanLib.Domain.Validators;
 using IbanLib.Exceptions;
+using IbanLib.Test.Common;
 using NUnit.Framework;
 
 namespace IbanLib.Validators.Test
@@ -23,18 +24,6 @@ namespace IbanLib.Validators.Test
             _bbanValidator = new BbanValidator();
         }
 
-        protected static void ExpectedException<TException>(Action action)
-        {
-            try
-            {
-                action.Invoke();
-            }
-            catch (Exception e)
-            {
-                Assert.AreEqual(typeof (TException), e.GetType());
-            }
-        }
-
         [Test]
         [TestCase(null)]
         [TestCase("")]
@@ -44,7 +33,7 @@ namespace IbanLib.Validators.Test
         public void AccountNumberValidator_InvalidCountry_Expected_InvalidCountryException(string accountNumber)
         {
             Action action = () => _accountNumberValidator.IsValid(null, accountNumber);
-            ExpectedException<InvalidCountryException>(action);
+            TestUtil.ExpectedException<InvalidCountryException>(action);
         }
 
         [Test]
@@ -56,7 +45,7 @@ namespace IbanLib.Validators.Test
         public void BankCodeValidator_InvalidCountry_Expected_InvalidCountryException(string bankCode)
         {
             Action action = () => _bankCodeValidator.IsValid(null, bankCode);
-            ExpectedException<InvalidCountryException>(action);
+            TestUtil.ExpectedException<InvalidCountryException>(action);
         }
 
         [Test]
@@ -68,7 +57,7 @@ namespace IbanLib.Validators.Test
         public void BbanValidator_InvalidCountry_Expected_InvalidCountryException(string bban)
         {
             Action action = () => _bbanValidator.IsValid(null, bban);
-            ExpectedException<InvalidCountryException>(action);
+            TestUtil.ExpectedException<InvalidCountryException>(action);
         }
 
         [Test]
@@ -80,7 +69,7 @@ namespace IbanLib.Validators.Test
         public void BranchCodeValidator_InvalidCountry_Expected_InvalidCountryException(string branchCode)
         {
             Action action = () => _branchCodeValidator.IsValid(null, branchCode);
-            ExpectedException<InvalidCountryException>(action);
+            TestUtil.ExpectedException<InvalidCountryException>(action);
         }
 
         [Test]
@@ -92,7 +81,7 @@ namespace IbanLib.Validators.Test
         public void IbanValidator_InvalidCountry_Expected_InvalidCountryException(string iban)
         {
             Action action = () => _ibanValidator.IsValid(null, iban);
-            ExpectedException<InvalidCountryException>(action);
+            TestUtil.ExpectedException<InvalidCountryException>(action);
         }
     }
 }

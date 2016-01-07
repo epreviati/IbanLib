@@ -1,12 +1,15 @@
 ﻿using System;
+using IbanLib.Countries;
+using Moq;
 using NUnit.Framework;
 
 namespace IbanLib.Test.Common
 {
-    [TestFixture]
-    public abstract class ATest
+    public static class TestUtil
     {
-        protected static void ExpectedException<TException>(Action action)
+        public static ICountry MockNotNullCountry = new Mock<ICountry>().Object;
+
+        public static void ExpectedException<TException>(Action action)
         {
             try
             {

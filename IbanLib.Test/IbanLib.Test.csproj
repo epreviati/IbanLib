@@ -58,6 +58,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BbanTests\ABbanTest.cs" />
+    <Compile Include="BbanTests\BbanTest.cs" />
+    <Compile Include="BbanTests\ParametersTests\BbanTest.cs" />
+    <Compile Include="BbanTests\ParametersTests\BbanThrowExceptionTest.cs" />
+    <Compile Include="BbanTests\SplitterTests\BbanTest.cs" />
     <Compile Include="DefaultValidatorsTest.cs" />
     <Compile Include="DefaultSplittersTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,6 +71,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IbanLib.Common\IbanLib.Common.csproj">
+      <Project>{82ceced9-c46b-4173-9979-be8ff26575ee}</Project>
+      <Name>IbanLib.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib.Countries\IbanLib.Countries.csproj">
+      <Project>{132D7F7C-6676-47BA-BC5B-99FDBD77CDF6}</Project>
+      <Name>IbanLib.Countries</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IbanLib.Domain\IbanLib.Domain.csproj">
       <Project>{98FEE388-E801-4F94-A44E-31E40ABC0E78}</Project>
       <Name>IbanLib.Domain</Name>
@@ -82,6 +95,10 @@
       <Project>{F680B939-825D-4D75-B5D5-10ECBB668C40}</Project>
       <Name>IbanLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="IbanTests\ParametersTests\" />
+    <Folder Include="IbanTests\SplitterTests\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

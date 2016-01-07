@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using IbanLib.Common;
 using IbanLib.Countries;
 using IbanLib.Domain;
 using IbanLib.Exceptions;
@@ -21,7 +22,9 @@ namespace IbanLib
         /// </summary>
         /// <param name="country"></param>
         /// <param name="bban"></param>
-        /// <exception cref="InvalidCountryException"></exception>
+        /// <exception cref="InvalidCountryException">
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
+        /// </exception>
         /// <exception cref="InvalidIbanDetailException"></exception>
         public Iban(ICountry country, IBban bban)
         {

@@ -24,7 +24,9 @@ namespace IbanLib.Countries.Test
         [TestCase("TR")]
         public void Getter_Found_Country(string countryCode)
         {
-            Assert.AreNotEqual(Getter.GetCountry(countryCode), null);
+            var country = Getter.GetCountry(countryCode);
+            Assert.AreNotEqual(null, country);
+            Assert.AreEqual(countryCode, country.Iso3166);
         }
 
         [Test]
@@ -273,7 +275,7 @@ namespace IbanLib.Countries.Test
         [TestCase("ZW")]
         public void Getter_Not_Found_Country(string countryCode)
         {
-            Assert.AreEqual(Getter.GetCountry(countryCode), null);
+            Assert.AreEqual(null, Getter.GetCountry(countryCode));
         }
     }
 }
