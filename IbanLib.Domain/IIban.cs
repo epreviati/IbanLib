@@ -7,10 +7,19 @@ namespace IbanLib.Domain
     /// </summary>
     public interface IIban
     {
+        /// <summary>
+        ///     Country of the IBAN.
+        /// </summary>
         ICountry Country { get; set; }
 
+        /// <summary>
+        ///     National Check Digits of the IBAN.
+        /// </summary>
         string NationalCheckDigits { get; set; }
 
+        /// <summary>
+        ///     BBAN of the IBAN.
+        /// </summary>
         IBban Bban { get; set; }
 
         /// <summary>

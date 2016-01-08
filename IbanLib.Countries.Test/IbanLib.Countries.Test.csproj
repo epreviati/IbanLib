@@ -54,6 +54,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Countries\VGTest.cs" />
     <Compile Include="GetterTest.cs" />
     <Compile Include="Countries\TRTest.cs" />
     <Compile Include="Countries\SMTest.cs" />

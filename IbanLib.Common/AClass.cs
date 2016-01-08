@@ -3,6 +3,9 @@ using IbanLib.Exceptions;
 
 namespace IbanLib.Common
 {
+    /// <summary>
+    ///     Abstract base class with common methods.
+    /// </summary>
     public abstract class AClass
     {
         /// <summary>

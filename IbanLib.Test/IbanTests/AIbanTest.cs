@@ -10,7 +10,7 @@ namespace IbanLib.Test.IbanTests
     {
         protected const string CountryCode = "COUNTRYCODE";
         protected const string NationalCheckDigits = "00";
-        
+
         protected override IValidators GetValidators(bool returnValue)
         {
             var mockValidators = new Mock<IValidators>();

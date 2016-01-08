@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bban.cs" />
-    <Compile Include="DefaultBbanGenerator.cs" />
     <Compile Include="DefaultCountryResolver.cs" />
     <Compile Include="DefaultValidators.cs" />
     <Compile Include="Iban.cs">

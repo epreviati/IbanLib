@@ -22,6 +22,7 @@ namespace IbanLib.Countries.Test
         [TestCase("RO")]
         [TestCase("SM")]
         [TestCase("TR")]
+        [TestCase("VG")]
         public void Getter_Found_Country(string countryCode)
         {
             var country = Getter.GetCountry(countryCode);
@@ -264,7 +265,6 @@ namespace IbanLib.Countries.Test
         [TestCase("VU")]
         [TestCase("VE")]
         [TestCase("VN")]
-        [TestCase("VG")]
         [TestCase("VI")]
         [TestCase("WS")]
         [TestCase("WF")]

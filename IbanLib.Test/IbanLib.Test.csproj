@@ -62,7 +62,6 @@
     <Compile Include="BbanTests\ABbanTest.cs" />
     <Compile Include="BbanTests\BbanTest.cs" />
     <Compile Include="BbanTests\BbanThrowExceptionTest.cs" />
-    <Compile Include="DefaultBbanGeneratorTest.cs" />
     <Compile Include="DefaultValidatorsTest.cs" />
     <Compile Include="IbanTests\AIbanTest.cs" />
     <Compile Include="IbanTests\IbanThrowExceptionTest.cs" />

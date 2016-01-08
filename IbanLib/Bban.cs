@@ -106,44 +106,7 @@ namespace IbanLib
         public Bban(ICountry country, string bban, IValidators validators, IBbanSplitter splitter)
             : this(country)
         {
-            CheckArgumentInvalid(
-                !validators.GetBbanValidator().IsValid(country, bban),
-                DetailType.Bban,
-                typeof (string).Name);
-            Debug.Assert(
-                validators.GetBankCodeValidator().IsValid(country, bban),
-                "validators.GetBankCodeValidator().IsValid(country, bban)");
-
-            CheckDigits1 = splitter.GetCheck1(country, bban);
-            BankCode = splitter.GetBankCode(country, bban);
-            BranchCode = splitter.GetBranchCode(country, bban);
-            CheckDigits2 = splitter.GetCheck2(country, bban);
-            AccountNumber = splitter.GetAccountNumber(country, bban);
-            CheckDigits3 = splitter.GetCheck3(country, bban);
-
-            CheckArgumentInvalid(
-                !validators.GetBankCodeValidator().IsValid(country, BankCode),
-                DetailType.BankCode,
-                typeof (string).Name);
-            Debug.Assert(
-                validators.GetBankCodeValidator().IsValid(country, BankCode),
-                "validators.GetBankCodeValidator().IsValid(country, BankCode)");
-
-            CheckArgumentInvalid(
-                !validators.GetBranchCodeValidator().IsValid(country, BranchCode),
-                DetailType.BranchCode,
-                typeof (string).Name);
-            Debug.Assert(
-                validators.GetBranchCodeValidator().IsValid(country, BranchCode),
-                "validators.GetBranchCodeValidator().IsValid(country, BranchCode)");
-
-            CheckArgumentInvalid(
-                !validators.GetAccountNumberValidator().IsValid(country, AccountNumber),
-                DetailType.AccountNumber,
-                typeof (string).Name);
-            Debug.Assert(
-                validators.GetAccountNumberValidator().IsValid(country, AccountNumber),
-                "validators.GetAccountNumberValidator().IsValid(country, AccountNumber)");
+            SplitBban(country, bban, validators, splitter);
         }
 
         # endregion
@@ -213,6 +176,62 @@ namespace IbanLib
         # endregion
 
         # region Methods
+
+        /// <summary>
+        ///     The method splits the BBAN string to THIS BBAN object.
+        /// </summary>
+        /// <param name="country"></param>
+        /// <param name="bban"></param>
+        /// <param name="validators"></param>
+        /// <param name="splitter"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidCountryException">
+        ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
+        /// </exception>
+        /// <exception cref="InvalidBbanDetailException"></exception>
+        public IBban SplitBban(ICountry country, string bban, IValidators validators, IBbanSplitter splitter)
+        {
+            CheckArgumentInvalid(
+                !validators.GetBbanValidator().IsValid(country, bban),
+                DetailType.Bban,
+                typeof (string).Name);
+            Debug.Assert(
+                validators.GetBankCodeValidator().IsValid(country, bban),
+                "validators.GetBankCodeValidator().IsValid(country, bban)");
+
+            CheckDigits1 = splitter.GetCheck1(country, bban);
+            BankCode = splitter.GetBankCode(country, bban);
+            BranchCode = splitter.GetBranchCode(country, bban);
+            CheckDigits2 = splitter.GetCheck2(country, bban);
+            AccountNumber = splitter.GetAccountNumber(country, bban);
+            CheckDigits3 = splitter.GetCheck3(country, bban);
+
+            CheckArgumentInvalid(
+                !validators.GetBankCodeValidator().IsValid(country, BankCode),
+                DetailType.BankCode,
+                typeof (string).Name);
+            Debug.Assert(
+                validators.GetBankCodeValidator().IsValid(country, BankCode),
+                "validators.GetBankCodeValidator().IsValid(country, BankCode)");
+
+            CheckArgumentInvalid(
+                !validators.GetBranchCodeValidator().IsValid(country, BranchCode),
+                DetailType.BranchCode,
+                typeof (string).Name);
+            Debug.Assert(
+                validators.GetBranchCodeValidator().IsValid(country, BranchCode),
+                "validators.GetBranchCodeValidator().IsValid(country, BranchCode)");
+
+            CheckArgumentInvalid(
+                !validators.GetAccountNumberValidator().IsValid(country, AccountNumber),
+                DetailType.AccountNumber,
+                typeof (string).Name);
+            Debug.Assert(
+                validators.GetAccountNumberValidator().IsValid(country, AccountNumber),
+                "validators.GetAccountNumberValidator().IsValid(country, AccountNumber)");
+
+            return this;
+        }
 
         /// <summary>
         /// </summary>

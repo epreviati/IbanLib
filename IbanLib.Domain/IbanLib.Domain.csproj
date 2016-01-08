@@ -39,7 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IBbanGenerator.cs" />
     <Compile Include="IBban.cs" />
     <Compile Include="ICountryResolver.cs" />
     <Compile Include="Splitters\IBbanSplitter.cs" />

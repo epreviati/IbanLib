@@ -3,7 +3,7 @@
 namespace IbanLib.Exceptions
 {
     /// <summary>
-    ///     BbanSplitterException class.
+    ///     ValidatorException class.
     /// </summary>
     public class ValidatorException : Exception
     {

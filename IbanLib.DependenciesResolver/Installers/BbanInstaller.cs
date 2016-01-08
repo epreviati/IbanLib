@@ -8,7 +8,7 @@ namespace IbanLib.DependenciesResolver.Installers
     /// <summary>
     ///     Setup the installers.
     /// </summary>
-    public class BbanGeneratorInstaller : IWindsorInstaller
+    public class BbanInstaller : IWindsorInstaller
     {
         /// <summary>
         ///     Register components into Castle.
@@ -22,9 +22,9 @@ namespace IbanLib.DependenciesResolver.Installers
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component.For<IBbanGenerator>()
-                    .ImplementedBy<DefaultBbanGenerator>()
-                    .Named(Bootstrapper.RegisteredBbanSplitter));
+                Component.For<IBban>()
+                    .ImplementedBy<Bban>()
+                    .Named(Bootstrapper.RegisteredBban));
         }
     }
 }

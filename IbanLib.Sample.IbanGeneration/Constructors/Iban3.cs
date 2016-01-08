@@ -32,7 +32,7 @@ namespace IbanLib.Sample.IbanGeneration.Constructors
         {
             return new Iban(iban,
                 Container.Resolve<ICountryResolver>(),
-                Container.Resolve<IBbanGenerator>(),
+                Container.Resolve<IBban>(),
                 Container.Resolve<IValidators>(),
                 Container.Resolve<IIbanSplitter>(),
                 Container.Resolve<IBbanSplitter>());

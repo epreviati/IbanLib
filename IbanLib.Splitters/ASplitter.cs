@@ -3,7 +3,7 @@
 namespace IbanLib.Splitters
 {
     /// <summary>
-    ///     ASplitter base class that defines the basically funcionalities for all the splitter classes.
+    ///     Abstract ASplitter base class that defines the basically funcionalities for all the splitter classes.
     /// </summary>
     public abstract class ASplitter : AClass
     {

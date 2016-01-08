@@ -58,7 +58,7 @@ namespace IbanLib
         /// </summary>
         /// <param name="iban"></param>
         /// <param name="countryResolver"></param>
-        /// <param name="bbanGenerator"></param>
+        /// <param name="bban"></param>
         /// <param name="validators"></param>
         /// <param name="ibanSplitter"></param>
         /// <param name="bbanSplitter"></param>
@@ -69,14 +69,14 @@ namespace IbanLib
         /// <exception cref="InvalidBbanDetailException"></exception>
         public Iban(
             string iban,
-            ICountryResolver countryResolver, IBbanGenerator bbanGenerator,
+            ICountryResolver countryResolver, IBban bban,
             IValidators validators, IIbanSplitter ibanSplitter, IBbanSplitter bbanSplitter)
         {
             CheckArgumentNull<ICountryResolver>(countryResolver, "countryResolver");
             Debug.Assert(countryResolver != null, "countryResolver != null");
 
-            CheckArgumentNull<IBbanGenerator>(bbanGenerator, "bbanGenerator");
-            Debug.Assert(bbanGenerator != null, "bbanGenerator != null");
+            CheckArgumentNull<IBban>(bban, "bban");
+            Debug.Assert(bban != null, "bban != null");
 
             CheckArgumentNull<IValidators>(validators, "validators");
             Debug.Assert(validators != null, "validators != null");
@@ -109,7 +109,7 @@ namespace IbanLib
             }
 
             NationalCheckDigits = ibanSplitter.GetNationalCheckDigits(Country, iban);
-            Bban = bbanGenerator.NewBban(Country, iban.Substring(4), validators, bbanSplitter);
+            Bban = bban.SplitBban(Country, iban.Substring(4), validators, bbanSplitter);
         }
 
         #endregion

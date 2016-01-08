@@ -13,6 +13,9 @@ namespace IbanLib.DependenciesResolver
 
         public const string RegisteredDefaultCountryResolver = "IbanLib.DefaultCountryResolver";
 
+        public const string RegisteredBban = "IbanLib.Bban";
+        public const string RegisteredIban = "IbanLib.Iban";
+
         public const string RegisteredBbanSplitter = "IbanLib.Splitters.BbanSplitter";
         public const string RegisteredIbanSplitter = "IbanLib.Splitters.IbanSplitter";
 

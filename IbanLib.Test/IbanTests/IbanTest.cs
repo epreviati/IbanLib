@@ -81,10 +81,10 @@ namespace IbanLib.Test.IbanTests
             bban.Setup(x => x.Value())
                 .Returns(GetBban());
 
-            var bbanGenerator = new Mock<IBbanGenerator>();
+            var bbanGenerator = new Mock<IBban>();
             bbanGenerator
                 .Setup(
-                    x => x.NewBban(
+                    x => x.SplitBban(
                         It.IsAny<ICountry>(),
                         It.IsAny<string>(),
                         It.IsAny<IValidators>(),
