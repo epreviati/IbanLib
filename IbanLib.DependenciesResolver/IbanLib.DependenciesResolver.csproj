@@ -67,6 +67,10 @@
       <Project>{98FEE388-E801-4F94-A44E-31E40ABC0E78}</Project>
       <Name>IbanLib.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IbanLib.Exceptions\IbanLib.Exceptions.csproj">
+      <Project>{01338198-bf8d-4fb9-818d-b9547de81597}</Project>
+      <Name>IbanLib.Exceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IbanLib.Splitters\IbanLib.Splitters.csproj">
       <Project>{BE82E131-464E-4139-BCB2-9BA05ABCCE52}</Project>
       <Name>IbanLib.Splitters</Name>

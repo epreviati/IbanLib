@@ -12,7 +12,6 @@ namespace IbanLib.Splitters
     public class IbanSplitter : ASplitter, IIbanSplitter
     {
         private const string Iban = "IBAN";
-        private readonly IIbanValidator _ibanValidator;
 
         /// <summary>
         ///     Constructor of the class.
@@ -20,9 +19,10 @@ namespace IbanLib.Splitters
         /// <param name="ibanValidator">
         ///     An implementation of the interface <see cref="IIbanValidator" />.
         /// </param>
+        /// ReSharper disable once SuggestBaseTypeForParameter
         public IbanSplitter(IIbanValidator ibanValidator)
+            : base(ibanValidator)
         {
-            _ibanValidator = ibanValidator;
         }
 
         /// <summary>
@@ -72,8 +72,8 @@ namespace IbanLib.Splitters
         /// </exception>
         public string GetNationalCheckDigits(ICountry country, string iban)
         {
-            CheckCountry(country);
-            CheckIban(country, iban);
+            CheckNotNullCountry(country);
+            CheckIsValidField(country, iban);
 
             try
             {
@@ -106,8 +106,8 @@ namespace IbanLib.Splitters
         /// </exception>
         public string GetBban(ICountry country, string iban)
         {
-            CheckCountry(country);
-            CheckIban(country, iban);
+            CheckNotNullCountry(country);
+            CheckIsValidField(country, iban);
 
             try
             {
@@ -126,21 +126,15 @@ namespace IbanLib.Splitters
         ///     Country that contains the information to check the IBAN.
         /// </param>
         /// <param name="iban">
-        ///     IBAN to check.
+        ///     Iban to check.
         /// </param>
         /// <exception cref="IbanSplitterException">
-        ///     If the IBAN is not valid for the Country, an <see cref="IbanSplitterException" /> will be thrown.
+        ///     If the Field is not valid for the Country, an Exception of type <see cref="IbanSplitterException" /> will be
+        ///     thrown.
         /// </exception>
-        private void CheckIban(ICountry country, string iban)
+        protected void CheckIsValidField(ICountry country, string iban)
         {
-            if (!_ibanValidator.IsValid(country, iban))
-            {
-                throw new IbanSplitterException(
-                    string.Format(
-                        "Parameter IBAN '{0}' for country '{1}' is not valid.",
-                        iban,
-                        country.Iso3166));
-            }
+            CheckIsValidField<IbanSplitterException>(country, iban, Iban);
         }
     }
 }

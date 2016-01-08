@@ -25,8 +25,7 @@ namespace IbanLib
         /// <exception cref="InvalidIbanDetailException"></exception>
         private Iban(IBban bban)
         {
-            CheckArgumentNull<IBban>(bban, "bban");
-            Debug.Assert(bban != null, "bban != null");
+            CheckNotNullArgument<IBban>(bban, "bban");
         }
 
         /// <summary>
@@ -40,8 +39,7 @@ namespace IbanLib
         public Iban(ICountry country, IBban bban)
             : this(bban)
         {
-            CheckCountry(country);
-            Debug.Assert(country != null, "country != null");
+            CheckNotNullCountry(country);
 
             Country = country;
             Bban = bban;
@@ -82,19 +80,19 @@ namespace IbanLib
             IValidators validators, IIbanSplitter ibanSplitter, IBbanSplitter bbanSplitter)
             : this(bban)
         {
-            CheckArgumentNull<ICountryResolver>(countryResolver, "countryResolver");
+            CheckNotNullArgument<ICountryResolver>(countryResolver, "countryResolver");
             Debug.Assert(countryResolver != null, "countryResolver != null");
 
-            CheckArgumentNull<IValidators>(validators, "validators");
+            CheckNotNullArgument<IValidators>(validators, "validators");
             Debug.Assert(validators != null, "validators != null");
 
-            CheckArgumentNull<IIbanSplitter>(ibanSplitter, "ibanSplitter");
+            CheckNotNullArgument<IIbanSplitter>(ibanSplitter, "ibanSplitter");
             Debug.Assert(ibanSplitter != null, "ibanSplitter != null");
 
-            CheckArgumentNull<IBbanSplitter>(bbanSplitter, "bbanSplitter");
+            CheckNotNullArgument<IBbanSplitter>(bbanSplitter, "bbanSplitter");
             Debug.Assert(bbanSplitter != null, "bbanSplitter != null");
 
-            iban = Util.Normalize(iban);
+            iban = Normalize(iban);
             var countryCode = ibanSplitter.GetCountryCode(iban);
             if (!validators.GetCountryCodeValidator().IsValid(countryCode))
             {
@@ -193,21 +191,23 @@ namespace IbanLib
         }
 
         /// <summary>
+        ///     The method throws an <see cref="InvalidIbanException" /> if the Argument is null.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="argument"></param>
-        /// <param name="argumentName"></param>
-        /// <exception cref="InvalidIbanDetailException"></exception>
-        private static void CheckArgumentNull<T>(object argument, string argumentName)
+        /// <typeparam name="TType">
+        ///     Type of the argument.
+        /// </typeparam>
+        /// <param name="argument">
+        ///     Argument to check.
+        /// </param>
+        /// <param name="argumentName">
+        ///     Name of the argument to check.
+        /// </param>
+        /// <exception cref="InvalidIbanException">
+        ///     If the Argument is null, an Exception of type <see cref="InvalidIbanException" /> will be thrown.
+        /// </exception>
+        protected static void CheckNotNullArgument<TType>(object argument, string argumentName)
         {
-            if (argument == null)
-            {
-                throw new InvalidIbanException(
-                    string.Format(
-                        "Parameter '{0}' of type '{1}' can not be null.",
-                        argumentName,
-                        typeof (T)));
-            }
+            CheckNotNullArgument<TType, InvalidIbanException>(argument, argumentName);
         }
 
         # endregion

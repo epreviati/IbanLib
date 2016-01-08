@@ -13,7 +13,6 @@ namespace IbanLib.Splitters
     {
         private const string Bban = "BBAN";
         private const int CharsRemovedFromIban = 4; // IBAN.Lenght - BBAN.Lenght = 4 Chars
-        private readonly IBbanValidator _bbanValidator;
 
         /// <summary>
         ///     Constructor of the class.
@@ -21,9 +20,10 @@ namespace IbanLib.Splitters
         /// <param name="bbanValidator">
         ///     An implementation of the interface <see cref="IBbanValidator" />.
         /// </param>
+        /// ReSharper disable once SuggestBaseTypeForParameter
         public BbanSplitter(IBbanValidator bbanValidator)
+            : base(bbanValidator)
         {
-            _bbanValidator = bbanValidator;
         }
 
         /// <summary>
@@ -47,8 +47,8 @@ namespace IbanLib.Splitters
         /// </exception>
         public string GetCheck1(ICountry country, string bban)
         {
-            CheckCountry(country);
-            CheckBban(country, bban);
+            CheckNotNullCountry(country);
+            CheckIsValidField(country, bban);
 
             try
             {
@@ -85,8 +85,8 @@ namespace IbanLib.Splitters
         /// </exception>
         public string GetBankCode(ICountry country, string bban)
         {
-            CheckCountry(country);
-            CheckBban(country, bban);
+            CheckNotNullCountry(country);
+            CheckIsValidField(country, bban);
 
             try
             {
@@ -121,8 +121,8 @@ namespace IbanLib.Splitters
         /// </exception>
         public string GetBranchCode(ICountry country, string bban)
         {
-            CheckCountry(country);
-            CheckBban(country, bban);
+            CheckNotNullCountry(country);
+            CheckIsValidField(country, bban);
 
             try
             {
@@ -159,8 +159,8 @@ namespace IbanLib.Splitters
         /// </exception>
         public string GetCheck2(ICountry country, string bban)
         {
-            CheckCountry(country);
-            CheckBban(country, bban);
+            CheckNotNullCountry(country);
+            CheckIsValidField(country, bban);
 
             try
             {
@@ -197,8 +197,8 @@ namespace IbanLib.Splitters
         /// </exception>
         public string GetAccountNumber(ICountry country, string bban)
         {
-            CheckCountry(country);
-            CheckBban(country, bban);
+            CheckNotNullCountry(country);
+            CheckIsValidField(country, bban);
 
             try
             {
@@ -233,8 +233,8 @@ namespace IbanLib.Splitters
         /// </exception>
         public string GetCheck3(ICountry country, string bban)
         {
-            CheckCountry(country);
-            CheckBban(country, bban);
+            CheckNotNullCountry(country);
+            CheckIsValidField(country, bban);
 
             try
             {
@@ -251,27 +251,21 @@ namespace IbanLib.Splitters
         }
 
         /// <summary>
-        ///     The method throws a <see cref="BbanSplitterException" /> if the BBAN is not valid for the Country.
+        ///     The method throws an <see cref="BbanSplitterException" /> if the IBAN is not valid for the Country.
         /// </summary>
         /// <param name="country">
-        ///     Country that contains the information to validate the BBAN.
+        ///     Country that contains the information to check the IBAN.
         /// </param>
         /// <param name="bban">
-        ///     BBAN to check.
+        ///     Bban to check.
         /// </param>
         /// <exception cref="BbanSplitterException">
-        ///     If the BBAN is not valid for the Country, a <see cref="BbanSplitterException" /> will be thrown.
+        ///     If the Field is not valid for the Country, an Exception of type <see cref="BbanSplitterException" /> will be
+        ///     thrown.
         /// </exception>
-        private void CheckBban(ICountry country, string bban)
+        protected void CheckIsValidField(ICountry country, string bban)
         {
-            if (!_bbanValidator.IsValid(country, bban))
-            {
-                throw new BbanSplitterException(
-                    string.Format(
-                        "Parameter BBAN '{0}' for country '{1}' is not valid.",
-                        bban,
-                        country.Iso3166));
-            }
+            CheckIsValidField<BbanSplitterException>(country, bban, Bban);
         }
     }
 }

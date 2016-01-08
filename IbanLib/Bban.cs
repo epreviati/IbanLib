@@ -3,6 +3,7 @@ using IbanLib.Common;
 using IbanLib.Countries;
 using IbanLib.Domain;
 using IbanLib.Domain.Splitters;
+using IbanLib.Domain.Validators;
 using IbanLib.Exceptions;
 using IbanLib.Exceptions.Enums;
 
@@ -28,7 +29,7 @@ namespace IbanLib
         /// </exception>
         private Bban(ICountry country)
         {
-            CheckCountry(country);
+            CheckNotNullCountry(country);
             Debug.Assert(country != null, "country != null");
         }
 
@@ -61,29 +62,26 @@ namespace IbanLib
         public Bban(ICountry country, string bankCode, string branchCode, string accountNumber, IValidators validators)
             : this(country)
         {
-            CheckArgumentInvalid(
-                !validators.GetBankCodeValidator().IsValid(country, bankCode),
-                DetailType.BankCode,
-                typeof (string).Name);
-            Debug.Assert(
-                validators.GetBankCodeValidator().IsValid(country, bankCode),
-                "validators.GetBankCodeValidator().IsValid(country, bankCode)");
+            CheckIsValidArgument(
+                validators.GetBankCodeValidator(),
+                DetailType.Bban,
+                country,
+                BankCode,
+                "BankCode");
 
-            CheckArgumentInvalid(
-                !validators.GetBranchCodeValidator().IsValid(country, branchCode),
+            CheckIsValidArgument(
+                validators.GetBranchCodeValidator(),
                 DetailType.BranchCode,
-                typeof (string).Name);
-            Debug.Assert(
-                validators.GetBranchCodeValidator().IsValid(country, branchCode),
-                "validators.GetBranchCodeValidator().IsValid(country, branchCode)");
+                country,
+                BranchCode,
+                "BranchCode");
 
-            CheckArgumentInvalid(
-                !validators.GetAccountNumberValidator().IsValid(country, accountNumber),
+            CheckIsValidArgument(
+                validators.GetAccountNumberValidator(),
                 DetailType.AccountNumber,
-                typeof (string).Name);
-            Debug.Assert(
-                validators.GetAccountNumberValidator().IsValid(country, accountNumber),
-                "validators.GetAccountNumberValidator().IsValid(country, accountNumber)");
+                country,
+                AccountNumber,
+                "AccountNumber");
 
             BankCode = bankCode;
             BranchCode = branchCode;
@@ -118,7 +116,7 @@ namespace IbanLib
         public string CheckDigits1
         {
             get { return GetFieldValue(_checkDigits1); }
-            set { _checkDigits1 = Util.Normalize(value); }
+            set { _checkDigits1 = Normalize(value); }
         }
 
         private string _checkDigits1;
@@ -128,7 +126,7 @@ namespace IbanLib
         public string BankCode
         {
             get { return GetFieldValue(_bankCode); }
-            set { _bankCode = Util.Normalize(value); }
+            set { _bankCode = Normalize(value); }
         }
 
         private string _bankCode;
@@ -138,7 +136,7 @@ namespace IbanLib
         public string BranchCode
         {
             get { return GetFieldValue(_branchCode); }
-            set { _branchCode = Util.Normalize(value); }
+            set { _branchCode = Normalize(value); }
         }
 
         private string _branchCode;
@@ -148,7 +146,7 @@ namespace IbanLib
         public string CheckDigits2
         {
             get { return GetFieldValue(_checkDigits2); }
-            set { _checkDigits2 = Util.Normalize(value); }
+            set { _checkDigits2 = Normalize(value); }
         }
 
         private string _checkDigits2;
@@ -158,7 +156,7 @@ namespace IbanLib
         public string AccountNumber
         {
             get { return GetFieldValue(_accountNumber); }
-            set { _accountNumber = Util.Normalize(value); }
+            set { _accountNumber = Normalize(value); }
         }
 
         private string _accountNumber;
@@ -168,7 +166,7 @@ namespace IbanLib
         public string CheckDigits3
         {
             get { return GetFieldValue(_checkDigits3); }
-            set { _checkDigits3 = Util.Normalize(value); }
+            set { _checkDigits3 = Normalize(value); }
         }
 
         private string _checkDigits3;
@@ -191,13 +189,12 @@ namespace IbanLib
         /// <exception cref="InvalidBbanDetailException"></exception>
         public IBban SplitBban(ICountry country, string bban, IValidators validators, IBbanSplitter splitter)
         {
-            CheckArgumentInvalid(
-                !validators.GetBbanValidator().IsValid(country, bban),
+            CheckIsValidArgument(
+                validators.GetBbanValidator(),
                 DetailType.Bban,
-                typeof (string).Name);
-            Debug.Assert(
-                validators.GetBankCodeValidator().IsValid(country, bban),
-                "validators.GetBankCodeValidator().IsValid(country, bban)");
+                country,
+                bban,
+                "bban");
 
             CheckDigits1 = splitter.GetCheck1(country, bban);
             BankCode = splitter.GetBankCode(country, bban);
@@ -206,31 +203,56 @@ namespace IbanLib
             AccountNumber = splitter.GetAccountNumber(country, bban);
             CheckDigits3 = splitter.GetCheck3(country, bban);
 
-            CheckArgumentInvalid(
-                !validators.GetBankCodeValidator().IsValid(country, BankCode),
+            CheckIsValidArgument(
+                validators.GetBankCodeValidator(),
                 DetailType.BankCode,
-                typeof (string).Name);
-            Debug.Assert(
-                validators.GetBankCodeValidator().IsValid(country, BankCode),
-                "validators.GetBankCodeValidator().IsValid(country, BankCode)");
+                country,
+                BankCode,
+                "BankCode");
 
-            CheckArgumentInvalid(
-                !validators.GetBranchCodeValidator().IsValid(country, BranchCode),
+            CheckIsValidArgument(
+                validators.GetBranchCodeValidator(),
                 DetailType.BranchCode,
-                typeof (string).Name);
-            Debug.Assert(
-                validators.GetBranchCodeValidator().IsValid(country, BranchCode),
-                "validators.GetBranchCodeValidator().IsValid(country, BranchCode)");
+                country,
+                BranchCode,
+                "BranchCode");
 
-            CheckArgumentInvalid(
-                !validators.GetAccountNumberValidator().IsValid(country, AccountNumber),
+            CheckIsValidArgument(
+                validators.GetAccountNumberValidator(),
                 DetailType.AccountNumber,
-                typeof (string).Name);
-            Debug.Assert(
-                validators.GetAccountNumberValidator().IsValid(country, AccountNumber),
-                "validators.GetAccountNumberValidator().IsValid(country, AccountNumber)");
+                country,
+                AccountNumber,
+                "AccountNumber");
 
             return this;
+        }
+
+        /// <summary>
+        ///     The method throws an Exception of type <see cref="InvalidBbanDetailException" /> if the Field is not valid.
+        /// </summary>
+        /// <param name="validator">
+        ///     Validator that perfmorms the validation.
+        /// </param>
+        /// <param name="detailType">
+        ///     Enum that defines witch detail is under evaluation.
+        /// </param>
+        /// <param name="country">
+        ///     Country to perform the validation.
+        /// </param>
+        /// <param name="field">
+        ///     Field to validate.
+        /// </param>
+        /// <param name="fieldName">
+        ///     Name of the field to validate.
+        /// </param>
+        /// <exception>
+        ///     If the Field is not valid, an Exception of type <see cref="InvalidBbanDetailException" /> will be thrown.
+        /// </exception>
+        protected static void CheckIsValidArgument(
+            IDetailValidator validator, DetailType detailType,
+            ICountry country, string field, string fieldName)
+        {
+            CheckIsValidArgument<string, InvalidBbanDetailException>(validator, detailType, country, field, fieldName);
         }
 
         /// <summary>
@@ -274,25 +296,6 @@ namespace IbanLib
                 CheckDigits2,
                 AccountNumber,
                 CheckDigits3);
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="throwException"></param>
-        /// <param name="detailType"></param>
-        /// <param name="parameterType"></param>
-        /// <exception cref="InvalidBbanDetailException"></exception>
-        private static void CheckArgumentInvalid(bool throwException, DetailType detailType, string parameterType)
-        {
-            if (throwException)
-            {
-                throw new InvalidBbanDetailException(
-                    detailType,
-                    string.Format(
-                        "Parameter '{0}' of type '{1}' has an invalid format.",
-                        detailType,
-                        parameterType));
-            }
         }
 
         /// <summary>

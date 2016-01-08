@@ -26,7 +26,7 @@ namespace IbanLib.Validators
         /// </exception>
         public override bool IsValid(ICountry country, string branchCode)
         {
-            CheckCountry(country);
+            CheckNotNullCountry(country);
 
             if (country.BranchCodeLength > 0)
             {

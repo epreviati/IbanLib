@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using IbanLib.Common;
 using IbanLib.Domain;
 using IbanLib.Domain.Validators;
 using IbanLib.Exceptions;
@@ -7,7 +8,7 @@ namespace IbanLib
 {
     /// <summary>
     /// </summary>
-    public class DefaultValidators : IValidators
+    public class DefaultValidators : AClass, IValidators
     {
         private readonly IAccountNumberValidator _accountNumberValidator;
         private readonly IBankCodeValidator _bankCodeValidator;
@@ -33,17 +34,23 @@ namespace IbanLib
             IIbanValidator ibanValidator,
             IBbanValidator bbanValidator)
         {
-            CheckArgument<IBankCodeValidator>(bankCodeValidator, "bankCodeValidator");
+            CheckNotNullArgument<IBankCodeValidator>(bankCodeValidator, "bankCodeValidator");
             Debug.Assert(bankCodeValidator != null, "bankCodeValidator != null");
-            CheckArgument<IBranchCodeValidator>(branchCodeValidator, "branchCodeValidator");
+
+            CheckNotNullArgument<IBranchCodeValidator>(branchCodeValidator, "branchCodeValidator");
             Debug.Assert(branchCodeValidator != null, "branchCodeValidator != null");
-            CheckArgument<IAccountNumberValidator>(accountNumberValidator, "accountNumberValidator");
+
+            CheckNotNullArgument<IAccountNumberValidator>(accountNumberValidator,
+                "accountNumberValidator");
             Debug.Assert(accountNumberValidator != null, "accountNumberValidator != null");
-            CheckArgument<ICountryCodeValidator>(countryCodeValidator, "countryCodeValidator");
+
+            CheckNotNullArgument<ICountryCodeValidator>(countryCodeValidator, "countryCodeValidator");
             Debug.Assert(countryCodeValidator != null, "countryCodeValidator != null");
-            CheckArgument<IIbanValidator>(ibanValidator, "ibanValidator");
+
+            CheckNotNullArgument<IIbanValidator>(ibanValidator, "ibanValidator");
             Debug.Assert(ibanValidator != null, "ibanValidator != null");
-            CheckArgument<IBbanValidator>(bbanValidator, "bbanValidator");
+
+            CheckNotNullArgument<IBbanValidator>(bbanValidator, "bbanValidator");
             Debug.Assert(bbanValidator != null, "bbanValidator != null");
 
             _bankCodeValidator = bankCodeValidator;
@@ -84,22 +91,24 @@ namespace IbanLib
             return _accountNumberValidator;
         }
 
+
         /// <summary>
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="argument"></param>
-        /// <param name="argumentName"></param>
-        /// <exception cref="ValidatorException"></exception>
-        private static void CheckArgument<T>(object argument, string argumentName)
+        /// <typeparam name="TType">
+        ///     Type of the argument.
+        /// </typeparam>
+        /// <param name="argument">
+        ///     Argument to check.
+        /// </param>
+        /// <param name="argumentName">
+        ///     Name of the argument to check.
+        /// </param>
+        /// <exception cref="ValidatorException">
+        ///     If the Argument is null, an Exception of type <see cref="ValidatorException" /> will be thrown.
+        /// </exception>
+        private static void CheckNotNullArgument<TType>(object argument, string argumentName)
         {
-            if (argument == null)
-            {
-                throw new ValidatorException(
-                    string.Format(
-                        "Parameter '{0}' of type '{1}' can not be null.",
-                        argumentName,
-                        typeof (T)));
-            }
+            CheckNotNullArgument<TType, ValidatorException>(argument, argumentName);
         }
     }
 }

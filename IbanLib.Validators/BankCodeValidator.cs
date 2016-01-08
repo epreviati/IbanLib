@@ -26,7 +26,7 @@ namespace IbanLib.Validators
         /// </exception>
         public override bool IsValid(ICountry country, string bankCode)
         {
-            CheckCountry(country);
+            CheckNotNullCountry(country);
 
             return IsValidDetailLenght(bankCode, country.BankCodeLength)
                    && IsValidDetailStructure(bankCode, country.BankCodeStructure);
