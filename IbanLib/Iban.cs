@@ -21,6 +21,16 @@ namespace IbanLib
 
         /// <summary>
         /// </summary>
+        /// <param name="bban"></param>
+        /// <exception cref="InvalidIbanDetailException"></exception>
+        private Iban(IBban bban)
+        {
+            CheckArgumentNull<IBban>(bban, "bban");
+            Debug.Assert(bban != null, "bban != null");
+        }
+
+        /// <summary>
+        /// </summary>
         /// <param name="country"></param>
         /// <param name="bban"></param>
         /// <exception cref="InvalidCountryException">
@@ -28,11 +38,10 @@ namespace IbanLib
         /// </exception>
         /// <exception cref="InvalidIbanDetailException"></exception>
         public Iban(ICountry country, IBban bban)
+            : this(bban)
         {
             CheckCountry(country);
             Debug.Assert(country != null, "country != null");
-            CheckArgumentNull<IBban>(bban, "bban");
-            Debug.Assert(bban != null, "bban != null");
 
             Country = country;
             Bban = bban;
@@ -71,12 +80,10 @@ namespace IbanLib
             string iban,
             ICountryResolver countryResolver, IBban bban,
             IValidators validators, IIbanSplitter ibanSplitter, IBbanSplitter bbanSplitter)
+            : this(bban)
         {
             CheckArgumentNull<ICountryResolver>(countryResolver, "countryResolver");
             Debug.Assert(countryResolver != null, "countryResolver != null");
-
-            CheckArgumentNull<IBban>(bban, "bban");
-            Debug.Assert(bban != null, "bban != null");
 
             CheckArgumentNull<IValidators>(validators, "validators");
             Debug.Assert(validators != null, "validators != null");
