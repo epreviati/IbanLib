@@ -9,13 +9,13 @@ namespace IbanLib.Splitters.Test.IBanSplitterTest
     [TestFixture]
     public abstract class AIbanSplitterTest
     {
-        protected IIbanSplitter IbanSplitterInValidValidation;
+        protected IIbanSplitter IbanSplitterInvalidValidation;
         protected IIbanSplitter IbanSplitterValidValidation;
 
         protected AIbanSplitterTest()
         {
             IbanSplitterValidValidation = new IbanSplitter(GetMockIBbanValidator(true));
-            IbanSplitterInValidValidation = new IbanSplitter(GetMockIBbanValidator(false));
+            IbanSplitterInvalidValidation = new IbanSplitter(GetMockIBbanValidator(false));
         }
 
         protected static IIbanValidator GetMockIBbanValidator(bool validationResult)

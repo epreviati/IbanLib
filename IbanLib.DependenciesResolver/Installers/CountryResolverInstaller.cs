@@ -24,7 +24,7 @@ namespace IbanLib.DependenciesResolver.Installers
             container.Register(
                 Component.For<ICountryResolver>()
                     .ImplementedBy<DefaultCountryResolver>()
-                    .Named(Bootstrapper.RegisteredBbanSplitter));
+                    .Named(Bootstrapper.RegisteredDefaultCountryResolver));
         }
     }
 }

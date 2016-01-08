@@ -78,30 +78,12 @@ namespace IbanLib
         {
             CheckNotNullCountry(country);
 
-            CheckIsValidArgument(
-                validators.GetBankCodeValidator(),
-                DetailType.Bban,
-                country,
-                BankCode,
-                "BankCode");
-
-            CheckIsValidArgument(
-                validators.GetBranchCodeValidator(),
-                DetailType.BranchCode,
-                country,
-                BranchCode,
-                "BranchCode");
-
-            CheckIsValidArgument(
-                validators.GetAccountNumberValidator(),
-                DetailType.AccountNumber,
-                country,
-                AccountNumber,
-                "AccountNumber");
-
             BankCode = bankCode;
             BranchCode = branchCode;
             AccountNumber = accountNumber;
+
+            CheckAreValidBankBranchAccountNumber(country, validators);
+            
             CheckDigits1 = country.CalculateCheck1(BankCode, BranchCode, AccountNumber);
             CheckDigits2 = country.CalculateCheck2(BankCode, BranchCode, AccountNumber);
             CheckDigits3 = country.CalculateCheck3(BankCode, BranchCode, AccountNumber);
@@ -245,13 +227,35 @@ namespace IbanLib
                 bban,
                 "bban");
 
-            CheckDigits1 = splitter.GetCheck1(country, bban);
             BankCode = splitter.GetBankCode(country, bban);
             BranchCode = splitter.GetBranchCode(country, bban);
-            CheckDigits2 = splitter.GetCheck2(country, bban);
             AccountNumber = splitter.GetAccountNumber(country, bban);
+
+            CheckAreValidBankBranchAccountNumber(country, validators);
+            
+            CheckDigits1 = splitter.GetCheck1(country, bban);
+            CheckDigits2 = splitter.GetCheck2(country, bban);
             CheckDigits3 = splitter.GetCheck3(country, bban);
 
+            return this;
+        }
+
+        /// <summary>
+        ///     The method validates the Bank Code, the Branch Code and the Account Number.
+        ///     If one of those three is not valid an <see cref="InvalidBbanDetailException" /> will be thrown.
+        /// </summary>
+        /// <param name="country">
+        ///     Country of the BBAN.
+        /// </param>
+        /// <param name="validators">
+        ///     All the validators that are required to validate the informations.
+        /// </param>
+        /// <exception cref="InvalidBbanDetailException">
+        ///     If one of those three field is not valid, an Exception of type <see cref="InvalidBbanDetailException" /> will be
+        ///     thrown.
+        /// </exception>
+        private void CheckAreValidBankBranchAccountNumber(ICountry country, IValidators validators)
+        {
             CheckIsValidArgument(
                 validators.GetBankCodeValidator(),
                 DetailType.BankCode,
@@ -272,8 +276,6 @@ namespace IbanLib
                 country,
                 AccountNumber,
                 "AccountNumber");
-
-            return this;
         }
 
         /// <summary>

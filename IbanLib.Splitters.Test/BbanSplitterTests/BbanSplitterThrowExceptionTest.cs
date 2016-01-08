@@ -1,6 +1,8 @@
 ﻿using System;
+using IbanLib.Countries;
 using IbanLib.Exceptions;
 using IbanLib.Test.Common;
+using Moq;
 using NUnit.Framework;
 
 namespace IbanLib.Splitters.Test.BbanSplitterTests
@@ -19,8 +21,28 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
             Action action1 = () => BbanSplitterValidValidation.GetAccountNumber(null, bban);
             TestUtil.ExpectedException<InvalidCountryException>(action1);
 
-            Action action2 = () => BbanSplitterInValidValidation.GetAccountNumber(null, bban);
+            Action action2 = () => BbanSplitterInvalidValidation.GetAccountNumber(null, bban);
             TestUtil.ExpectedException<InvalidCountryException>(action2);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void GetAccountNumber_It_Is_Not_Possible_To_Extract_The_Field_Expected_InvalidIbanException(string iban)
+        {
+            var country = new Mock<ICountry>();
+            country
+                .Setup(x => x.AccountNumberPosition)
+                .Returns(5);
+            country
+                .Setup(x => x.AccountNumberLength)
+                .Returns(5);
+
+            Action action = () => BbanSplitterValidValidation.GetAccountNumber(
+                country.Object,
+                iban);
+            TestUtil.ExpectedException<BbanSplitterException>(action);
         }
 
         [Test]
@@ -33,7 +55,7 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
             Action action = () =>
             {
                 var bban = GetBbanFromIBan(iban);
-                BbanSplitterInValidValidation.GetAccountNumber(TestUtil.MockNotNullCountry, bban);
+                BbanSplitterInvalidValidation.GetAccountNumber(TestUtil.MockNotNullCountry, bban);
             };
             TestUtil.ExpectedException<BbanSplitterException>(action);
         }
@@ -50,8 +72,28 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
             Action action1 = () => BbanSplitterValidValidation.GetBankCode(null, bban);
             TestUtil.ExpectedException<InvalidCountryException>(action1);
 
-            Action action2 = () => BbanSplitterInValidValidation.GetBankCode(null, bban);
+            Action action2 = () => BbanSplitterInvalidValidation.GetBankCode(null, bban);
             TestUtil.ExpectedException<InvalidCountryException>(action2);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void GetBankCode_It_Is_Not_Possible_To_Extract_The_Field_Expected_InvalidIbanException(string iban)
+        {
+            var country = new Mock<ICountry>();
+            country
+                .Setup(x => x.BankCodePosition)
+                .Returns(5);
+            country
+                .Setup(x => x.BankCodeLength)
+                .Returns(5);
+
+            Action action = () => BbanSplitterValidValidation.GetBankCode(
+                country.Object,
+                iban);
+            TestUtil.ExpectedException<BbanSplitterException>(action);
         }
 
         [Test]
@@ -64,7 +106,7 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
             Action action = () =>
             {
                 var bban = GetBbanFromIBan(iban);
-                BbanSplitterInValidValidation.GetBankCode(TestUtil.MockNotNullCountry, bban);
+                BbanSplitterInvalidValidation.GetBankCode(TestUtil.MockNotNullCountry, bban);
             };
             TestUtil.ExpectedException<BbanSplitterException>(action);
         }
@@ -81,8 +123,28 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
             Action action1 = () => BbanSplitterValidValidation.GetBranchCode(null, bban);
             TestUtil.ExpectedException<InvalidCountryException>(action1);
 
-            Action action2 = () => BbanSplitterInValidValidation.GetBranchCode(null, bban);
+            Action action2 = () => BbanSplitterInvalidValidation.GetBranchCode(null, bban);
             TestUtil.ExpectedException<InvalidCountryException>(action2);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void GetBranchCode_It_Is_Not_Possible_To_Extract_The_Field_Expected_InvalidIbanException(string iban)
+        {
+            var country = new Mock<ICountry>();
+            country
+                .Setup(x => x.BranchCodePosition)
+                .Returns(5);
+            country
+                .Setup(x => x.BranchCodeLength)
+                .Returns(5);
+
+            Action action = () => BbanSplitterValidValidation.GetBranchCode(
+                country.Object,
+                iban);
+            TestUtil.ExpectedException<BbanSplitterException>(action);
         }
 
         [Test]
@@ -95,7 +157,7 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
             Action action = () =>
             {
                 var bban = GetBbanFromIBan(iban);
-                BbanSplitterInValidValidation.GetBranchCode(TestUtil.MockNotNullCountry, bban);
+                BbanSplitterInvalidValidation.GetBranchCode(TestUtil.MockNotNullCountry, bban);
             };
             TestUtil.ExpectedException<BbanSplitterException>(action);
         }
@@ -112,8 +174,28 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
             Action action1 = () => BbanSplitterValidValidation.GetCheck1(null, bban);
             TestUtil.ExpectedException<InvalidCountryException>(action1);
 
-            Action action2 = () => BbanSplitterInValidValidation.GetCheck1(null, bban);
+            Action action2 = () => BbanSplitterInvalidValidation.GetCheck1(null, bban);
             TestUtil.ExpectedException<InvalidCountryException>(action2);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void GetCheck1_It_Is_Not_Possible_To_Extract_The_Field_Expected_InvalidIbanException(string iban)
+        {
+            var country = new Mock<ICountry>();
+            country
+                .Setup(x => x.Check1Position)
+                .Returns(5);
+            country
+                .Setup(x => x.Check1Length)
+                .Returns(5);
+
+            Action action = () => BbanSplitterValidValidation.GetCheck1(
+                country.Object,
+                iban);
+            TestUtil.ExpectedException<BbanSplitterException>(action);
         }
 
         [Test]
@@ -126,7 +208,7 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
             Action action = () =>
             {
                 var bban = GetBbanFromIBan(iban);
-                BbanSplitterInValidValidation.GetCheck1(TestUtil.MockNotNullCountry, bban);
+                BbanSplitterInvalidValidation.GetCheck1(TestUtil.MockNotNullCountry, bban);
             };
             TestUtil.ExpectedException<BbanSplitterException>(action);
         }
@@ -143,8 +225,28 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
             Action action1 = () => BbanSplitterValidValidation.GetCheck2(null, bban);
             TestUtil.ExpectedException<InvalidCountryException>(action1);
 
-            Action action2 = () => BbanSplitterInValidValidation.GetCheck2(null, bban);
+            Action action2 = () => BbanSplitterInvalidValidation.GetCheck2(null, bban);
             TestUtil.ExpectedException<InvalidCountryException>(action2);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void GetCheck2_It_Is_Not_Possible_To_Extract_The_Field_Expected_InvalidIbanException(string iban)
+        {
+            var country = new Mock<ICountry>();
+            country
+                .Setup(x => x.Check2Position)
+                .Returns(5);
+            country
+                .Setup(x => x.Check2Length)
+                .Returns(5);
+
+            Action action = () => BbanSplitterValidValidation.GetCheck2(
+                country.Object,
+                iban);
+            TestUtil.ExpectedException<BbanSplitterException>(action);
         }
 
         [Test]
@@ -157,7 +259,7 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
             Action action = () =>
             {
                 var bban = GetBbanFromIBan(iban);
-                BbanSplitterInValidValidation.GetCheck2(TestUtil.MockNotNullCountry, bban);
+                BbanSplitterInvalidValidation.GetCheck2(TestUtil.MockNotNullCountry, bban);
             };
             TestUtil.ExpectedException<BbanSplitterException>(action);
         }
@@ -174,8 +276,28 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
             Action action1 = () => BbanSplitterValidValidation.GetCheck3(null, bban);
             TestUtil.ExpectedException<InvalidCountryException>(action1);
 
-            Action action2 = () => BbanSplitterInValidValidation.GetCheck3(null, bban);
+            Action action2 = () => BbanSplitterInvalidValidation.GetCheck3(null, bban);
             TestUtil.ExpectedException<InvalidCountryException>(action2);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void GetCheck3_It_Is_Not_Possible_To_Extract_The_Field_Expected_InvalidIbanException(string iban)
+        {
+            var country = new Mock<ICountry>();
+            country
+                .Setup(x => x.Check3Position)
+                .Returns(5);
+            country
+                .Setup(x => x.Check3Length)
+                .Returns(5);
+
+            Action action = () => BbanSplitterValidValidation.GetCheck3(
+                country.Object,
+                iban);
+            TestUtil.ExpectedException<BbanSplitterException>(action);
         }
 
         [Test]
@@ -188,7 +310,7 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
             Action action = () =>
             {
                 var bban = GetBbanFromIBan(iban);
-                BbanSplitterInValidValidation.GetCheck3(TestUtil.MockNotNullCountry, bban);
+                BbanSplitterInvalidValidation.GetCheck3(TestUtil.MockNotNullCountry, bban);
             };
             TestUtil.ExpectedException<BbanSplitterException>(action);
         }
