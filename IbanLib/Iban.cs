@@ -8,34 +8,50 @@ using IbanLib.Exceptions;
 namespace IbanLib
 {
     /// <summary>
+    ///     Iban class that permits to create an IBAN object.
     /// </summary>
     public class Iban : AClass, IIban
     {
         # region Constructors
 
         /// <summary>
+        ///     Constructor of an empty IBAN oject.
         /// </summary>
         public Iban()
         {
         }
 
         /// <summary>
+        ///     Private common constructor.
         /// </summary>
-        /// <param name="bban"></param>
-        /// <exception cref="InvalidIbanDetailException"></exception>
+        /// <param name="bban">
+        ///     BBAN object.
+        /// </param>
+        /// <exception cref="InvalidIbanDetailException">
+        ///     If the BBAN is null an <see cref="InvalidCountryException" /> will be thrown.
+        /// </exception>
         private Iban(IBban bban)
         {
             CheckNotNullArgument<IBban>(bban, "bban");
         }
 
         /// <summary>
+        ///     Constructor that creates an IBAN starting from the Country and the BBAN and that calculate the National Check
+        ///     Digits.
         /// </summary>
-        /// <param name="country"></param>
-        /// <param name="bban"></param>
+        /// <param name="country">
+        ///     Country of the IBAN.
+        /// </param>
+        /// <param name="bban">
+        ///     BBAN of the IBAN.
+        /// </param>
         /// <exception cref="InvalidCountryException">
         ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
         /// </exception>
-        /// <exception cref="InvalidIbanDetailException"></exception>
+        /// <exception cref="InvalidIbanDetailException">
+        ///     If the BBAN is null or if it is not possible to calculate the National Chekck Digits an
+        ///     <see cref="InvalidIbanDetailException" /> will be thrown.
+        /// </exception>
         public Iban(ICountry country, IBban bban)
             : this(bban)
         {
@@ -62,18 +78,32 @@ namespace IbanLib
         }
 
         /// <summary>
+        ///     The methods try to split the string IBAN parameter to the corrispondent IBBAN object.
         /// </summary>
-        /// <param name="iban"></param>
-        /// <param name="countryResolver"></param>
-        /// <param name="bban"></param>
-        /// <param name="validators"></param>
-        /// <param name="ibanSplitter"></param>
-        /// <param name="bbanSplitter"></param>
-        /// <exception cref="InvalidIbanException"></exception>
+        /// <param name="iban">
+        ///     The IBAN to split.
+        /// </param>
+        /// <param name="countryResolver">
+        ///     Resolver that permits to find the Country.
+        /// </param>
+        /// <param name="bban">
+        ///     BBAN object that will be filled with the informations found on the IBAN.
+        /// </param>
+        /// <param name="validators">
+        ///     All the validators that are required to validate the informations.
+        /// </param>
+        /// <param name="ibanSplitter">
+        ///     Rules to define how to split an IBAN.
+        /// </param>
+        /// <param name="bbanSplitter">
+        ///     Rules to define how to split a BBAN.
+        /// </param>
         /// <exception cref="InvalidCountryException">
         ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
         /// </exception>
-        /// <exception cref="InvalidBbanDetailException"></exception>
+        /// <exception cref="InvalidIbanException">
+        ///     If any parametrs is invalid an <see cref="InvalidIbanException" /> will be thrown.
+        /// </exception>
         public Iban(
             string iban,
             ICountryResolver countryResolver, IBban bban,
@@ -122,14 +152,12 @@ namespace IbanLib
         # region Details
 
         /// <summary>
+        ///     Country of the IBAN.
         /// </summary>
         public ICountry Country { get; set; }
 
         /// <summary>
-        /// </summary>
-        public IBban Bban { get; set; }
-
-        /// <summary>
+        ///     National Check Digits of the IBAN.
         /// </summary>
         public string NationalCheckDigits
         {
@@ -138,22 +166,36 @@ namespace IbanLib
             {
                 if (string.IsNullOrWhiteSpace(value) || value.Length > 2)
                 {
-                    value = "00";
+                    value = DefaultNationalCheckDigits;
                 }
 
-                _nationalCheckDigits = value;
+                if (value.Length == 1)
+                {
+                    value = string.Concat("0", value);
+                }
+
+                _nationalCheckDigits = value.ToUpperInvariant();
             }
         }
 
-        private string _nationalCheckDigits = "00";
+        private string _nationalCheckDigits = DefaultNationalCheckDigits;
+        public const string DefaultNationalCheckDigits = "00";
+
+        /// <summary>
+        ///     BBAN of the IBAN.
+        /// </summary>
+        public IBban Bban { get; set; }
 
         # endregion
 
         # region Methods
 
         /// <summary>
+        ///     Override of base ToString() method that returns the rappresentation of THIS class in a string.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     The string that rappresent THIS class.
+        /// </returns>
         public override string ToString()
         {
             return string.Format(
@@ -166,17 +208,11 @@ namespace IbanLib
         }
 
         /// <summary>
+        ///     Return the rappresentation of the IBAN in a string.
         /// </summary>
-        /// <param name="field"></param>
-        /// <returns></returns>
-        private static string ToStringField(string field)
-        {
-            return string.IsNullOrWhiteSpace(field) ? "null" : field;
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     The IBAN.
+        /// </returns>
         public string Value()
         {
             if (Country == null || Bban == null)

@@ -151,5 +151,19 @@ namespace IbanLib.Common
 
             return strWithoutSpaces;
         }
+
+        /// <summary>
+        ///     Method that returns the rappresentation of a field in a string.
+        /// </summary>
+        /// <param name="field">
+        ///     Field to evaluate.
+        /// </param>
+        /// <returns>
+        ///     The evaluated field.
+        /// </returns>
+        protected static string ToStringField(string field)
+        {
+            return string.IsNullOrWhiteSpace(field) ? "null" : field;
+        }
     }
 }

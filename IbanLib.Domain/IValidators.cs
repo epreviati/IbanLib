@@ -8,30 +8,6 @@ namespace IbanLib.Domain
     public interface IValidators
     {
         /// <summary>
-        ///     The method returns the implementation of the IIBanValidator.
-        /// </summary>
-        /// <returns>
-        ///     The IIBanValidator.
-        /// </returns>
-        IIbanValidator GetIbanValidator();
-
-        /// <summary>
-        ///     The method returns the implementation of the IIBanValidator.
-        /// </summary>
-        /// <returns>
-        ///     The IIBanValidator object.
-        /// </returns>
-        IBbanValidator GetBbanValidator();
-
-        /// <summary>
-        ///     The method returns the implementation of the ICountryCodeValidator.
-        /// </summary>
-        /// <returns>
-        ///     The ICountryCodeValidator object.
-        /// </returns>
-        ICountryCodeValidator GetCountryCodeValidator();
-
-        /// <summary>
         ///     The method returns the implementation of the IBankCodeValidator.
         /// </summary>
         /// <returns>
@@ -54,5 +30,29 @@ namespace IbanLib.Domain
         ///     The IAccountNumberValidator object.
         /// </returns>
         IAccountNumberValidator GetAccountNumberValidator();
+
+        /// <summary>
+        ///     The method returns the implementation of the ICountryCodeValidator.
+        /// </summary>
+        /// <returns>
+        ///     The ICountryCodeValidator object.
+        /// </returns>
+        ICountryCodeValidator GetCountryCodeValidator();
+
+        /// <summary>
+        ///     The method returns the implementation of the IIBanValidator.
+        /// </summary>
+        /// <returns>
+        ///     The IIBanValidator object.
+        /// </returns>
+        IIbanValidator GetIbanValidator();
+
+        /// <summary>
+        ///     The method returns the implementation of the IIBanValidator.
+        /// </summary>
+        /// <returns>
+        ///     The IIBanValidator object.
+        /// </returns>
+        IBbanValidator GetBbanValidator();
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using IbanLib.Common;
+﻿using IbanLib.Common;
 using IbanLib.Domain;
 using IbanLib.Domain.Validators;
 using IbanLib.Exceptions;
@@ -7,6 +6,7 @@ using IbanLib.Exceptions;
 namespace IbanLib
 {
     /// <summary>
+    ///     DefaultValidators that contains all the validators.
     /// </summary>
     public class DefaultValidators : AClass, IValidators
     {
@@ -18,14 +18,29 @@ namespace IbanLib
         private readonly IIbanValidator _ibanValidator;
 
         /// <summary>
+        ///     Constructor that permits to set all the validator.
         /// </summary>
-        /// <param name="accountNumberValidator"></param>
-        /// <param name="bankCodeValidator"></param>
-        /// <param name="bbanValidator"></param>
-        /// <param name="branchCodeValidator"></param>
-        /// <param name="countryCodeValidator"></param>
-        /// <param name="ibanValidator"></param>
-        /// <exception cref="ValidatorException"></exception>
+        /// <param name="bankCodeValidator">
+        ///     Objects that contains the rules to validate a Bank Code.
+        /// </param>
+        /// <param name="branchCodeValidator">
+        ///     Objects that contains the rules to validate a Branch Code.
+        /// </param>
+        /// <param name="accountNumberValidator">
+        ///     Objects that contains the rules to validate an Account Number.
+        /// </param>
+        /// <param name="countryCodeValidator">
+        ///     Objects that contains the rules to validate a Country Code.
+        /// </param>
+        /// <param name="ibanValidator">
+        ///     Objects that contains the rules to validate an IBAN.
+        /// </param>
+        /// <param name="bbanValidator">
+        ///     Objects that contains the rules to validate a BBAN.
+        /// </param>
+        /// <exception cref="ValidatorException">
+        ///     If any validator is not valid a <see cref="ValidatorException" /> will be thrown.
+        /// </exception>
         public DefaultValidators(
             IBankCodeValidator bankCodeValidator,
             IBranchCodeValidator branchCodeValidator,
@@ -35,23 +50,11 @@ namespace IbanLib
             IBbanValidator bbanValidator)
         {
             CheckNotNullArgument<IBankCodeValidator>(bankCodeValidator, "bankCodeValidator");
-            Debug.Assert(bankCodeValidator != null, "bankCodeValidator != null");
-
             CheckNotNullArgument<IBranchCodeValidator>(branchCodeValidator, "branchCodeValidator");
-            Debug.Assert(branchCodeValidator != null, "branchCodeValidator != null");
-
-            CheckNotNullArgument<IAccountNumberValidator>(accountNumberValidator,
-                "accountNumberValidator");
-            Debug.Assert(accountNumberValidator != null, "accountNumberValidator != null");
-
+            CheckNotNullArgument<IAccountNumberValidator>(accountNumberValidator, "accountNumberValidator");
             CheckNotNullArgument<ICountryCodeValidator>(countryCodeValidator, "countryCodeValidator");
-            Debug.Assert(countryCodeValidator != null, "countryCodeValidator != null");
-
             CheckNotNullArgument<IIbanValidator>(ibanValidator, "ibanValidator");
-            Debug.Assert(ibanValidator != null, "ibanValidator != null");
-
             CheckNotNullArgument<IBbanValidator>(bbanValidator, "bbanValidator");
-            Debug.Assert(bbanValidator != null, "bbanValidator != null");
 
             _bankCodeValidator = bankCodeValidator;
             _branchCodeValidator = branchCodeValidator;
@@ -61,31 +64,67 @@ namespace IbanLib
             _bbanValidator = bbanValidator;
         }
 
+        /// <summary>
+        ///     The method returns the IbanValidator.
+        /// </summary>
+        /// <returns>
+        ///     The IanValidator object.
+        /// </returns>
         public IIbanValidator GetIbanValidator()
         {
             return _ibanValidator;
         }
 
+        /// <summary>
+        ///     The method returns the BbanValidator.
+        /// </summary>
+        /// <returns>
+        ///     The BanValidator object.
+        /// </returns>
         public IBbanValidator GetBbanValidator()
         {
             return _bbanValidator;
         }
 
+        /// <summary>
+        ///     The method returns the CountryCodeValidator.
+        /// </summary>
+        /// <returns>
+        ///     The CountryCodeValidator object.
+        /// </returns>
         public ICountryCodeValidator GetCountryCodeValidator()
         {
             return _countryCodeValidator;
         }
 
+        /// <summary>
+        ///     The method returns the BankCodeValidator.
+        /// </summary>
+        /// <returns>
+        ///     The BankCodeValidator object.
+        /// </returns>
         public IBankCodeValidator GetBankCodeValidator()
         {
             return _bankCodeValidator;
         }
 
+        /// <summary>
+        ///     The method returns the BranchCodeValidator.
+        /// </summary>
+        /// <returns>
+        ///     The BranchCodeValidator object.
+        /// </returns>
         public IBranchCodeValidator GetBranchCodeValidator()
         {
             return _branchCodeValidator;
         }
 
+        /// <summary>
+        ///     The method returns the AccountNumberValidator.
+        /// </summary>
+        /// <returns>
+        ///     The AccountNumberValidator object.
+        /// </returns>
         public IAccountNumberValidator GetAccountNumberValidator()
         {
             return _accountNumberValidator;

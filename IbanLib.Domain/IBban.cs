@@ -47,7 +47,7 @@ namespace IbanLib.Domain
         string Value();
 
         /// <summary>
-        ///     The methods try to split the string BBAN paramente to the corrispondent IBBAN object.
+        ///     The methods try to split the string BBAN parameter to the corrispondent IBbAN object.
         /// </summary>
         /// <param name="country">
         ///     Country of the BBAN.

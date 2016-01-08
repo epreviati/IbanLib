@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using IbanLib.Common;
+﻿using IbanLib.Common;
 using IbanLib.Countries;
 using IbanLib.Domain;
 using IbanLib.Domain.Splitters;
@@ -10,58 +9,75 @@ using IbanLib.Exceptions.Enums;
 namespace IbanLib
 {
     /// <summary>
+    ///     Bban class that permits to create an IBAN object.
     /// </summary>
     public class Bban : AClass, IBban
     {
         # region Constructors
 
         /// <summary>
+        ///     Constructor of an empty IBAN oject.
         /// </summary>
         public Bban()
         {
         }
 
         /// <summary>
+        ///     Constructor that creates an IBAN starting from the Country and the BBAN and that calculate the National Check
+        ///     Digits.
         /// </summary>
-        /// <param name="country"></param>
+        /// <param name="country">
+        ///     Country of the IBAN.
+        /// </param>
+        /// <param name="bankCode">
+        ///     Bank Code of the BBAN.
+        /// </param>
+        /// <param name="accountNumber">
+        ///     Account Number of the BBAN.
+        /// </param>
+        /// <param name="validators">
+        ///     All the validators that are required to validate the informations.
+        /// </param>
         /// <exception cref="InvalidCountryException">
         ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
         /// </exception>
-        private Bban(ICountry country)
-        {
-            CheckNotNullCountry(country);
-            Debug.Assert(country != null, "country != null");
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="country"></param>
-        /// <param name="bankCode"></param>
-        /// <param name="accountNumber"></param>
-        /// <param name="validators"></param>
-        /// <exception cref="InvalidCountryException">
-        ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
+        /// <exception cref="InvalidBbanDetailException">
+        ///     If any parameter is not valid an <see cref="InvalidBbanDetailException" /> will be thrown.
         /// </exception>
-        /// <exception cref="InvalidBbanDetailException"></exception>
         public Bban(ICountry country, string bankCode, string accountNumber, IValidators validators)
             : this(country, bankCode, null, accountNumber, validators)
         {
         }
 
         /// <summary>
+        ///     Constructor that creates an IBAN starting from the Country and the BBAN and that calculate the National Check
+        ///     Digits.
         /// </summary>
-        /// <param name="country"></param>
-        /// <param name="bankCode"></param>
-        /// <param name="branchCode"></param>
-        /// <param name="accountNumber"></param>
-        /// <param name="validators"></param>
+        /// <param name="country">
+        ///     Country of the IBAN.
+        /// </param>
+        /// <param name="bankCode">
+        ///     Bank Code of the BBAN.
+        /// </param>
+        /// <param name="branchCode">
+        ///     Branch Code of the BBAN.
+        /// </param>
+        /// <param name="accountNumber">
+        ///     Account Number of the BBAN.
+        /// </param>
+        /// <param name="validators">
+        ///     All the validators that are required to validate the informations.
+        /// </param>
         /// <exception cref="InvalidCountryException">
         ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
         /// </exception>
-        /// <exception cref="InvalidBbanDetailException"></exception>
+        /// <exception cref="InvalidBbanDetailException">
+        ///     If any parameter is not valid an <see cref="InvalidBbanDetailException" /> will be thrown.
+        /// </exception>
         public Bban(ICountry country, string bankCode, string branchCode, string accountNumber, IValidators validators)
-            : this(country)
         {
+            CheckNotNullCountry(country);
+
             CheckIsValidArgument(
                 validators.GetBankCodeValidator(),
                 DetailType.Bban,
@@ -92,17 +108,30 @@ namespace IbanLib
         }
 
         /// <summary>
+        ///     Constructor that splits the BBAN string to THIS BBAN object.
         /// </summary>
-        /// <param name="country"></param>
-        /// <param name="bban"></param>
-        /// <param name="validators"></param>
-        /// <param name="splitter"></param>
+        /// <param name="country">
+        ///     Country of the BBAN.
+        /// </param>
+        /// <param name="bban">
+        ///     String rappresentation of the BBAN.
+        /// </param>
+        /// <param name="validators">
+        ///     All the validators that are required to validate the informations.
+        /// </param>
+        /// <param name="splitter">
+        ///     Rules to define how to split a BBAN.
+        /// </param>
+        /// <returns>
+        ///     The parameter string BBAN spliited in a BBAN object.
+        /// </returns>
         /// <exception cref="InvalidCountryException">
         ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
         /// </exception>
-        /// <exception cref="InvalidBbanDetailException"></exception>
+        /// <exception cref="InvalidBbanDetailException">
+        ///     If any parameter is not valid an <see cref="InvalidBbanDetailException" /> will be thrown.
+        /// </exception>
         public Bban(ICountry country, string bban, IValidators validators, IBbanSplitter splitter)
-            : this(country)
         {
             SplitBban(country, bban, validators, splitter);
         }
@@ -112,6 +141,7 @@ namespace IbanLib
         # region Fields
 
         /// <summary>
+        ///     Check Digits 1 of the BBAN.
         /// </summary>
         public string CheckDigits1
         {
@@ -122,6 +152,7 @@ namespace IbanLib
         private string _checkDigits1;
 
         /// <summary>
+        ///     Bank Code of the BBAN.
         /// </summary>
         public string BankCode
         {
@@ -132,6 +163,7 @@ namespace IbanLib
         private string _bankCode;
 
         /// <summary>
+        ///     Branch Code of the BBAN.
         /// </summary>
         public string BranchCode
         {
@@ -142,6 +174,7 @@ namespace IbanLib
         private string _branchCode;
 
         /// <summary>
+        ///     Check Digits 2 of the BBAN.
         /// </summary>
         public string CheckDigits2
         {
@@ -152,6 +185,7 @@ namespace IbanLib
         private string _checkDigits2;
 
         /// <summary>
+        ///     Account Number of the BBAN.
         /// </summary>
         public string AccountNumber
         {
@@ -162,6 +196,7 @@ namespace IbanLib
         private string _accountNumber;
 
         /// <summary>
+        ///     Check Digits 3 of the BBAN.
         /// </summary>
         public string CheckDigits3
         {
@@ -178,17 +213,31 @@ namespace IbanLib
         /// <summary>
         ///     The method splits the BBAN string to THIS BBAN object.
         /// </summary>
-        /// <param name="country"></param>
-        /// <param name="bban"></param>
-        /// <param name="validators"></param>
-        /// <param name="splitter"></param>
-        /// <returns></returns>
+        /// <param name="country">
+        ///     Country of the BBAN.
+        /// </param>
+        /// <param name="bban">
+        ///     String rappresentation of the BBAN.
+        /// </param>
+        /// <param name="validators">
+        ///     All the validators that are required to validate the informations.
+        /// </param>
+        /// <param name="splitter">
+        ///     Rules to define how to split a BBAN.
+        /// </param>
+        /// <returns>
+        ///     The parameter string BBAN spliited in a BBAN object.
+        /// </returns>
         /// <exception cref="InvalidCountryException">
         ///     If Country is null an <see cref="InvalidCountryException" /> will be thrown.
         /// </exception>
-        /// <exception cref="InvalidBbanDetailException"></exception>
+        /// <exception cref="InvalidBbanDetailException">
+        ///     If any parameter is not valid an <see cref="InvalidBbanDetailException" /> will be thrown.
+        /// </exception>
         public IBban SplitBban(ICountry country, string bban, IValidators validators, IBbanSplitter splitter)
         {
+            CheckNotNullCountry(country);
+
             CheckIsValidArgument(
                 validators.GetBbanValidator(),
                 DetailType.Bban,
@@ -256,8 +305,11 @@ namespace IbanLib
         }
 
         /// <summary>
+        ///     Override of base ToString() method that returns the rappresentation of THIS class in a string.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     The string that rappresent THIS class.
+        /// </returns>
         public override string ToString()
         {
             return string.Format(
@@ -276,17 +328,11 @@ namespace IbanLib
         }
 
         /// <summary>
+        ///     Return the rappresentation of the IBAN in a string.
         /// </summary>
-        /// <param name="field"></param>
-        /// <returns></returns>
-        private static string ToStringField(string field)
-        {
-            return string.IsNullOrWhiteSpace(field) ? "null" : field;
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     The IBAN.
+        /// </returns>
         public string Value()
         {
             return string.Concat(
@@ -299,9 +345,14 @@ namespace IbanLib
         }
 
         /// <summary>
+        ///     Helper method that normalize a field.
         /// </summary>
-        /// <param name="field"></param>
-        /// <returns></returns>
+        /// <param name="field">
+        ///     Field to normalize.
+        /// </param>
+        /// <returns>
+        ///     The normalized field.
+        /// </returns>
         private static string GetFieldValue(string field)
         {
             return string.IsNullOrWhiteSpace(field)
