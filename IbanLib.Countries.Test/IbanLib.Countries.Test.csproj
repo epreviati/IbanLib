@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Countries\AZTest.cs" />
     <Compile Include="Countries\AETest.cs" />
+    <Compile Include="Countries\BHTest.cs" />
     <Compile Include="Countries\SATest.cs" />
     <Compile Include="Countries\VGTest.cs" />
     <Compile Include="GetterTest.cs" />

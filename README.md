@@ -11,6 +11,7 @@ Fully countries supported in the version 1.0.0:
 * AT - Austria,
 * AZ - Azerbaijan,
 * BE - Belgium,
+* BH - Bahrain,
 * DE - Germany,
 * ES - Spain,
 * FR - France,
@@ -26,7 +27,7 @@ Fully countries supported in the version 1.0.0:
 * TR - Turkey,
 * VG - Virgin Islands
 
-All the other missing countries need times to be integrated because it is not so easy to find all the required informations for every single country.
+For all the other missing countries is required more time to be integrated because it is not so easy to find all the required informations for every single country.
 
 ##Structure of the solution
 The solution is structured under three main folders:
