@@ -47,7 +47,7 @@ The library is structured under eight projects:
 How it is shown under the samples projects the library was thought to permits to manage or an _IbanLib.Domain.IIban_ object or an _IbanLib.Domain.IBban_ object.
 
 ###BBAN
-The default implementation, offers from the library, to manage an _IbanLib.Domain.IBban_ is the _IbanLib.Bban_ object.
+The default implementation, offered from the library, allow to manage an _IbanLib.Domain.IBban_ is the _IbanLib.Bban_ object.
 This object has three constructors and every one of those could be used in the following examples:
 
 ####Empty constructor
@@ -77,7 +77,7 @@ var bban = new Bban(country, bban, validators, splitters);
 ```
 
 ###IBAN
-The default implementation, offers from the library, to manage an _IbanLib.Domain.IIban_ is the _IbanLib.Iban_ object.
+The default implementation, offered from the library, allow to manage an _IbanLib.Domain.IIban_ is the _IbanLib.Iban_ object.
 This object has three constructors and, in similar way for the BBAN, every one of those could be used in the following examples:
 
 ####Empty constructor
