@@ -6,6 +6,7 @@ For this reason, all the classes of the library does not depends from any other 
 
 Fully countries supported in the version 1.0.0:
 * AD - Andorra,
+* AE - United Arab Emirates,
 * AL - Albania,
 * AT - Austria,
 * BE - Belgium,
