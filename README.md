@@ -4,7 +4,7 @@
 The library was thought for a fully personalization of the user, defining all the interfaces in a separated project that could be used alone.
 For this reason, all the classes of the library does not depends from any other component but just from the interfaces. In this way all the default objects that are provided are fully configurable simply configuring the IoC container choosed.
 
-Countries supported in the version 1.0.0:
+Countries supported in version 1.0.0:
 * AD - Andorra,
 * AE - United Arab Emirates,
 * AL - Albania,
@@ -13,6 +13,7 @@ Countries supported in the version 1.0.0:
 * BE - Belgium,
 * BH - Bahrain,
 * BR - Brazil,
+* CR - Costa Rica,
 * DE - Germany,
 * ES - Spain,
 * FR - France,
@@ -28,7 +29,7 @@ Countries supported in the version 1.0.0:
 * TR - Turkey,
 * VG - Virgin Islands
 
-For all the other missing countries is still required more time to be integrated because it is not so easy to find all the required informations for every single country.
+To integrate all the other missing countries is still required more because it is not so easy to find all the required informations for every single country.
 
 ##Structure of the solution
 The solution is structured under three main folders:
