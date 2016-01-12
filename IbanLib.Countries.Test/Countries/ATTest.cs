@@ -10,6 +10,7 @@ namespace IbanLib.Countries.Test.Countries
         }
 
         [Test]
+        [TestCase("AT611904300234573201")]
         [TestCase("AT011904300234573201")]
         [TestCase("AT991904300234573201")]
         [TestCase("AT00190430023457320")]

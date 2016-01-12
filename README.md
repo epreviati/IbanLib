@@ -9,6 +9,7 @@ Fully countries supported in the version 1.0.0:
 * AE - United Arab Emirates,
 * AL - Albania,
 * AT - Austria,
+* AZ - Azerbaijan,
 * BE - Belgium,
 * DE - Germany,
 * ES - Spain,
