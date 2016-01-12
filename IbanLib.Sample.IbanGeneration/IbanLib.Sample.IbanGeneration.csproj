@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A71EBD58-2807-41FB-A621-291B781AFB60}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IbanLib.Sample.IbanGeneration</RootNamespace>
+    <AssemblyName>IbanLib.Sample.IbanGeneration</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BankAccount.cs" />
+    <Compile Include="Constructors\AIban.cs" />
+    <Compile Include="Constructors\Iban3.cs" />
+    <Compile Include="Constructors\Iban2.cs" />
+    <Compile Include="Constructors\Iban1.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IbanLib.Common\IbanLib.Common.csproj">
+      <Project>{82ceced9-c46b-4173-9979-be8ff26575ee}</Project>
+      <Name>IbanLib.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib.Countries\IbanLib.Countries.csproj">
+      <Project>{132D7F7C-6676-47BA-BC5B-99FDBD77CDF6}</Project>
+      <Name>IbanLib.Countries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib.DependenciesResolver\IbanLib.DependenciesResolver.csproj">
+      <Project>{1FA9B75D-A688-488C-AFE9-35E07ACFE564}</Project>
+      <Name>IbanLib.DependenciesResolver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib.Domain\IbanLib.Domain.csproj">
+      <Project>{98fee388-e801-4f94-a44e-31e40abc0e78}</Project>
+      <Name>IbanLib.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib.Exceptions\IbanLib.Exceptions.csproj">
+      <Project>{01338198-bf8d-4fb9-818d-b9547de81597}</Project>
+      <Name>IbanLib.Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IbanLib\IbanLib.csproj">
+      <Project>{F680B939-825D-4D75-B5D5-10ECBB668C40}</Project>
+      <Name>IbanLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
