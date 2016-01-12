@@ -52,6 +52,7 @@
     <Compile Include="Countries\FR.cs" />
     <Compile Include="Countries\GB.cs" />
     <Compile Include="Countries\AE.cs" />
+    <Compile Include="Countries\BR.cs" />
     <Compile Include="Countries\SA.cs" />
     <Compile Include="Countries\SM.cs" />
     <Compile Include="Countries\MR.cs" />
