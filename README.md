@@ -19,6 +19,7 @@ Fully countries supported in the version 1.0.0:
 * MD - Moldova,
 * MR - Mauritania,
 * RO - Romania,
+* SA - Saudi Arabia,
 * SM - San Marino,
 * TR - Turkey,
 * VG - Virgin Islands
