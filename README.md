@@ -43,7 +43,7 @@ The library is structured under eight projects:
 * _**IbanLib**_ contains all the default implementation to use the library,
 * _**IbanLib.Common**_ contains the common structures and common functionalities shared between the other projects,
 * _**IbanLib.Countries**_ contains the generic interface, ICountry, for a country and all the implemented countries,
-* _**IbanLib.DependenciesResolver**_ contains the configurations for the IoC (by default is used _[Castle](www.castleproject.org)_),
+* _**IbanLib.DependenciesResolver**_ contains the configurations for the IoC (by default is used _[Castle](http://www.castleproject.org/)_),
 * _**IbanLib.Domain**_ contains all the interfaces to the library,
 * _**IbanLib.Exceptions**_ contains all the Exceptions that the library can throw,
 * _**IbanLib.Splitters**_ contains the default implementations for all the splitters that the project _IbanLib_ uses,
