@@ -43,10 +43,90 @@ namespace IbanLib.Validators.Test
         }
 
         [Test]
+        [TestCase("-")]
+        public void BranchCodeValidator_Is_Not_Valid_Branch_Code_AE(string branchCode)
+        {
+            BranchCodeValidator_Is_Not_Valid_Branch_Code(new AE(), branchCode);
+        }
+
+        [Test]
+        [TestCase("-")]
+        public void BranchCodeValidator_Is_Not_Valid_Branch_Code_AT(string branchCode)
+        {
+            BranchCodeValidator_Is_Not_Valid_Branch_Code(new AT(), branchCode);
+        }
+
+        [Test]
+        [TestCase("-")]
+        public void BranchCodeValidator_Is_Not_Valid_Branch_Code_AZ(string branchCode)
+        {
+            BranchCodeValidator_Is_Not_Valid_Branch_Code(new AZ(), branchCode);
+        }
+
+        [Test]
+        [TestCase("-")]
+        public void BranchCodeValidator_Is_Not_Valid_Branch_Code_BE(string branchCode)
+        {
+            BranchCodeValidator_Is_Not_Valid_Branch_Code(new BE(), branchCode);
+        }
+
+        [Test]
+        [TestCase("-")]
+        public void BranchCodeValidator_Is_Not_Valid_Branch_Code_BH(string branchCode)
+        {
+            BranchCodeValidator_Is_Not_Valid_Branch_Code(new BH(), branchCode);
+        }
+
+        [Test]
         [TestCase("0123")]
         public void BranchCodeValidator_Is_Valid_Branch_Code_AD(string branchCode)
         {
             BranchCodeValidator_Is_Valid_Branch_Code(new AD(), branchCode);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void BranchCodeValidator_Is_Valid_Branch_Code_AE(string branchCode)
+        {
+            BranchCodeValidator_Is_Valid_Branch_Code(new AE(), branchCode);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void BranchCodeValidator_Is_Valid_Branch_Code_AT(string branchCode)
+        {
+            BranchCodeValidator_Is_Valid_Branch_Code(new AT(), branchCode);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void BranchCodeValidator_Is_Valid_Branch_Code_AZ(string branchCode)
+        {
+            BranchCodeValidator_Is_Valid_Branch_Code(new AZ(), branchCode);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void BranchCodeValidator_Is_Valid_Branch_Code_BE(string branchCode)
+        {
+            BranchCodeValidator_Is_Valid_Branch_Code(new BE(), branchCode);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void BranchCodeValidator_Is_Valid_Branch_Code_BH(string branchCode)
+        {
+            BranchCodeValidator_Is_Valid_Branch_Code(new BH(), branchCode);
         }
     }
 }

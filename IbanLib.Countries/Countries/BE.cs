@@ -86,7 +86,9 @@ namespace IbanLib.Countries.Countries
             var concat = string.Concat(bankCode, accountNumber);
             BigInteger bi;
             if (!BigInteger.TryParse(concat, out bi))
+            {
                 return null;
+            }
 
             var check = (bi%97).ToString();
             while (check.Length < 2)

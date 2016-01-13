@@ -12,6 +12,10 @@ namespace IbanLib.Splitters.Test.IBanSplitterTest
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        [TestCase("AE070331234567890123456")]
+        [TestCase("AT611904300234573201")]
+        [TestCase("AZ21NABZ00000000137010001944")]
+        [TestCase("BE68539007547034")]
         public void GetBban_Expected_InvalidCountryException(string iban)
         {
             Action action1 = () => IbanSplitterValidValidation.GetBban(null, iban);
@@ -38,6 +42,10 @@ namespace IbanLib.Splitters.Test.IBanSplitterTest
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        [TestCase("AE070331234567890123456")]
+        [TestCase("AT611904300234573201")]
+        [TestCase("AZ21NABZ00000000137010001944")]
+        [TestCase("BE68539007547034")]
         public void GetBban_Throw_IbanSplitterException(string iban)
         {
             Action action = () => IbanSplitterInvalidValidation.GetBban(TestUtil.MockNotNullCountry, iban);
@@ -76,6 +84,10 @@ namespace IbanLib.Splitters.Test.IBanSplitterTest
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        [TestCase("AE070331234567890123456")]
+        [TestCase("AT611904300234573201")]
+        [TestCase("AZ21NABZ00000000137010001944")]
+        [TestCase("BE68539007547034")]
         public void GetNationalCheckDigits_Throw_IbanSplitterException(string iban)
         {
             Action action = () => IbanSplitterInvalidValidation.GetNationalCheckDigits(

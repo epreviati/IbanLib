@@ -8,10 +8,16 @@ namespace IbanLib.Sample.IbanGeneration.Constructors
     public abstract class AIban
     {
         protected static IWindsorContainer Container = Bootstrapper.Boot();
+        protected static string ClassName = null;
 
         protected AIban(string title)
         {
             WriteLine(title, 0, 1);
+        }
+
+        protected static void WriteTitle(string methodName0)
+        {
+            WriteLine(string.Concat(ClassName, " -> ", methodName0), 0, 1);
         }
 
         protected static void PrintComparison(IIban iban, BankAccount bankAccount)

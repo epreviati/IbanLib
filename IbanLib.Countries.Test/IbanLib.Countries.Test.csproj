@@ -76,7 +76,6 @@
     <Compile Include="Countries\DETest.cs" />
     <Compile Include="Countries\BETest.cs" />
     <Compile Include="Countries\ATTest.cs" />
-    <Compile Include="Countries\ALTest.cs" />
     <Compile Include="Countries\ADTest.cs" />
     <Compile Include="Countries\ACountryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

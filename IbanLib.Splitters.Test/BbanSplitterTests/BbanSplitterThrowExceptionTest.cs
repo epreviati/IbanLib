@@ -14,6 +14,10 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        [TestCase("AE070331234567890123456")]
+        [TestCase("AT611904300234573201")]
+        [TestCase("AZ21NABZ00000000137010001944")]
+        [TestCase("BE68539007547034")]
         public void GetAccountNumber_Expected_InvalidCountryException(string iban)
         {
             var bban = GetBbanFromIBan(iban);
@@ -50,6 +54,10 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        [TestCase("AE070331234567890123456")]
+        [TestCase("AT611904300234573201")]
+        [TestCase("AZ21NABZ00000000137010001944")]
+        [TestCase("BE68539007547034")]
         public void GetAccountNumber_Throw_BbanSplitterException(string iban)
         {
             Action action = () =>
@@ -65,6 +73,10 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        [TestCase("AE070331234567890123456")]
+        [TestCase("AT611904300234573201")]
+        [TestCase("AZ21NABZ00000000137010001944")]
+        [TestCase("BE68539007547034")]
         public void GetBankCode_Expected_InvalidCountryException(string iban)
         {
             var bban = GetBbanFromIBan(iban);
@@ -101,6 +113,10 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        [TestCase("AE070331234567890123456")]
+        [TestCase("AT611904300234573201")]
+        [TestCase("AZ21NABZ00000000137010001944")]
+        [TestCase("BE68539007547034")]
         public void GetBankCode_Throw_BbanSplitterException(string iban)
         {
             Action action = () =>
@@ -116,6 +132,10 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        [TestCase("AE070331234567890123456")]
+        [TestCase("AT611904300234573201")]
+        [TestCase("AZ21NABZ00000000137010001944")]
+        [TestCase("BE68539007547034")]
         public void GetBranchCode_Expected_InvalidCountryException(string iban)
         {
             var bban = GetBbanFromIBan(iban);
@@ -152,6 +172,10 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        [TestCase("AE070331234567890123456")]
+        [TestCase("AT611904300234573201")]
+        [TestCase("AZ21NABZ00000000137010001944")]
+        [TestCase("BE68539007547034")]
         public void GetBranchCode_Throw_BbanSplitterException(string iban)
         {
             Action action = () =>
@@ -167,6 +191,10 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        [TestCase("AE070331234567890123456")]
+        [TestCase("AT611904300234573201")]
+        [TestCase("AZ21NABZ00000000137010001944")]
+        [TestCase("BE68539007547034")]
         public void GetCheck1_Expected_InvalidCountryException(string iban)
         {
             var bban = GetBbanFromIBan(iban);
@@ -203,6 +231,9 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        [TestCase("AE070331234567890123456")]
+        [TestCase("AT611904300234573201")]
+        [TestCase("AZ21NABZ00000000137010001944")]
         public void GetCheck1_Throw_BbanSplitterException(string iban)
         {
             Action action = () =>
@@ -218,6 +249,10 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        [TestCase("AE070331234567890123456")]
+        [TestCase("AT611904300234573201")]
+        [TestCase("AZ21NABZ00000000137010001944")]
+        [TestCase("BE68539007547034")]
         public void GetCheck2_Expected_InvalidCountryException(string iban)
         {
             var bban = GetBbanFromIBan(iban);
@@ -254,6 +289,10 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        [TestCase("AE070331234567890123456")]
+        [TestCase("AT611904300234573201")]
+        [TestCase("AZ21NABZ00000000137010001944")]
+        [TestCase("BE68539007547034")]
         public void GetCheck2_Throw_BbanSplitterException(string iban)
         {
             Action action = () =>
@@ -269,6 +308,10 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        [TestCase("AE070331234567890123456")]
+        [TestCase("AT611904300234573201")]
+        [TestCase("AZ21NABZ00000000137010001944")]
+        [TestCase("BE68539007547034")]
         public void GetCheck3_Expected_InvalidCountryException(string iban)
         {
             var bban = GetBbanFromIBan(iban);
@@ -305,6 +348,10 @@ namespace IbanLib.Splitters.Test.BbanSplitterTests
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("AD1200012030200359100100")]
+        [TestCase("AE070331234567890123456")]
+        [TestCase("AT611904300234573201")]
+        [TestCase("AZ21NABZ00000000137010001944")]
+        [TestCase("BE68539007547034")]
         public void GetCheck3_Throw_BbanSplitterException(string iban)
         {
             Action action = () =>

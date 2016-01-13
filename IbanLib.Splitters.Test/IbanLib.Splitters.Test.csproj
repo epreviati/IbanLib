@@ -58,6 +58,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ASplitterTest.cs" />
     <Compile Include="BbanSplitterTests\ABbanSplitterTest.cs" />
     <Compile Include="BbanSplitterTests\BbanSplitterThrowExceptionTest.cs" />
     <Compile Include="BbanSplitterTests\BbanSplitterGetAccountNumber.cs" />
