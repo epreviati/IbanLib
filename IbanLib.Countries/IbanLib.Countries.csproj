@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{132D7F7C-6676-47BA-BC5B-99FDBD77CDF6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IbanLib.Countries</RootNamespace>
+    <AssemblyName>IbanLib.Countries</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Countries\AD.cs" />
+    <Compile Include="Countries\AE.cs" />
+    <Compile Include="Countries\AT.cs" />
+    <Compile Include="Countries\BE.cs" />
+    <Compile Include="Countries\ACountry.cs" />
+    <Compile Include="Countries\AZ.cs" />
+    <Compile Include="Countries\BH.cs" />
+    <Compile Include="Countries\CR.cs" />
+    <Compile Include="Countries\DE.cs" />
+    <Compile Include="Countries\ES.cs" />
+    <Compile Include="Countries\FR.cs" />
+    <Compile Include="Countries\GB.cs" />
+    <Compile Include="Countries\BR.cs" />
+    <Compile Include="Countries\SA.cs" />
+    <Compile Include="Countries\SM.cs" />
+    <Compile Include="Countries\MR.cs" />
+    <Compile Include="Countries\MC.cs" />
+    <Compile Include="Countries\VG.cs" />
+    <Compile Include="Countries\TR.cs" />
+    <Compile Include="ICountry.cs" />
+    <Compile Include="Countries\IE.cs" />
+    <Compile Include="Countries\IT.cs" />
+    <Compile Include="Countries\MD.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Countries\RO.cs" />
+    <Compile Include="Getter.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
